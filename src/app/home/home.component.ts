@@ -1,4 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +10,15 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 @ViewChild('video') video:ElementRef
-  constructor() { }
+  constructor(private dialog:MatDialog, private _api:ApiService) { }
 
   ngOnInit(): void {
     this.playvideo();
+    this._api.loginClickeEmitter.subscribe((event:any)=>{
+      if(event){
+        this.openDialog();
+      }
+    })
   }
 
 
@@ -27,5 +35,13 @@ export class HomeComponent implements OnInit {
       // console.log(this.video);
     }, 100);
     // let video = document.getElementById('video')
+  }
+
+
+  openDialog(){
+      let dialog = this.dialog.open(LoginComponent,{
+        height: '648px',
+        width: '1048px'
+      })
   }
 }

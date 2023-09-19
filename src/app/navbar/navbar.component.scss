@@ -5,9 +5,9 @@
     justify-content: space-between;
     align-items: center;
     // background-color: #000000;
-    background-color: #fff;
+    background: linear-gradient(to left, rgba(19, 13, 3, 0.112) , rgb(23, 153, 165));
     padding: 10px;
-
+    box-sizing: border-box;
 }
 .logo{
     width: 20%;
@@ -33,16 +33,17 @@
     width: 60%;
 }
 .link{
-    // color: #ffffff;
+    color: #ffffff;
     // color: #5cd32b;
-    color: #0F298B;
+    // color: #0F298B;
     font-family: 'Roboto';
     font-size: 19px;
     font-weight: 500;
     border-bottom: 2px solid transparent;
 }
 .link:hover{
-    border-bottom: 2px solid #0F298B;
+    // border-bottom: 2px solid #0F298B;
+    border-bottom: 2px solid #ffffff;
     transform: translateY(-3px);
     cursor: pointer;
     transition: 0.5s ease-in-out;
@@ -71,7 +72,7 @@
         max-width: 100%;
         width: 50%;
         // background-color: #000;
-        background-color: #fff;
+        background: linear-gradient(to right, rgba(255, 157, 0, 0.112) , rgb(0, 234, 255));
         z-index: 10;
         row-gap: 20px;
         padding: 10px;

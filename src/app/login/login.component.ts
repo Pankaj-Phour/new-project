@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, 
     private router: Router,
       private _cdr:ChangeDetectorRef,
-      private _as:ApiService
+      private _as:ApiService,
+      private dialog:MatDialog
       ) { }
 
   ngOnInit(): void {
@@ -159,7 +161,9 @@ export class LoginComponent implements OnInit {
               message: next.message
             })
             localStorage.setItem('user',JSON.stringify(next.response))
-            this.router.navigate(['/dashboard']);
+            // this.router.navigate(['/dashboard']);
+            this.dialog.closeAll();
+
           }, 2000);
         }
         else{

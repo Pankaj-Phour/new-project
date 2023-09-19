@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -18,15 +18,31 @@ export class ApiService {
 
 
 
+  // ***************************************** Event Emitters to pass data from one component to another instantly ***************************************** 
+
+  @Output() loginClickeEmitter = new EventEmitter();
+  loginClicked(data){
+    this.loginClickeEmitter.emit(data)
+  }
+
+
   // ***************************************** Common functions to be used by different components  ***************************************** 
   
   obNotify(data: any): void {
     this._notify.next(data);
   }
 
-  
+
 
   // ***************************************** Functions to be used  for calling ApiService   *****************************************
+
+  signUp(endpoint:any,params:any){
+    return this.http.post(environment.URL + endpoint,params)
+  }
+
+  signIn(endpoint:any,params:any){
+   return  this.http.post(environment.URL + endpoint,params)
+  }
 
   otpChecker(endpoint:any,params:any){
     return this.http.post(environment.URL + endpoint,params)

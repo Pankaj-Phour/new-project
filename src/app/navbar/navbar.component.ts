@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   mobileNav:boolean = false;
-  constructor(private router:Router) { }
+  constructor(private router:Router,private _api:ApiService) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +24,11 @@ export class NavbarComponent implements OnInit {
 
   openNav(){
     this.mobileNav = !this.mobileNav;
+  }
+  login(){
+    console.log("Hello from navbar login");
+    this._api.loginClicked(true)
+    
   }
 
 }
