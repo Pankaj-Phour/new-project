@@ -53,6 +53,9 @@ export class CatalogueComponent implements OnInit {
     this.ParameterValidation();
     this.CountryValidation();
     this.ExpertValidation();
+    this.Filters[0].type = this.Parameter;
+    this.Filters[1].type = this.Country;
+    this.Filters[2].type = this.Expert;
   }
 
   validation(){

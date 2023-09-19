@@ -17,6 +17,7 @@ import { NotifyComponent } from './notify/notify.component';
 import { NotificationComponent } from './notification/notification.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

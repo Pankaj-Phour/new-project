@@ -1,6 +1,7 @@
 <div class="body">
     <div class="logo">
-        <img src="/assets/goRealtors.logo.jpg" alt="NGO" height="50" width="50" >
+        <!-- <img src="/assets/goRealtors.logo.jpg" alt="NGO" height="50" width="50" > -->
+        <div class="link" routerLink="/">Welcome</div>
     </div>
     <div class="navItems">
         <div class="link" (click)="login()">Login</div>
@@ -13,8 +14,9 @@
     </div>
     <div class="mobileNav" *ngIf="mobileNav">
         <img src="" height="30" width="30" (click)="closeNav('')">
+        <div class="link" routerLink="/">Home</div>
         <div class="link" (click)="login();closeNav('projects')">Login</div>
-        <div class="link" (click)="closeNav('projects')">Create Profile</div>
+        <div class="link" (click)="closeNav('projects')" routerLink="/catalogue">Create Profile</div>
         <div class="link" (click)="closeNav('Team')">Review Catalogue</div>
         <!-- <div class="link" (click)="closeNav('Contact')">Contact us</div> -->
     </div>
