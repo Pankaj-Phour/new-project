@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  URL:'https://chatapp-backend-j9ko.onrender.com'
+  URL:'https://chatapp-backend-j9ko.onrender.com',
+  AshwaniApi:'https://dummy-project.onrender.com/api/v1/catalogue'
 };
 
 /*

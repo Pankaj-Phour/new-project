@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NotifyComponent } from './notify/notify.component';
 import { NotificationComponent } from './notification/notification.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

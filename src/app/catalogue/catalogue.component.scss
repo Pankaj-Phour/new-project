@@ -1,0 +1,27 @@
+.body,.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.sidebar{
+    max-width: 100%;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.right{
+    max-width: 100%;
+    width: 70%;
+}
+.filters{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}

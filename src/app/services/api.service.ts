@@ -47,4 +47,8 @@ export class ApiService {
   otpChecker(endpoint:any,params:any){
     return this.http.post(environment.URL + endpoint,params)
   }
+
+  getvideos(endpoint:any){
+    return this.http.get(environment.AshwaniApi + endpoint)
+  }
 }
