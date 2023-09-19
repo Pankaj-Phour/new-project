@@ -1,0 +1,31 @@
+.body, .container{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, rgba(255, 157, 0, 0.112) , rgb(0, 234, 255));
+}
+.imageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.imageContainer img{
+    // height: 100%;
+    position: relative;
+    // width: 100%;
+}
+.imageContainer video{
+    position: absolute;
+    top: 50%;
+    left: 49.6%;
+    height: 363px;
+    width: 552px;
+    transform: translate(-50%,-50%);
+    object-fit: cover;
+
+}
