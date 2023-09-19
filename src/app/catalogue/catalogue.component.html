@@ -8,12 +8,14 @@
                   </mat-form-field>
             </div>
             <div class="filters">
-                <form class="singleFilter" *ngFor="let filter of Filters" [formGroup]="filter.type">
+                <div class="singleFilter" *ngFor="let filter of Filters">
+                    <form [formGroup]="filter.type">
                     <div class="formGroup" *ngFor="let singleFilter of filter.value">
                             <label class="example-margin">{{singleFilter.name}}</label>
                                     <mat-checkbox class="example-margin"  [formControlName]="singleFilter.name"  value={{singleFilter.name}}  >{{singleFilter.name}}</mat-checkbox>
                     </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="right"></div>
