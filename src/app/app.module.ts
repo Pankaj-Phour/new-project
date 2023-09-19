@@ -12,8 +12,10 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { NotifyComponent } from './notify/notify.component';
 import { NotificationComponent } from './notification/notification.component';
+import { CatalogueComponent } from './catalogue/catalogue.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { NotificationComponent } from './notification/notification.component';
     LoginComponent,
     NavbarComponent,
     NotifyComponent,
-    NotificationComponent
+    NotificationComponent,
+    CatalogueComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { NotificationComponent } from './notification/notification.component';
     NgOtpInputModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
