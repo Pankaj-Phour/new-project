@@ -12,7 +12,7 @@
     <div class="hamburger">
         <button id="burger" class="open-main-nav" (click)="toggleNav()" [ngStyle]="{'padding-top': mobileNav ? '0px' : ''}">
 			<span class="burger" *ngIf="!mobileNav"></span>
-            <div class="crossIcon" *ngIf="mobileNav" style="padding-top: 0px;"><img src="/assets/cross.png" height="30" width="30" ></div>
+            <div class="crossIcon" *ngIf="mobileNav" style="padding-top: 0px;"><img src="assets/cross.png" height="30" width="30" ></div>
 		</button>
     </div>
     <div class="mobileNav" *ngIf="mobileNav">
