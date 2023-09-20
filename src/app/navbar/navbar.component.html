@@ -1,0 +1,25 @@
+<div class="body">
+    <div class="logo">
+        <!-- <img src="/assets/goRealtors.logo.jpg" alt="NGO" height="50" width="50" > -->
+        <div class="link" routerLink="/">Welcome</div>
+    </div>
+    <div class="navItems">
+        <div class="link" (click)="login()">Login</div>
+        <div class="link">Create Profile</div>
+        <div class="link" routerLink="/catalogue">Review Catalogue</div>
+        <!-- <div class="link">Contact us</div> -->
+    </div>
+    <div class="hamburger">
+        <button id="burger" class="open-main-nav" (click)="toggleNav()" [ngStyle]="{'padding-top': mobileNav ? '0px' : ''}">
+			<span class="burger" *ngIf="!mobileNav"></span>
+            <div class="crossIcon" *ngIf="mobileNav" style="padding-top: 0px;"><img src="/assets/cross.png" height="30" width="30" ></div>
+		</button>
+    </div>
+    <div class="mobileNav" *ngIf="mobileNav">
+        <div class="link" routerLink="/" (click)="closeNav('/')">Home</div>
+        <div class="link" (click)="login();closeNav('projects')">Login</div>
+        <div class="link" (click)="closeNav('projects')">Create Profile</div>
+        <div class="link" (click)="closeNav('/catalogue')">Review Catalogue</div>
+        <!-- <div class="link" (click)="closeNav('Contact')">Contact us</div> -->
+    </div>
+</div>

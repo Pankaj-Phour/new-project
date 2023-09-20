@@ -1,0 +1,51 @@
+<div class="body">
+    <div class="container">
+        <div class="sidebar" [formGroup]="sidebarForm">
+            <div class="searchTop">
+                    <label>Search</label>
+                    <input  placeholder="Search by country,parameter or expert" formControlName="searchValue" >
+            </div>
+            <div class="filters" [formArrayName]="'filters'">
+                <div class="singleFilter" *ngFor="let filter of Filters;let i = index" [formGroupName]="i.toString()">
+                    <div class="heading">Select by {{filterNames[i]}}</div>
+                    <div class="formGroup" *ngFor="let singleFilter of filter.value">
+                            <label class="example-margin">{{singleFilter.name}}</label>
+                                    <mat-checkbox class="example-margin"  [formControlName]="singleFilter.name"></mat-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="topFilters">
+                <div class="leftHeading">Filters :</div>
+                <div class="AppliedFilters" *ngFor="let filter of filterNames;let i = index">
+                    <div class="filterHeading">
+                        {{filter}}
+                    </div>
+                    <div class="selectedFilters">
+                        <mat-chip-list #chipList aria-label="Selected Filters">
+                            <mat-chip *ngFor="let selected of selectedFilters[i];let j = index" (removed)="removeKeyword(i,selected)">
+                              {{selected}}
+                              <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                              </button>
+                            </mat-chip>
+                            <mat-chip *ngIf="selectedFilters.length < 1 || selectedFilters[i].length<1">All</mat-chip>
+                          </mat-chip-list>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rightContent">
+                <div class="videos">
+                    <div class="videoCard" *ngFor="let video of pexelVideos">
+                        <div class="thumbnail">
+                            <img [src]="video.image" height="100%" width="100%">
+                        </div>
+                        <div class="playIcon"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

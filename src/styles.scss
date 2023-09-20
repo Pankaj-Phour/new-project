@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Roboto:ital,wght@0,100;0,300;0,400;1,300&display=swap');
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+
+// CSS  for the POP up login dialog box 
+.mat-dialog-container{
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
