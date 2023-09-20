@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -7,9 +7,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ApiService {
-
-  constructor(private http:HttpClient) { }
-
+headers = new HttpHeaders();
+  constructor(private http:HttpClient) { 
+    this.headers = this.headers.append('Authorization',environment.token)
+  }
 
   //  ***************************************** Behaviour subjects to pass data from one component to another *****************************************
 
@@ -48,7 +49,12 @@ export class ApiService {
     return this.http.post(environment.URL + endpoint,params)
   }
 
-  getvideos(endpoint:any){
-    return this.http.get(environment.AshwaniApi + endpoint)
+  getvideos(endpoint:any,params:any){
+    return this.http.post(environment.AshwaniApi + endpoint,params)
+  }
+
+  pexelsVideos(endpoint:any){
+  
+    return this.http.get(environment.pexels + endpoint,{headers:this.headers})
   }
 }

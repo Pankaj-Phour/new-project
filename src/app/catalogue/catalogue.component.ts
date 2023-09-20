@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-catalogue',
@@ -11,7 +12,9 @@ export class CatalogueComponent implements OnInit {
   Parameter:FormGroup;
   Country:FormGroup;
   Expert:FormGroup;
-
+filterNames:any = ['Parameter','Country','Expert'];
+selectedFilters:any = [];
+pexelVideos:any = [];
   Filters: any = [
     {
       type: 'Parameter',
@@ -46,53 +49,86 @@ export class CatalogueComponent implements OnInit {
       ]
     }
   ]
-  constructor(private _fb:FormBuilder) { }
+  constructor(private _fb:FormBuilder,private _api:ApiService) { }
+
+  //  Function for the validation of the form and registering the formControl and FormArray  
+  validation(){
+    this.sidebarForm = this._fb.group({
+      searchValue: [''],
+      filters:this._fb.array([])
+    })
+  }
+
+  // Function to register the dummy controls in the formGroups ( basically used to register our formGroups in the formArray)
+  addDummyControl(){
+    return this._fb.group({
+      dummy: ['']
+    })
+  }
+
+  // Function to add the formControls to the Formgroups 
+  addFormControl(formGroup,formControl){
+    formGroup.addControl(formControl, new FormControl(''));
+  }
 
   ngOnInit(): void {
     this.validation();
-    this.ParameterValidation();
-    this.CountryValidation();
-    this.ExpertValidation();
-    this.Filters[0].type = this.Parameter;
-    this.Filters[1].type = this.Country;
-    this.Filters[2].type = this.Expert;
-  }
+    this.getVideos();
+    this.getPexelsVideo();
+    for(let i=0;i<this.Filters.length;i++){
+      (this.sidebarForm.get('filters') as FormArray).push(this.addDummyControl());
+      for(let j=0;j<this.Filters[i].value.length;j++){
+        this.addFormControl((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup,this.Filters[i].value[j].name)
+      };
+      ((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup).removeControl('dummy')
+    }
+    
 
-  validation(){
-    this.sidebarForm = this._fb.group({
-      searchValue: ['']
+    this.sidebarForm.valueChanges.subscribe((value:any)=>{
+      for(let i=0;i<value.filters.length;i++){
+        this.selectedFilters[i] = [];
+        let keys = Object.keys(value.filters[i]);
+        keys.map((key:any)=>{
+          if(value.filters[i][key]){
+            this.selectedFilters[i].push(key)
+          }
+        })
+      }
     })
-  }
-
-  ParameterValidation(){
-    this.Parameter = this._fb.group({
-      1:[''],
-      2:[''],
-      3:[''],
-      4:[''],
-      5:[''],
-      6:['']
-    })
-  }
-  CountryValidation(){
-    this.Country = this._fb.group({
-      USA:[''],
-      Canada:[''],
-      UK:[''],
-      Germany:[''],
-      France:['']
-    })
-  }
-  ExpertValidation(){
-    this.Expert = this._fb.group({
-      Expert_A:[''],
-      Expert_B:[''],
-      Expert_C:[''],
-      Expert_D:[''],
-      Expert_E:['']
-    })
+    
   }
 
 
+  // Function to remove the mat-chip of the filter and also changing the value of the targeted filter 
+  removeKeyword(parent:any,value:any){
+    ((this.sidebarForm.get('filters') as FormArray).get(parent.toString()) as FormGroup).get(value.toString()).setValue('');
+  }
+
+  getVideos(){
+    let params = {
+      expert:[],
+      country:[],
+      parameter:[]
+    }
+    this._api.getvideos('/videos',params).subscribe((data:any)=>{
+      console.log(data);
+      
+    })
+  }
+
+  getPexelsVideo(){
+    this._api.pexelsVideos('?query=nature').subscribe((response:any)=>{
+      console.log(response);
+      for(let i = 0;i<response.videos.length;i++){
+        response.videos[i].video_files.map((file:any)=>{
+          if(file.height > 250 && file.height < 450){
+            this.pexelVideos.push({video:file,image:response.videos[i].image});
+          }
+        })
+      }
+      console.log(this.pexelVideos);
+      
+    })
+  }
 
 }

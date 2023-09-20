@@ -18,6 +18,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatChipsModule
 
   ],
   providers: [],
