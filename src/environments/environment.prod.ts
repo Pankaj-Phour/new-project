@@ -3,6 +3,6 @@ export const environment = {
   URL:'https://chatapp-backend-j9ko.onrender.com',
   AshwaniApi:'https://dummy-project.onrender.com/api/v1/catalogue',
   pexels:'https://api.pexels.com/videos',
-  token:'K8eLAErKjk2uTv6iUk49E3whBwp2EbfRJ9eNy8QnO4OTKKaOHZQcbNRW'
+  token:'8bptyaKx9fxX3uGHtTYhVByJOa6HZ0zhQ7BZWfjCSsyhaN6dj5OeSpGe'
 
 };
