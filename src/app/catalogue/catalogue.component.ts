@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-catalogue',
@@ -49,7 +50,7 @@ pexelVideos:any = [];
       ]
     }
   ]
-  constructor(private _fb:FormBuilder,private _api:ApiService) { }
+  constructor(private _fb:FormBuilder,private _api:ApiService, private dialog:MatDialog) { }
 
   //  Function for the validation of the form and registering the formControl and FormArray  
   validation(){
@@ -73,7 +74,7 @@ pexelVideos:any = [];
 
   ngOnInit(): void {
     this.validation();
-    this.getVideos();
+    // this.getVideos();
     this.getPexelsVideo();
     for(let i=0;i<this.Filters.length;i++){
       (this.sidebarForm.get('filters') as FormArray).push(this.addDummyControl());
@@ -117,18 +118,47 @@ pexelVideos:any = [];
   }
 
   getPexelsVideo(){
-    this._api.pexelsVideos('?query=nature').subscribe((response:any)=>{
-      console.log(response);
-      for(let i = 0;i<response.videos.length;i++){
-        response.videos[i].video_files.map((file:any)=>{
-          if(file.height > 250 && file.height < 450){
-            this.pexelVideos.push({video:file,image:response.videos[i].image});
-          }
-        })
-      }
+    // this._api.pexelsVideos('?query=nature').subscribe((response:any)=>{
+    this._api.pexelsVideos('/pexelVideos').subscribe((res:any)=>{
+      // for(let i = 0;i<response.videos.length;i++){
+      //   response.videos[i].video_files.map((file:any)=>{
+      //     if(file.height > 250 && file.height < 450){
+      //       this.pexelVideos.push({video:file,image:response.videos[i].image});
+      //     }
+      //   })
+      // }
+      this.pexelVideos = res.response;
       console.log(this.pexelVideos);
       
     })
   }
 
+
+  watchVideo(video:any){
+    console.log(video)
+    
+      this.dialog.open(watchVideoComponent,{
+       data : video.link
+       
+      })
+  }
+
+}
+
+
+@Component({
+  selector : 'app-catalogue',
+  templateUrl : './watchVideo.html',
+  styleUrls : ['./catalogue.component.scss']
+})
+
+export class watchVideoComponent implements OnInit {
+   
+  constructor(@Inject(MAT_DIALOG_DATA) public data){
+    
+  }  
+  ngOnInit(): void {
+      // console.log("Hello from watchVideo",this.data);
+      
+  }
 }

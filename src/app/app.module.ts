@@ -19,6 +19,7 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
+import { CreateProfileComponent } from './create-profile/create-profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatChipsModule} from '@angular/material/chips';
     NavbarComponent,
     NotifyComponent,
     NotificationComponent,
-    CatalogueComponent
+    CatalogueComponent,
+    CreateProfileComponent
   ],
   imports: [
     BrowserModule,

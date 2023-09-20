@@ -5,7 +5,7 @@
     </div>
     <div class="navItems">
         <div class="link" (click)="login()">Login</div>
-        <div class="link">Create Profile</div>
+        <div class="link" routerLink="/create-profile">Create Profile</div>
         <div class="link" routerLink="/catalogue">Review Catalogue</div>
         <!-- <div class="link">Contact us</div> -->
     </div>
@@ -17,8 +17,8 @@
     </div>
     <div class="mobileNav" *ngIf="mobileNav">
         <div class="link" routerLink="/" (click)="closeNav('/')">Home</div>
-        <div class="link" (click)="login();closeNav('projects')">Login</div>
-        <div class="link" (click)="closeNav('projects')">Create Profile</div>
+        <div class="link" (click)="login();closeNav('')">Login</div>
+        <div class="link" (click)="closeNav('/create-profile')">Create Profile</div>
         <div class="link" (click)="closeNav('/catalogue')">Review Catalogue</div>
         <!-- <div class="link" (click)="closeNav('Contact')">Contact us</div> -->
     </div>

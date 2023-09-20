@@ -56,6 +56,6 @@ headers = new HttpHeaders();
 
   pexelsVideos(endpoint:any){
   
-    return this.http.get(environment.pexels + endpoint,{headers:this.headers})
+    return this.http.get(environment.URL + endpoint,{headers:this.headers})
   }
 }

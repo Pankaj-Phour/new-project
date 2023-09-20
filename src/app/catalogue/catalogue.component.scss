@@ -165,7 +165,7 @@ input{
         padding-block: 6px;
     }
     .rightContent{
-        // height: calc(100vh - 300px);
+        // height: calc(100vh - 200px);
         // height: 100%;
     }
     .filters{
@@ -180,6 +180,7 @@ input{
         display: flex;
         flex-direction: column;
         row-gap: 6px;
+        padding-bottom: 10px;
     }
     .leftHeading{
         width: 100%;

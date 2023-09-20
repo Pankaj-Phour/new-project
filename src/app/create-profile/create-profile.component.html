@@ -1,0 +1,51 @@
+<div class="body">
+    <div class="parent">
+        <div class="box">
+                    <div class="form">
+                        <form [formGroup]="profileForm">
+                            <div class="header">
+                                <div class="heading">Sign up</div>
+                                <div class="text">Let's start your wonderful journey with us</div>
+                            </div>
+                            <div class="inputs">
+                                <div class="formGroup">
+                                    <input type="text" placeholder="Enter your name" formControlName="name"
+                                        [ngClass]="profileForm.get('name').hasError('required') && profileForm.get('name').touched ? 'borderError' : ''">
+                                    <span class="error"
+                                        *ngIf="profileForm.get('name').hasError('required') && profileForm.get('name').touched">*required</span>
+                                    <!-- <span class="error" *ngIf="profileForm.get('email').hasError('email') && profileForm.get('email').touched">*Invalid</span> -->
+                                </div>
+                                <div class="formGroup">
+                                    <input type="text" placeholder="Enter your email" formControlName="email"
+                                        [ngClass]="profileForm.get('email').hasError('required') && profileForm.get('email').touched ? 'borderError' : ''">
+                                    <span class="error"
+                                        *ngIf="profileForm.get('email').hasError('required') && profileForm.get('email').touched">*required</span>
+                                    <span class="error"
+                                        *ngIf="profileForm.get('email').hasError('email') && profileForm.get('email').touched">*Invalid</span>
+                                </div>
+                                <div class="formGroup">
+                                    <input type="password" placeholder="Create your Password" formControlName="password"
+                                        [ngClass]="profileForm.get('password').hasError('required') && profileForm.get('password').touched ? 'borderError' : ''">
+                                    <span class="error"
+                                        *ngIf="profileForm.get('password').hasError('required') && profileForm.get('password').touched">*required</span>
+                                </div>
+                                <div class="formGroup">
+                                    <mat-checkbox class="text" 
+                                        formControlName="checkbox">By Sign up. I agree to the <span
+                                            style="color: rgb(0, 234, 255);">term and conditions</span> and <span
+                                            style="color: rgb(0, 234, 255);">privacy policy.</span></mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="bottomButton">
+                                <button
+                                    [ngClass]="profileForm.invalid || profileForm.value.checkbox==false ? 'disabled-btn' : 'submit-btn'"
+                                    [disabled]="profileForm.invalid || profileForm.value.checkbox==false"
+                                    (click)="Submit()">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+               
+
+        </div>
+    </div>
+</div>
