@@ -72,13 +72,11 @@
         flex-direction: column;
         max-width: 100%;
         width: 50%;
-        // background-color: #000;
-        background: linear-gradient(to right, rgba(255, 157, 0, 0.112) , rgb(0, 234, 255));
+        background-color: rgb(23, 153, 165);
         z-index: 10;
         row-gap: 20px;
-        padding: 10px;
         padding-inline-start: 20px;
-        padding-block: 30px;
+        padding-block: 60px;
         opacity: 0.9;
         align-items: flex-end;
     }
@@ -94,4 +92,53 @@
         float: right;
         cursor: pointer;
     }
+}
+
+
+
+
+
+
+// CSS for the hamburger icon 
+.open-main-nav {
+	position: absolute;
+	top: 25px;
+	padding-top: 20px;
+	right: 15px;
+	z-index: 1000;
+	background: none;
+	border: 0;
+	cursor: pointer;
+}
+.open-main-nav:focus {
+	outline: none;
+}
+.burger {
+	position: relative;
+	display: block;
+	width: 28px;
+	height: 4px;
+	margin: 0 auto;
+	// background: #5A3B5D;
+	background: rgb(23, 153, 165);
+	transform: skew(5deg);
+	transition: all .275s;
+}
+
+.burger:after,
+.burger:before {
+	content: '';
+	display: block;
+	height: 100%;
+	// background: #5A3B5D;
+	background: rgb(23, 153, 165);
+	transition: all .275s;
+}
+
+.burger:after {
+	transform: translateY(-12px) translateX(-2px) skew(-20deg);
+}
+
+.burger:before {
+	transform: translateY(-16px) translateX(4px) skew(-10deg);
 }

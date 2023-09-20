@@ -23,13 +23,14 @@
                         {{filter}}
                     </div>
                     <div class="selectedFilters">
-                        <mat-chip-list #chipList aria-label="Fruit selection">
+                        <mat-chip-list #chipList aria-label="Selected Filters">
                             <mat-chip *ngFor="let selected of selectedFilters[i];let j = index" (removed)="removeKeyword(i,selected)">
                               {{selected}}
                               <button matChipRemove>
                                 <mat-icon>cancel</mat-icon>
                               </button>
                             </mat-chip>
+                            <mat-chip *ngIf="selectedFilters.length < 1 || selectedFilters[i].length<1">All</mat-chip>
                           </mat-chip-list>
                     </div>
                 </div>

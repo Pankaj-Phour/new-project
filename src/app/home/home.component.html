@@ -1,8 +1,12 @@
 <div class="body">
     <div class="container">
-        <div class="imageContainer">
+        <div class="imageContainer" *ngIf="!mobile">
             <img src="assets/laptop.png" height="500" width="800">
             <video src="assets/landing.mp4" #video autoplay muted loop playsInline="true"></video>
+        </div>
+        <div class="mobileContainer" *ngIf="mobile">
+            <img src="assets/mobile.png" >
+            <video src="assets/mobile.mp4" #video autoplay muted loop playsInline="true"></video>
         </div>
     </div>
 </div>

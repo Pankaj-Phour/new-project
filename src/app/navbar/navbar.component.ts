@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     this.mobileNav = false;
   }
 
-  openNav(){
+  toggleNav(){
     this.mobileNav = !this.mobileNav;
   }
   login(){

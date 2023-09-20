@@ -5,7 +5,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, rgba(255, 157, 0, 0.112) , rgb(0, 234, 255));
+    // background: linear-gradient(to right, rgba(255, 157, 0, 0.112) , rgb(0, 234, 255));
+}
+.mobileContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+    width: 100%;
+    height: calc(100vh - 100px);
+    background-color: transparent;
+    position: relative;
+}
+.mobileContainer img{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 52%;
+    left: 49.5%;
+}
+.mobileContainer video{
+    width: 225px;
+    object-fit: cover;
+    height: calc(100vh - 145px);
+    border-radius: 30px;
 }
 .imageContainer{
     display: flex;
