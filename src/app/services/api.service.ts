@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
 headers = new HttpHeaders();
   constructor(private http:HttpClient) { 
-    this.headers = this.headers.append('Authorization',environment.token)
+    this.headers = this.headers.append('Authorization',environment.token);
+    this.headers = this.headers.append('Access-Control-Allow-Origin', '*');
   }
 
   //  ***************************************** Behaviour subjects to pass data from one component to another *****************************************
