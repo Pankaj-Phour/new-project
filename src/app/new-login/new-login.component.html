@@ -1,0 +1,169 @@
+<div class="body" #body> 
+    <div class="topHeading" style="color:#6ea7a7;" [ngStyle]="{'top': (((body.clientHeight - box.clientHeight)/2) - 25) + 'px'}">Either signin or signup to continue creating your profile.</div>
+    <div class="parent">
+        <div class="box" #box>
+            <div class="card sign-up">
+                <div class="left">
+                    <img src="assets/loginLogo.jpeg"
+                        width="100%" height="100%">
+                </div>
+                <div class="right">
+                    <div class="form">
+                        <form [formGroup]="signupForm" *ngIf="!numberSubmit">
+                            <div class="top" style="color: gray;font-size: 13px;">Have an account? <span
+                                    style="color:rgb(0, 234, 255);cursor: pointer;" (click)="Signin()">Sign In</span></div>
+                            <div class="header">
+                                <div class="heading">Sign up</div>
+                                <div class="text">Let's start your wonderful journey with us</div>
+                            </div>
+                            <div class="inputs">
+                                <div class="formGroup">
+                                    <input type="text" placeholder="Enter your name" formControlName="name"
+                                        [ngClass]="signupForm.get('name').hasError('required') && signupForm.get('name').touched ? 'borderError' : ''">
+                                    <span class="error"
+                                        *ngIf="signupForm.get('name').hasError('required') && signupForm.get('name').touched">*required</span>
+                                    <!-- <span class="error" *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">*Invalid</span> -->
+                                </div>
+                                <div class="formGroup">
+                                    <input type="text" placeholder="Enter your email" formControlName="email"
+                                        [ngClass]="signupForm.get('email').hasError('required') && signupForm.get('email').touched ? 'borderError' : ''">
+                                    <span class="error"
+                                        *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').touched">*required</span>
+                                    <span class="error"
+                                        *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">*Invalid</span>
+                                </div>
+                                <div class="formGroup"
+                                    style="display: flex;align-items: center;background-color: #424242;padding-inline-start: 10px;border-radius: 10px;">
+                                    <span class="prefix">+91</span>
+                                    <input type="text" placeholder="Enter your contact" formControlName="contact"
+                                        (input)="contactLengthChecker($event)" (keydown)="contactInput($event)"
+                                        [ngClass]="signupForm.get('contact').hasError('required') && signupForm.get('contact').touched ? 'borderError' : ''">
+                                    <span class="error"
+                                        *ngIf="signupForm.get('contact').hasError('required') && signupForm.get('contact').touched">*required</span>
+                                    <span class="error"
+                                        *ngIf="!signupForm.get('contact').hasError('required') && signupForm.get('contact').touched && contactError">*Invalid</span>
+                                </div>
+                                <div class="formGroup">
+                                    <input type="password" placeholder="Create your Password" formControlName="password"
+                                        (input)="passwordInput($event)"
+                                        [ngClass]="signupForm.get('password').hasError('required') && signupForm.get('password').touched ? 'borderError' : ''">
+                                    <span class="error"
+                                        *ngIf="signupForm.get('password').hasError('required') && signupForm.get('password').touched">*required</span>
+                                </div>
+                                <div class="formGroup">
+                                    <input type="password" placeholder="Re-Enter your Password"
+                                        formControlName="confirmPassword" (input)="confirmPasswordInput($event)"
+                                        [ngClass]="signupForm.get('confirmPassword').hasError('required') && signupForm.get('confirmPassword').touched ? 'borderError' : ''">
+                                    <span class="error"
+                                        *ngIf="signupForm.get('confirmPassword').hasError('required') && signupForm.get('confirmPassword').touched">*required</span>
+                                    <span class="error"
+                                        *ngIf="!signupForm.get('confirmPassword').hasError('required') && signupForm.get('confirmPassword').touched && differentPassword"
+                                        style="left: 46%;text-align: right;">*Wrong Password</span>
+                                </div>
+                                <div class="formGroup">
+                                    <mat-checkbox class="text" [(ngModel)]="signupForm.get('checkbox').value"
+                                        formControlName="checkbox">By Sign up. I agree to the <span
+                                            style="color: rgb(0, 234, 255);">term and conditions</span> and <span
+                                            style="color: rgb(0, 234, 255);">privacy policy.</span></mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="bottomButton">
+                                <button
+                                    [ngClass]="signupForm.invalid || signupForm.value.checkbox==false || differentPassword ? 'disabled-btn' : 'submit-btn'"
+                                    [disabled]="signupForm.invalid || signupForm.value.checkbox==false || differentPassword"
+                                    (click)="Submit()">Sign Up</button>
+                            </div>
+                        </form>
+                        <form [formGroup]="otpForm" *ngIf="numberSubmit">
+                            <div class="top" style="color: gray;font-size: 13px;">Already have an account? <span
+                                    style="color:rgb(0, 234, 255);cursor: pointer;" (click)="Signin()">Sign in</span></div>
+                            <div class="header">
+                                <div class="heading">Sign Up</div>
+                                <div class="text">We have sent an OTP to <span style="color: rgb(0, 234, 255);">{{signupForm.value.email}}</span>. Please fill the OTP below to continue.</div>
+                            </div>
+                            <div class="inputs">
+                                <div class="formGroup" style="display: flex;justify-content: center;">
+                                    <ng-otp-input formnControlName="otp" [config]="{length:4}"
+                                        (keydown)="keyValue($event)"
+                                        (onInputChange)="onOtpChange($event)"></ng-otp-input>
+                                </div>
+                            </div>
+                            <div class="bottomButton">
+                                <mat-spinner [diameter]="25" class="spinner" *ngIf="!invalidOtp || otpSubmit"></mat-spinner>
+                                <button [ngClass]="invalidOtp && !otpSubmit ? 'disabled-btn' : 'submit-btn'"
+                                    [disabled]="invalidOtp && !otpSubmit">{{invalidOtp && !otpSubmit ? 'Sign Up' : 'Signing Up...'}}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card sign-in">
+                <div class="left">
+                    <img src="assets/loginLogo.jpeg"
+                        width="100%" height="100%">
+                </div>
+                <div class="right">
+                    <div class="form">
+                        <form [formGroup]="signinForm" *ngIf="!numberSubmit">
+                            <div class="top" style="color: gray;font-size: 13px;">Don't have an account? <span
+                                    style="color:rgb(0, 234, 255);cursor: pointer;" (click)="Signin()">Sign up</span></div>
+                            <div class="header">
+                                <div class="heading">Sign In</div>
+                                <div class="text">Let's start your wonderful journey with us</div>
+                            </div>
+                            <div class="inputs">
+                                <div class="formGroup"
+                                    style="display: flex;align-items: center;background-color: #424242;padding-inline-start: 10px;border-radius: 10px;" *ngIf="!emailLogin">
+                                    <span class="prefix">+91</span>
+                                    <input type="text" placeholder="Enter your contact"
+                                        (input)="contactLengthChecker($event)" (keydown)="contactInput($event)"
+                                        formControlName="contact">
+                                    <span class="error"
+                                        *ngIf="signinForm.get('contact').hasError('required') && signinForm.get('contact').touched">*required</span>
+                                    <span class="error"
+                                        *ngIf="!signinForm.get('contact').hasError('required') && signinForm.get('contact').touched && contactError">*Invalid</span>
+                                </div>
+                                <div class="formGroup"
+                                    style="display: flex;align-items: center;background-color: #424242;padding-inline: 10px;border-radius: 10px;" *ngIf="emailLogin">
+                                    <input type="email" placeholder="Enter your email id"
+                                        formControlName="email">
+                                    <span class="error"
+                                        *ngIf="signinForm.get('email').hasError('required') && signinForm.get('email').touched">*required</span>
+                                    <span class="error"
+                                        *ngIf="!signinForm.get('email').hasError('required') && signinForm.get('email').hasError('email') && signinForm.get('email').touched">*Invalid</span>
+                                </div>
+                            </div>
+                            <div class="bottomButton">
+                                <button [ngClass]="signinForm.invalid ? 'disabled-btn' : 'submit-btn'"
+                                    (click)="Submit()" [disabled]="signinForm.invalid">Sign In</button>
+                            </div>
+                        </form>
+                        <form [formGroup]="otpForm" *ngIf="numberSubmit">
+                            <div class="top" style="color: gray;font-size: 13px;">Don't have an account? <span
+                                    style="color:rgb(0, 234, 255);cursor: pointer;" (click)="Signin()">Sign up</span></div>
+                            <div class="header">
+                                <div class="heading">Sign In</div>
+                                <div class="text">Let's start your wonderful journey with us</div>
+                            </div>
+                            <div class="inputs">
+                                <div class="formGroup" style="display: flex;justify-content: center;">
+                                    <ng-otp-input formControlName="otp" [config]="{length:4}"
+                                        (keydown)="keyValue($event)"
+                                        (onInputChange)="onOtpChange($event)"></ng-otp-input>
+                                </div>
+                            </div>
+                            <div class="bottomButton">
+                                <mat-spinner [diameter]="25" class="spinner" *ngIf="!invalidOtp || otpSubmit"></mat-spinner>
+                                <button [ngClass]="invalidOtp && !otpSubmit ? 'disabled-btn' : 'submit-btn'"
+                                    [disabled]="invalidOtp && !otpSubmit">{{invalidOtp && !otpSubmit ? 'Sign In' : 'Signing In...'}}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

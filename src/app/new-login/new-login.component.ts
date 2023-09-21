@@ -1,15 +1,15 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ApiService } from '../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-new-login',
+  templateUrl: './new-login.component.html',
+  styleUrls: ['./new-login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class NewLoginComponent implements OnInit {
   signupForm: any = FormGroup;
   signinForm: any = FormGroup;
   otpForm: any = FormGroup;
@@ -162,7 +162,6 @@ export class LoginComponent implements OnInit {
             })
             localStorage.setItem('user',JSON.stringify(next.response));
             localStorage.setItem('logged_in','true');
-            
             // this.router.navigate(['/dashboard']);
             this.dialog.closeAll();
 
@@ -264,5 +263,6 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+
 
 }

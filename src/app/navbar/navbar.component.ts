@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
   login(){
     console.log("Hello from navbar login");
     this._api.loginClicked(true)
-    
   }
 
 }

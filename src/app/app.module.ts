@@ -20,6 +20,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
+import { NewLoginComponent } from './new-login/new-login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
     NotifyComponent,
     NotificationComponent,
     CatalogueComponent,
-    CreateProfileComponent
+    CreateProfileComponent,
+    NewLoginComponent
   ],
   imports: [
     BrowserModule,
