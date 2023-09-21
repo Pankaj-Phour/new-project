@@ -370,3 +370,32 @@ input{
     width: 40%;
     text-align: left;
 }
+
+
+
+@media only screen and (max-width:768px){
+    .body{
+        padding-block: 10px;
+    }
+    .parent{
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        justify-content: space-between;
+        row-gap: 15px;
+    }
+    .box{
+        max-width: 100%;
+        width: 95%;
+        padding: 15px;
+    }
+    .name{
+        font-size: 15px;
+        justify-content: space-between;
+        padding-inline: 0px;
+        width: 100%;
+    }
+    .nameRight, .nameLeft{
+        width: 100%;
+    }
+}
