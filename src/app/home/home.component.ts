@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { ApiService } from '../services/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { ApiService } from '../services/api.service';
 export class HomeComponent implements OnInit {
 @ViewChild('video') video:ElementRef;
 mobile:boolean = false;
-  constructor(private dialog:MatDialog, private _api:ApiService) { }
+  constructor(private dialog:MatDialog, private _api:ApiService,private routeParam:ActivatedRoute,private _router:Router) { }
 
 
   @HostListener('window:resize',['$event'])
@@ -29,11 +30,6 @@ mobile:boolean = false;
   ngOnInit(): void {
     this.playvideo();
     this.checkWindowSize();
-    this._api.loginClickeEmitter.subscribe((event:any)=>{
-      if(event){
-        this.openDialog();
-      }
-    })
   }
 
 
@@ -52,11 +48,4 @@ mobile:boolean = false;
     // let video = document.getElementById('video')
   }
 
-
-  openDialog(){
-      let dialog = this.dialog.open(LoginComponent,{
-        height: '648px',
-        width: '1048px'
-      })
-  }
 }

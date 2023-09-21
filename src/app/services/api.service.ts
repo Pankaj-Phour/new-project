@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
 headers = new HttpHeaders();
   constructor(private http:HttpClient) { 
-    this.headers = this.headers.append('Authorization',environment.token)
+    this.headers = this.headers.append('Authorization',environment.token);
+    // this.headers = this.headers.append('Access-Control-Allow-Origin', '*');
   }
 
   //  ***************************************** Behaviour subjects to pass data from one component to another *****************************************
@@ -23,6 +24,8 @@ headers = new HttpHeaders();
 
   @Output() loginClickeEmitter = new EventEmitter();
   loginClicked(data){
+    console.log("Sending data to the home component");
+    
     this.loginClickeEmitter.emit(data)
   }
 
@@ -55,6 +58,6 @@ headers = new HttpHeaders();
 
   pexelsVideos(endpoint:any){
   
-    return this.http.get(environment.pexels + endpoint,{headers:this.headers})
+    return this.http.get(environment.URL + endpoint,{headers:this.headers})
   }
 }

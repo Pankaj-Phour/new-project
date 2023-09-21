@@ -63,8 +63,6 @@ input{
     border: 1px solid gray;
 }
 
-
-
 .topFilters{
     display: flex;
     width: 100%;
@@ -77,15 +75,16 @@ input{
     height: 100%;
     align-items: center;
     font-size: 22px;
+    display: none;
 }
 .AppliedFilters{
     max-width: 100%;
-    width: 29%;
+    width:33%;
     height: 100%;
 }
 .filterHeading{
     font-size: 18px;
-    text-align: center;
+    // text-align: center;
 }
 .rightContent{
     width: 100%;
@@ -95,8 +94,6 @@ input{
     height: calc(100vh - 170px);
     overflow: hidden;
 }
-
-
 
 .videos{
     width: 100%;
@@ -133,6 +130,76 @@ input{
 }
 
 
+
+
+@media only screen and (max-width:768px){
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: calc(100vh - 70px);
+    }
+    .sidebar{
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+    }
+    .searchTop{
+        display: none;
+    }
+    .singleFilter{
+        height: 100%;
+        width: 32%;
+        padding-inline: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .formGroup{
+        width: 90%;
+    }
+    .heading{
+        font-size: 15px;
+    }
+    .right{
+        width: 100%;
+        padding-block: 6px;
+    }
+    .rightContent{
+        // height: calc(100vh - 200px);
+        // height: 100%;
+    }
+    .filters{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        display: none;
+    }
+    .topFilters{
+        display: flex;
+        flex-direction: column;
+        row-gap: 6px;
+        padding: 10px;
+    }
+    .leftHeading{
+        width: 100%;
+        justify-content: center;
+        display: none;
+    }
+    .AppliedFilters{
+        width: 100%;
+        display: flex;
+    }
+    .filterHeading{
+        padding-right: 15px;
+    }
+    .videoCard{
+        max-width: 160px;
+        height: 130px;
+    }
+}
 
 
 
