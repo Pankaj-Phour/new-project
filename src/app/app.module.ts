@@ -23,6 +23,8 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
 import { NewLoginComponent } from './new-login/new-login.component';
 import { VideosComponent } from './videos/videos.component';
 import { SingleVideoComponent } from './single-video/single-video.component';
+import { CommentsComponent } from './comments/comments.component';
+import { RelatedVideosComponent } from './related-videos/related-videos.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { SingleVideoComponent } from './single-video/single-video.component';
     CreateProfileComponent,
     NewLoginComponent,
     VideosComponent,
-    SingleVideoComponent
+    SingleVideoComponent,
+    CommentsComponent,
+    RelatedVideosComponent
   ],
   imports: [
     BrowserModule,
