@@ -5,6 +5,7 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { AuthGuard } from './services/auth.guard';
 import { NewLoginComponent } from './new-login/new-login.component';
+import { SingleVideoComponent } from './single-video/single-video.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
     path:'create-profile',
     component:CreateProfileComponent,
     canActivate : [AuthGuard]
+  },
+  {
+    path:'singleVideo',
+    component:SingleVideoComponent
   }
 ];
 

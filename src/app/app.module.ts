@@ -21,6 +21,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NewLoginComponent } from './new-login/new-login.component';
+import { VideosComponent } from './videos/videos.component';
+import { SingleVideoComponent } from './single-video/single-video.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { NewLoginComponent } from './new-login/new-login.component';
     NotificationComponent,
     CatalogueComponent,
     CreateProfileComponent,
-    NewLoginComponent
+    NewLoginComponent,
+    VideosComponent,
+    SingleVideoComponent
   ],
   imports: [
     BrowserModule,
