@@ -57,7 +57,13 @@
     font-family: 'Roboto';
     font-size: 21px;
 }
-
+.details::ng-deep.mat-icon{
+    height: 45px !important;
+    width: 45px !important;
+}
+.details::ng-deep.material-icons{
+    font-size: 45px !important;
+}
 
 @media only screen and (max-width:768px){
     .container{
