@@ -127,8 +127,15 @@ pexelVideos:any = [];
       //     }
       //   })
       // }
+
       this.pexelVideos = res.response;
+      this.pexelVideos = this.pexelVideos.map(video => {
+        video['title'] = "Exploring nature's beauty";
+        video['description'] = 'This video shows you the beauty of nature.';
+        return video;
+      });
       console.log(this.pexelVideos);
+    localStorage.setItem('videos',JSON.stringify(this.pexelVideos))
       
     })
   }

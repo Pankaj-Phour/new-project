@@ -22,6 +22,7 @@
 .thumbnail{
     width: 100%;
     height: 100%;
+    position: relative;
 }
 .thumbnail img{
     width: 100%;
@@ -33,8 +34,29 @@
     transform: translateY(-4px);
     transition: 0.3s ease-in-out;
 }
-
-
+.details{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    color: $whiteColor;
+    padding: 10px;
+    cursor: pointer;
+}
+.title{
+    font-family: 'Roboto';
+    font-size: 24px;
+}
+.description{
+    font-family: 'Roboto';
+    font-size: 21px;
+}
 
 
 @media only screen and (max-width:768px){

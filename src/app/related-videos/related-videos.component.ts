@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
+
 
 @Component({
   selector: 'app-related-videos',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./related-videos.component.scss']
 })
 export class RelatedVideosComponent implements OnInit {
+videos:any;
 
-  constructor() { }
+  constructor(private _api:ApiService) { }
 
   ngOnInit(): void {
+    this.videos = JSON.parse(localStorage.getItem('videos'));
+    console.log(this.videos);
+    
   }
 
+
+  changeVideo(video:any){
+    this._api.changeSelectedVideo(video)
+  }
 }

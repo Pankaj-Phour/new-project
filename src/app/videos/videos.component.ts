@@ -8,9 +8,11 @@ import { Router } from '@angular/router';
 })
 export class VideosComponent implements OnInit {
 @Input() pexelVideos:any;
-  constructor(private _router:Router) { }
+selectedVideo:any;
+constructor(private _router:Router) { }
 
-  ngOnInit(): void {
+ngOnInit(): void {
+    // localStorage.setItem('videos',JSON.stringify(this.pexelVideos))
   }
 
   
@@ -22,6 +24,23 @@ export class VideosComponent implements OnInit {
       //  data : video.link
        
       // })
+  }
+
+  mouseOver(videoIndex:any){
+    this.pexelVideos.forEach((video,index) =>{
+      if(videoIndex === index){
+        this.pexelVideos[index]['showDetails'] = true
+      }
+      else{
+        this.pexelVideos[index]['showDetails'] = false;
+      }
+    })
+    console.log(this.pexelVideos);
+    
+  }
+  
+  mouseLeave(index:any){
+    this.pexelVideos[index]['showDetails'] = false;
   }
 
 }

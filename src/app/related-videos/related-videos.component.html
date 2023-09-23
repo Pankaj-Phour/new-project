@@ -1,1 +1,14 @@
-<p>related-videos works!</p>
+<div class="body">
+    <div class="videoContainer">
+        <div class="singleVideo" *ngFor="let video of videos"
+         (click)="changeVideo(video)">
+            <div class="left">
+                <img [src]="video.image">
+            </div>
+            <div class="right">
+                <div class="title">{{video.title}}</div>
+                <div class="description">{{video.description}}</div>
+            </div>
+        </div>
+    </div>
+</div>
