@@ -1,1 +1,18 @@
-<p>comments works!</p>
+<div class="body">
+    <div class="commentsContainer">
+        <div class="singleComment" *ngFor="let comment of commentsData">
+            <div class="userImage">
+                <div class="circle" [ngStyle]="{backgroundColor:comment.background}">{{comment.user_name.split('')[0]}}</div>
+            </div>
+            <div class="commentDetails">
+                <div class="upper">
+                    <div class="userName">
+                        {{comment.user_name}}
+                    </div>
+                    <div class="commentTime">{{comment.time}}</div>
+                </div>
+                <div class="commentData">{{comment.comment}}</div>
+            </div>
+        </div>
+    </div>
+</div>
