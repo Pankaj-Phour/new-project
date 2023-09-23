@@ -14,12 +14,23 @@ videos:any;
 
   ngOnInit(): void {
     this.videos = JSON.parse(localStorage.getItem('videos'));
+    this.videos.forEach((video,index)=>{
+        this.videos[index]['show'] = true;
+    })
     console.log(this.videos);
     
   }
 
 
-  changeVideo(video:any){
-    this._api.changeSelectedVideo(video)
+  changeVideo(video:any,videoIndex:any){
+    this._api.changeSelectedVideo(video);
+    this.videos.forEach((video,index)=>{
+      if(videoIndex===index){
+        this.videos[index]['show'] = false;
+      }
+      else{
+        this.videos[index]['show'] = true;
+      }
+    })
   }
 }

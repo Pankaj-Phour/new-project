@@ -1,14 +1,15 @@
 <div class="body">
     <div class="videoContainer">
-        <div class="singleVideo" *ngFor="let video of videos"
-         (click)="changeVideo(video)">
-            <div class="left">
-                <img [src]="video.image">
+        <ng-container *ngFor="let video of videos;let i = index">
+            <div class="singleVideo" *ngIf="video['show']" (click)="changeVideo(video,i)">
+                <div class="left">
+                    <img [src]="video.image">
+                </div>
+                <div class="right">
+                    <div class="title">{{video.title}}</div>
+                    <div class="description">{{video.description}}</div>
+                </div>
             </div>
-            <div class="right">
-                <div class="title">{{video.title}}</div>
-                <div class="description">{{video.description}}</div>
-            </div>
-        </div>
+        </ng-container>
     </div>
 </div>
