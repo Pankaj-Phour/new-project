@@ -41,6 +41,7 @@
     align-items: center;
 }
 .mainVideo video{
+    padding-top: 8px;
     height: 90%;
     width: 90%;
 }
@@ -97,4 +98,44 @@
 }
 .commentSection{
     height: 35%;
+}
+
+
+
+
+// CSS for the smaller screens 
+
+@media only screen and (max-width:768px){
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+    .leftSide, .rightSide{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+    }
+    .leftSide .mainVideo, .commentSection{
+        height: 100%;
+        width: 100%;
+    }
+    .mainVideo video{
+        width: 100%;
+        height: 65%;
+        padding: 0px;
+        object-fit: cover;
+    }
+    .mainVideo .videoActions{
+        height: 35%;
+        width: 100%;
+    }
+    .videoActions{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .channel,.like{
+        width: 45%;
+    }
+
 }

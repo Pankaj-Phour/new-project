@@ -26,6 +26,7 @@ import { VideosComponent } from './videos/videos.component';
 import { SingleVideoComponent } from './single-video/single-video.component';
 import { CommentsComponent } from './comments/comments.component';
 import { RelatedVideosComponent } from './related-videos/related-videos.component';
+import { CardDetailsComponent } from './card-details/card-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RelatedVideosComponent } from './related-videos/related-videos.componen
     VideosComponent,
     SingleVideoComponent,
     CommentsComponent,
-    RelatedVideosComponent
+    RelatedVideosComponent,
+    CardDetailsComponent
   ],
   imports: [
     BrowserModule,
