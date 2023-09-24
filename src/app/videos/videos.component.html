@@ -1,0 +1,13 @@
+<div class="videos">
+    <div class="videoCard" *ngFor="let video of pexelVideos;let i = index">
+        <div class="thumbnail" (click)="watchVideo(video)" (mouseover)="mouseOver(i)" (mouseleave)="mouseLeave(i)">
+            <img [src]="video.thumbnail" height="100%" width="100%">
+            <div class="details" *ngIf="video.showDetails">
+                <div class="title">{{video.title}}</div>
+                <mat-icon>play_circle_outline</mat-icon>
+                <div class="description">{{video.description}}</div>
+            </div>
+        </div>
+        <div class="playIcon"></div>
+    </div>
+</div>

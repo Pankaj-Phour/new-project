@@ -24,9 +24,18 @@ headers = new HttpHeaders();
 
   @Output() loginClickeEmitter = new EventEmitter();
   loginClicked(data){
-    console.log("Sending data to the home component");
-    
     this.loginClickeEmitter.emit(data)
+  }
+
+
+  @Output() changeSelectedVideoEmitter = new EventEmitter();
+  changeSelectedVideo(data){
+    this.changeSelectedVideoEmitter.emit(data)
+  }
+
+  @Output() addCommentEmitter = new EventEmitter();
+  addComment(data){
+    this.addCommentEmitter.emit(data)
   }
 
 
@@ -57,7 +66,6 @@ headers = new HttpHeaders();
   }
 
   pexelsVideos(endpoint:any){
-  
     return this.http.get(environment.URL + endpoint,{headers:this.headers})
   }
 }

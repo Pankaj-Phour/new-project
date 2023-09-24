@@ -19,8 +19,13 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { NewLoginComponent } from './new-login/new-login.component';
+import { VideosComponent } from './videos/videos.component';
+import { SingleVideoComponent } from './single-video/single-video.component';
+import { CommentsComponent } from './comments/comments.component';
+import { RelatedVideosComponent } from './related-videos/related-videos.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,11 @@ import { NewLoginComponent } from './new-login/new-login.component';
     NotificationComponent,
     CatalogueComponent,
     CreateProfileComponent,
-    NewLoginComponent
+    NewLoginComponent,
+    VideosComponent,
+    SingleVideoComponent,
+    CommentsComponent,
+    RelatedVideosComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,8 @@ import { NewLoginComponent } from './new-login/new-login.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
 
   ],
   providers: [],

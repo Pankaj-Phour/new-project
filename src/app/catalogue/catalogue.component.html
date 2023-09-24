@@ -37,14 +37,7 @@
             </div>
 
             <div class="rightContent">
-                <div class="videos">
-                    <div class="videoCard" *ngFor="let video of pexelVideos">
-                        <div class="thumbnail" (click)="watchVideo(video.video)">
-                            <img [src]="video.image" height="100%" width="100%">
-                        </div>
-                        <div class="playIcon"></div>
-                    </div>
-                </div>
+                <app-videos [pexelVideos]="pexelVideos" style="height: 100%;width: 100%;"></app-videos>
             </div>
         </div>
     </div>

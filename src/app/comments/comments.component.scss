@@ -1,0 +1,139 @@
+@import '../../vars';
+.body{
+    height: 100%;
+    // height: calc(100vh - 70px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.commentsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px;
+}
+.singleComment, .userComment{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 7px;
+    column-gap: 10px;
+    padding-bottom: 12px;
+    padding-top: 0px;
+}
+.userComment{
+    padding-bottom: 0px;
+    padding-top: 10px;
+}
+.commentDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+.userImage{
+    max-width: 40px;
+    max-height: 40px;
+    height: 100%;
+    width: 100%;
+}
+.circle{
+    min-width: 40px;
+    min-height: 40px;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $whiteColor;
+    font-size: 18px;
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+.upper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 10px;
+    width: 100%;
+}
+.upper::ng-deep.mat-form-field{
+    width: 100% !important;
+}
+.upper::ng-deep.mat-form-field-appearance-legacy .mat-form-field-underline{
+    background-color: $grayColor !important;
+}
+.upper::ng-deep.mat-form-field-wrapper{
+    padding-bottom: 5px !important;
+}
+.upper::ng-deep.mat-form-field-underline{
+    position: initial !important;
+}
+.upper::ng-deep.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color: $darkAqua;
+}
+.upper::ng-deep.mat-form-field-appearance-legacy .mat-form-field-label{
+    color: black !important;
+}
+.upper::ng-deep.mat-form-field.mat-focused .mat-form-field-label{
+    color: $darkAqua !important;
+}
+.bottom{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.buttons{
+    max-width: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.button{
+    padding: 8px;
+    font-size: 15px;
+    background-color: $darkAqua;
+    border-radius: 30px;
+    width: 100px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;
+    color: $whiteColor;
+}
+.button:disabled{
+    background-color: $grayColor;
+    color: black;
+    cursor: not-allowed;
+}
+
+
+
+
+
+// CSS for the scrollbar 
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $whiteColor; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $aquaColor; 
+  }
