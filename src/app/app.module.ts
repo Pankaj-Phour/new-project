@@ -31,6 +31,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatRadioModule,
     MatDividerModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    FlexLayoutModule
 
   ],
   providers: [],

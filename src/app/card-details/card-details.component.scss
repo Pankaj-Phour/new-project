@@ -1,11 +1,15 @@
 @import "../../vars";
+[fullHeight]{
+  background-color: $blackColor;
+  padding: 24px;
+}
 .card-radio {
   height: 300px;
   overflow: auto;
   padding: 10px;
 }
 .background-monetGr {
-  background: radial-gradient(circle at 79% 12%, rgba(252, 252, 252,0.04) 0%, rgba(252, 252, 252,0.04) 50%,rgba(116, 116, 116,0.04) 50%, rgba(116, 116, 116,0.04) 100%),radial-gradient(circle at 98% 39%, rgba(136, 136, 136,0.04) 0%, rgba(136, 136, 136,0.04) 50%,rgba(34, 34, 34,0.04) 50%, rgba(34, 34, 34,0.04) 100%),radial-gradient(circle at 83% 49%, rgba(234, 234, 234,0.04) 0%, rgba(234, 234, 234,0.04) 50%,rgba(56, 56, 56,0.04) 50%, rgba(56, 56, 56,0.04) 100%),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));
+  background: radial-gradient(circle at 79% 12%, rgba(3, 3, 3,0.04) 0%, rgba(3, 3, 3,0.04) 50%,rgba(116, 116, 116,0.04) 50%, rgba(116, 116, 116,0.04) 100%),radial-gradient(circle at 98% 39%, rgba(136, 136, 136,0.04) 0%, rgba(136, 136, 136,0.04) 50%,rgba(212, 212, 212,0.04) 50%, rgba(212, 212, 212,0.04) 100%),radial-gradient(circle at 83% 49%, rgba(21, 21, 21,0.04) 0%, rgba(21, 21, 21,0.04) 50%,rgba(199, 199, 199,0.04) 50%, rgba(199, 199, 199,0.04) 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));
   position: relative;
 }
 .mat-form-field{
@@ -91,4 +95,72 @@
 
 ::ng-deep .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] circle{
   stroke: white !important;
+}
+.headingLeft{
+  margin-block-start: 1em;
+}
+.headingLeft{
+  color: $darkAqua;
+  font-size: 20px;
+  font-weight: 500;
+}
+.heading{
+  color: $darkAqua
+}
+
+
+.button{
+  padding: 10px;
+  font-size: 15px;
+  background-color: $darkAqua;
+  border-radius: 30px;
+  width: 100px;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: none;
+  color: $whiteColor;
+}
+.button:disabled{
+  background-color: $grayColor;
+  color: black;
+  cursor: not-allowed;
+}
+
+
+
+[fullHeight]::ng-deep.mat-form-field-appearance-fill .mat-form-field-underline::before{
+  background-color: $darkAqua;
+}
+[fullHeight]::ng-deep.mat-form-field-ripple{
+  background-color: $darkAqua;
+}
+[fullHeight]::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: transparent;
+}
+[fullHeight]::ng-deep.mat-toolbar{
+  background: transparent;
+}
+
+
+
+
+
+
+
+// CSS for the scrollbar 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $whiteColor; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $darkAqua; 
 }

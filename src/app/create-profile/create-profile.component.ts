@@ -25,8 +25,6 @@ export class CreateProfileComponent implements OnInit {
       // console.log(this.newValues);
       
     })
-
-    this.dialog.open(CardDetailsComponent)
     
   }
 
@@ -42,6 +40,9 @@ export class CreateProfileComponent implements OnInit {
 
   Submit(){
     console.log("Hello from submit function",this.profileForm.value);
+    this.dialog.open(CardDetailsComponent,{
+      width:'800px'
+    })
     
   }
   handleInput(e:any){
