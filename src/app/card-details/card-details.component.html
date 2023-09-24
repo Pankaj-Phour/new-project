@@ -1,1 +1,177 @@
-<p>card-details works!</p>
+<div fullHeight>
+    <div fxLayout="column" fxLayoutGap="20px" matPadding *ngIf="paymentStatus" [ngStyle]="{'width':'100%'}">
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" [ngClass]="paymentStatus.status?'payment-success': 'payment-failure'">
+        <img [src]="paymentStatus.status?env.asset+'icons/payment/payment-success.svg':env.asset+'icons/payment/payment-failure.svg'">
+        <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="10px">
+          <span [ngClass]="['title-head']">{{paymentStatus.msg}}</span>
+          <span [ngClass]="['title-sub']">{{paymentStatus.msg_sub}}</span>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="30px" [ngStyle]="{height:'100%'}">
+        <div fxLayout="column" fxFlex="60" fxLayoutGap="10px" fxLayoutAlign="space-between start"  [ngStyle]="{height:'95%'}">
+          <span>Order summary</span>
+          <mat-divider></mat-divider>
+         <div fxLayout="column" fxLayoutGap="16px" [ngStyle]="{'height': '180px', 'overflow-y': 'auto', width:'100%'}">
+           <div fxLayout="column" fxLayoutGap="10px" *ngFor="let item of cart.contents; let i=index">
+             <span titleBlue18 [ngClass]="'dot-dot-title'">{{i+1}}. {{item.cnt_name}}</span>
+             <div fxLayout="row" fxLayoutAlign="space-between start" *ngFor="let charge of item.charges" fxLayoutGap="5px" [ngStyle]="{padding: '0px 18px'}">
+                 <span fxFlex title>{{charge.toc_name}}</span>
+                 <!--<span fxFlex="35px" title>{{charge.toc_units}}</span>-->
+               <span title [innerHTML]="userPLan?.p_currency+ ' '  +charge.toc_price"></span>
+             </div>
+           </div>
+         </div>
+          <mat-divider></mat-divider>
+          <div fxLayout="row" fxLayoutAlign="space-between center" [ngClass]="['success-back']">
+            <span>Total Amount </span>
+            <span fxFlex="80px" [innerHTML]=" userPLan?.p_currency+ ' '  +cart.total"></span>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+            <span title>Need help?</span>
+            <!--             receipt_url: "https://pay.stripe.com/receipts/acct_1DuzDSIR6Nc4YpSA/ch_1H6BuwIR6Nc4YpSAcqDVNI69/rcpt_HfWyro2gsITlIkV5D0kgDnTGlHastzV"-->
+            <!-- ************************************ Commented out this code because it was not working (by Pankaj Phour) on february 6 2023 ************************************ -->
+            <!-- <a mat-raised-button [ngClass]="['monet-button']" target="_blank" *ngIf="paymentStatus.status"
+               [href]="paymentStatus.receipt">Download Receipt <mat-icon>cloud_download</mat-icon>
+            </a> -->
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center"[ngStyle]="{height:'96%'}" fxLayoutGap="30px">
+          <img [src]="paymentStatus.status ? env.asset+'images/makePaymentDashoard.svg' : env.asset+'images/payNowWallet.svg'" [ngStyle]="{width:'150px'}">
+          <span title [ngStyle]="{'text-align':'center'}">{{paymentStatus.dashboard}}</span>
+          <!--<mat-form-field appearance="outline" *ngIf="copy">
+            &lt;!&ndash;<mat-label><mat-icon>link</mat-icon> URL</mat-label>&ndash;&gt;
+            <input matInput placeholder="https://www.yourcampaignlink.com" [value]="copy" #input>
+            <mat-icon matPrefix style="color: #777777">link</mat-icon>
+            <mat-icon matSuffix style="color: #1C5BA2" (click)="copyLink(input)">content_copy</mat-icon>
+            <mat-hint>Copy the campaign URL</mat-hint>
+          </mat-form-field>-->
+          <button mat-raised-button [ngClass]="['monet-button']" (click)="paymentStatus.status? dialogRef.close({payment: true}) : paymentStatus = false; loading = false" routerLink="corporate/dashboard">{{paymentStatus.button}}</button>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" fxFlex="100" *ngIf="!paymentStatus">
+      <div fxFlex="32" fxLayout="column" [ngClass]="['background-monetGr']">
+        <div [ngClass]="['triangle']" style="display: none;"></div>
+        <h3 fxLayout="row" fxLayoutAlign="center center" [ngStyle]="{'color': '#79236b'}">{{(cards?.length >0 && !cmpPaymentAddCard) ? 'Make Payment' : 'Add Card'}}</h3>
+        <!-- <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+          <img [src]="env.asset+'images/makePayment.svg'" [ngStyle]="{'width': '224px'}"> -->
+        <div fxLayout="column" fxLayoutAlign="center center" style="height: calc(100% - 55px);">
+          <img src="assets/addNewCard.png" [ngStyle]="{'width': '200px','margin-left':'24px','margin-bottom':'30px'}">
+          <div  fxLayout="column" fxLayoutAlign="center center">
+            <span [ngStyle]="{'color': '#79236b', 'font-size': '20px','text-decoration':'line-through'}" *ngIf="data && data['discount']">$ 55</span>
+            <span [ngStyle]="{'color': '#79236b', 'font-size': '24px'}" *ngIf="(data && data.amount) || data == 'Plan Payment'">$ {{data.amount ? data.amount : '1799'}}</span>
+          </div>
+          <span [ngStyle]="{'color': '#ffffff', 'font-style': 'italic'}" *ngIf="data && data['discount']">* % discount applied</span>
+          <!--<span [ngStyle]="{'color': '#ffffff', 'font-size': '24px'}" *ngIf="data.totalPayment === 0">Attach your card</span>-->
+        </div>
+      </div>
+      <div fxFlex="68" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px" [ngClass]="['background-white']" *ngIf="!cards">
+        <img [src]="env.asset+'icons/loading.svg'" [ngStyle]="{'background': 'blue', 'width': '20px', 'border-radius': '50%'}"/>
+      </div>
+
+      <div fxFlex="68" fxLayout="column" [ngClass]="['background-white']" *ngIf="cards && !cmpPaymentAddCard">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px" [ngClass]="['background-white']" *ngIf="loading" style="position: relative;transform:translate(-50%,-50%);top:50%;left:50%;">
+          <img [src]="env.asset+'icons/loading.svg'" [ngStyle]="{'background': '#501a4b', 'width': '20px', 'border-radius': '50%'}"/>
+        </div>
+        <mat-toolbar  [ngStyle]="{'background-color': '#fff'}" >
+          <div [ngClass]="['heading']" [ngStyle]="{'color': '#79236b'}">Card Details</div>
+          <div fxFlex></div>
+        </mat-toolbar>
+        <div *ngIf="cards.length > 0" [ngStyle]="{'padding': '0 16px'}" fxLayout="column" fxLayoutGap="20px">
+          <form fxFlex="100" fxLayout="column" [formGroup]="cardForm" fxLayoutGap="16px">
+            <mat-radio-group formControlName="defaultCard" [ngClass]="['card-radio']" fxLayout="column" >
+              <mat-radio-button *ngFor="let card of cards;let i= index" [value]="card.card_id" [ngClass]="'mapped-cards'" (change)="selectCard(card)">
+                <div fxLayout="row">
+                  <p>Card Number: **** **** **** {{card.card_last4}}</p> 
+                  <mat-icon style="margin-top: 10px" class="mat-icon notranslate material-icons mat-icon-no-color" (click)="removeCard(card,i)">delete</mat-icon>
+                </div>
+              </mat-radio-button>
+              
+            </mat-radio-group>
+          </form>
+
+          <div fxLayout="column" fxLayoutGap="20px">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <button mat-stroked-button [ngClass]="['monet-stroked-gray']" (click)="cmpPayment ? cmpPaymentAddCard = true : requestAddCard(); addCardClick = true;">
+                Add new card
+              </button>
+              <div>
+                <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Added margin right to add some spacing in-between the buttons !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                <button mat-raised-button [ngClass]="['monet-button']" (click)="closeDialog()" style="margin-right: 10px;" *ngIf="data!== 'Plan Payment'">Cancel</button>
+                <button mat-raised-button [ngClass]="['monet-button']" (click)="makePayment(cardForm.get('defaultCard').value)" [disabled]="cardForm.invalid">{{data== 'Plan Payment' || data.amount ? 'Make Payment' : 'Use this card'}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="cards.length === 0" fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="30px">
+          <span [ngStyle]="{'padding': '0 16px'}" fxLayoutAlign="center center">
+            Seems like you have not attached any of your cards<!--. Please click <a (click)="requestAddCard()">here</a> and add your card from the link provided in your email.-->
+          </span>
+          <div fxLayout="row" fxLayoutAlign="space-around center">
+            <button mat-raised-button [ngClass]="['monet-button btn-lg']" (click)="cmpPayment ? cmpPaymentAddCard = true : addCard()" [disabled]="!addCardUrl">Add card
+            </button>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="68" fxLayout="column" [ngClass]="['background-white']" *ngIf="cmpPaymentAddCard && cmpPayment">
+        <mat-toolbar>
+          <div [ngClass]="['heading']" [ngStyle]="{'color': '#79236b'}">Card Details</div>
+          <div fxFlex></div>
+        </mat-toolbar>
+        <form fxFlex="100" fxLayout="column" [formGroup]="form" fxLayoutGap="10px" [ngStyle]="{padding:'20px'}">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput placeholder="Name on the card" formControlName="name" (input)="userName($event)" style="position: relative;">
+            <!-- <p class="error" *ngIf="sameError">Name can not be same as Address</p> -->
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input type="text" style="position: relative;"
+                   placeholder="Card Number"
+                   matInput formControlName="cardNumber"
+                   #card_number
+                   maxlength="19"
+                   minlength="12"
+                   (input)="cardDetect($event)"
+                   (keydown)="cardNumberValue($event)" credit-card
+            >
+          <div class="cardImage">
+            <img src="assets/VisaCard.png" height="30" width="50" *ngIf="visaCard && isCardValid">
+            <img src="assets/MasterCard.png" height="30" width="50" *ngIf="masterCard && isCardValid">
+            <img src="assets/americanExpressCard.png" height="30" width="50" *ngIf="amexCard && isCardValid">
+          </div>
+          <p class="error" *ngIf="form.get('cardNumber').touched && !isCardValid">*Please enter valid card number</p>
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutGap="20px">
+            <mat-form-field fxFlex="30" appearance="fill">
+              <mat-select placeholder="MM" formControlName="month">
+                <mat-option *ngFor="let month of months" [value]="month.value">
+                  {{month.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="30" appearance="fill">
+              <mat-select placeholder="YYYY" formControlName="year">
+                <mat-option *ngFor="let year of years" [value]="year.value">
+                  {{year.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="30" appearance="fill">
+              <input matInput placeholder="CVV" (keydown)="cardNumberValue($event)" formControlName="cvc" maxlength="4">
+            </mat-form-field>
+          </div>
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="Billing address" formControlName="billingAddress" (input)="address($event)" style="position: relative;">
+            <p class="error" *ngIf="sameError">Billing Address cannot be exactly same as Name.</p>
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end">
+            <button mat-raised-button [ngClass]="['white-button']" (click)="cards.length ? cmpPaymentAddCard = false : closeDialog()" *ngIf="data!== 'Plan Payment'">Not Now</button>
+            <button mat-raised-button [ngClass]="['monet-button']" [disabled]="form.invalid || sameError || !isCardValid" (click)="submitPayment()">{{'Add Card'}}
+              <mat-spinner *ngIf="loading2" [diameter]="20"></mat-spinner>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>

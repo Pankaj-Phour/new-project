@@ -7,7 +7,8 @@ export const environment = {
   URL:'https://chatapp-backend-j9ko.onrender.com',
   AshwaniApi:'https://dummy-project.onrender.com/api/v1/catalogue',
   pexels:'https://api.pexels.com/videos/search',
-  token:'K8eLAErKjk2uTv6iUk49E3whBwp2EbfRJ9eNy8QnO4OTKKaOHZQcbNRW'
+  token:'K8eLAErKjk2uTv6iUk49E3whBwp2EbfRJ9eNy8QnO4OTKKaOHZQcbNRW',
+  asset: 'https://monet-assets.s3-us-west-2.amazonaws.com/icons/corporate/',
 };
 
 /*

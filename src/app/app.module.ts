@@ -27,6 +27,11 @@ import { SingleVideoComponent } from './single-video/single-video.component';
 import { CommentsComponent } from './comments/comments.component';
 import { RelatedVideosComponent } from './related-videos/related-videos.component';
 import { CardDetailsComponent } from './card-details/card-details.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -60,7 +65,11 @@ import { CardDetailsComponent } from './card-details/card-details.component';
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatSelectModule
 
   ],
   providers: [],
