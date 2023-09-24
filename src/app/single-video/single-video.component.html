@@ -16,7 +16,7 @@
                         <div class="viewCount">186k Views</div>
                     </div>
                     <div class="like" [matTooltip]="'Comments on this video'">
-                        <div class="commentCount">{{commentData.length + " Comments"}}</div>
+                        <div class="commentCount">{{(commentData ? commentData.length : selectedVideo.commentCount) + " Comments"}}</div>
                     </div>
                     <div class="like" [matTooltip]="'I like this'" (click)="likeVideo($event)">
                         <img src="assets/like.svg" *ngIf="!liked">

@@ -101,9 +101,10 @@ export class CommentsComponent implements OnInit {
     if(this.user){
       this.user = JSON.parse(this.user)
     }
-    
     this.validation();
-    localStorage.setItem('comments',JSON.stringify(this.commentsData))
+    console.log("Sending data to the singleVideo component");
+    
+    this._api.addComment(this.commentsData)
   }
 
   validation(){
@@ -126,7 +127,7 @@ export class CommentsComponent implements OnInit {
       time:'Just now',
       user_id:12345,
       user_name: this.user ? this.user.name : this.commentsData[2].user_name,
-      background:'green'
+      background:'orange'
     }
     this.commentsData.unshift(comment)
     this.input.nativeElement.blur();
