@@ -24,6 +24,11 @@ liked = false;
       console.log(this.selectedVideo);
       
     })
+
+
+    this._api.addCommentEmitter.subscribe((data:any)=>{
+      this.commentData = data;
+    })
   }
 
 

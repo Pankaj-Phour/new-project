@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
+import { ApiService } from '../services/api.service';
+
 
 @Component({
   selector: 'app-comments',
@@ -10,7 +12,8 @@ export class CommentsComponent implements OnInit {
   commentForm:FormGroup;
   inputFocused = false;
   user:any;
-  constructor(private _fb:FormBuilder) { }
+  constructor(private _fb:FormBuilder, private _api:ApiService) { }
+@ViewChild('input') input:ElementRef;
 
   commentsData:any = [
     {
@@ -125,9 +128,10 @@ export class CommentsComponent implements OnInit {
       user_name: this.user ? this.user.name : this.commentsData[2].user_name,
       background:'green'
     }
-    this.commentsData.push(comment)
+    this.commentsData.unshift(comment)
+    this.input.nativeElement.blur();
     this.commentForm.reset();
     this.inputFocused = false;
-    
+    this._api.addComment(this.commentsData)
   }
 }

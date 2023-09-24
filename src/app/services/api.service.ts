@@ -33,6 +33,11 @@ headers = new HttpHeaders();
     this.changeSelectedVideoEmitter.emit(data)
   }
 
+  @Output() addCommentEmitter = new EventEmitter();
+  addComment(data){
+    this.addCommentEmitter.emit(data)
+  }
+
 
   // ***************************************** Common functions to be used by different components  ***************************************** 
   
@@ -61,7 +66,6 @@ headers = new HttpHeaders();
   }
 
   pexelsVideos(endpoint:any){
-  
     return this.http.get(environment.URL + endpoint,{headers:this.headers})
   }
 }

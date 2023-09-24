@@ -8,13 +8,13 @@
                 <div class="upper">
                     <mat-form-field class="example-full-width" [formGroup]="commentForm">
                         <mat-label>Leave a comment</mat-label>
-                        <input matInput placeholder="Write your comment here" (focus)="onFocus($event)"  formControlName="comment">
+                        <input matInput placeholder="Write your comment here" #input (keydown.enter)="submit.click()" (focus)="onFocus($event)"  formControlName="comment">
                       </mat-form-field>
                 </div>
                 <div class="bottom" [ngStyle]="{visibility:(commentForm.get('comment').touched || inputFocused )? 'visible' : 'hidden'}">
                     <div class="buttons">
                         <button class="button cancel" (click)="cancel()">Cancel</button>
-                        <button class="button submit" (click)="addComment()" [disabled]="commentForm.invalid">Comment</button>
+                        <button class="button submit" #submit (click)="addComment()" [disabled]="commentForm.invalid">Comment</button>
                     </div>
                 </div>
 
