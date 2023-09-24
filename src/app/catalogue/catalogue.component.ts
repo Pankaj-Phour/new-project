@@ -74,8 +74,8 @@ pexelVideos:any = [];
 
   ngOnInit(): void {
     this.validation();
-    // this.getVideos();
-    this.getPexelsVideo();
+    this.getVideos();
+    // this.getPexelsVideo();
     for(let i=0;i<this.Filters.length;i++){
       (this.sidebarForm.get('filters') as FormArray).push(this.addDummyControl());
       for(let j=0;j<this.Filters[i].value.length;j++){
@@ -107,12 +107,19 @@ pexelVideos:any = [];
 
   getVideos(){
     let params = {
-      expert:[],
-      country:[],
-      parameter:[]
+      filter:{
+        experts:[],
+        countries:[],
+        parameters:[],
+        latest:1,
+        trending:0
+      }
     }
-    this._api.getvideos('/videos',params).subscribe((data:any)=>{
-      console.log(data);
+    this._api.getvideos('/videos',params).subscribe((res:any)=>{
+      console.log(res);
+      this.pexelVideos = res.data;
+      console.log(this.pexelVideos);
+      localStorage.setItem('videos',JSON.stringify(this.pexelVideos))
       
     })
   }
@@ -143,7 +150,6 @@ pexelVideos:any = [];
 
   watchVideo(video:any){
     console.log(video)
-    
       this.dialog.open(watchVideoComponent,{
        data : video.link
        

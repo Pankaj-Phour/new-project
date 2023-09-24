@@ -2,7 +2,28 @@
     <div class="container">
         <div class="leftSide">
             <div class="mainVideo">
-                <video [src]="selectedVideo.video.link" controls></video>
+                <video [src]="selectedVideo.source" controls></video>
+                <div class="videoActions">
+                    <div class="channel">
+                <div class="circle" [ngStyle]="{backgroundColor:selectedVideo.background ? selectedVideo.background : 'Green'}">{{selectedVideo.expert.split('')[0]}}</div>
+                <div class="name">
+
+                    {{selectedVideo.expert}}
+                </div>
+            </div>
+
+                    <div class="like" [matTooltip]="'Views on this video'">
+                        <div class="viewCount">186k Views</div>
+                    </div>
+                    <div class="like" [matTooltip]="'Comments on this video'">
+                        <div class="commentCount">{{commentData.length + " Comments"}}</div>
+                    </div>
+                    <div class="like" [matTooltip]="'I like this'" (click)="likeVideo($event)">
+                        <img src="assets/like.svg" *ngIf="!liked">
+                        <mat-icon *ngIf="liked">thumb_up</mat-icon>
+                        <div class="likeCount">6.8K</div>
+                    </div>
+                </div>
             </div>
             <div class="commentSection">
                 <app-comments></app-comments>

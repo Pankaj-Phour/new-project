@@ -35,7 +35,7 @@ ngOnInit(): void {
         this.pexelVideos[index]['showDetails'] = false;
       }
     })
-    console.log(this.pexelVideos);
+    // console.log(this.pexelVideos);
     
   }
   

@@ -1,5 +1,25 @@
 <div class="body">
     <div class="commentsContainer">
+        <div class="userComment">
+            <div class="userImage">
+                <div class="circle" [ngStyle]="{backgroundColor:commentsData[2].background}">{{commentsData[2].user_name.split('')[0]}}</div>
+            </div>
+            <div class="commentDetails">
+                <div class="upper">
+                    <mat-form-field class="example-full-width" [formGroup]="commentForm">
+                        <mat-label>Leave a comment</mat-label>
+                        <input matInput placeholder="Write your comment here" (focus)="onFocus($event)"  formControlName="comment">
+                      </mat-form-field>
+                </div>
+                <div class="bottom" [ngStyle]="{visibility:(commentForm.get('comment').touched || inputFocused )? 'visible' : 'hidden'}">
+                    <div class="buttons">
+                        <button class="button cancel" (click)="cancel()">Cancel</button>
+                        <button class="button submit" (click)="addComment()" [disabled]="commentForm.invalid">Comment</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <div class="singleComment" *ngFor="let comment of commentsData">
             <div class="userImage">
                 <div class="circle" [ngStyle]="{backgroundColor:comment.background}">{{comment.user_name.split('')[0]}}</div>

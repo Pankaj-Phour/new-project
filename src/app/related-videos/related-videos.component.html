@@ -3,7 +3,7 @@
         <ng-container *ngFor="let video of videos;let i = index">
             <div class="singleVideo" *ngIf="video['show']" (click)="changeVideo(video,i)">
                 <div class="left">
-                    <img [src]="video.image">
+                    <img [src]="video.thumbnail">
                 </div>
                 <div class="right">
                     <div class="title">{{video.title}}</div>

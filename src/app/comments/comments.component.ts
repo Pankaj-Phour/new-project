@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-comments',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
-
-  constructor() { }
+  commentForm:FormGroup;
+  inputFocused = false;
+  user:any;
+  constructor(private _fb:FormBuilder) { }
 
   commentsData:any = [
     {
@@ -90,6 +93,41 @@ export class CommentsComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.user = localStorage.getItem('user');
+    console.log(this.user);
+    if(this.user){
+      this.user = JSON.parse(this.user)
+    }
+    
+    this.validation();
+    localStorage.setItem('comments',JSON.stringify(this.commentsData))
   }
 
+  validation(){
+    this.commentForm = this._fb.group({
+      comment:['',Validators.required]
+    })
+  }
+  onFocus(e:any){
+    this.inputFocused = true;
+  }
+
+  cancel(){
+    this.inputFocused = false;
+    this.commentForm.reset();
+  }
+  addComment(){
+    console.log(this.commentForm.value);
+    let comment = {
+      comment:this.commentForm.value.comment,
+      time:'Just now',
+      user_id:12345,
+      user_name: this.user ? this.user.name : this.commentsData[2].user_name,
+      background:'green'
+    }
+    this.commentsData.push(comment)
+    this.commentForm.reset();
+    this.inputFocused = false;
+    
+  }
 }

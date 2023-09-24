@@ -9,18 +9,26 @@ import { ApiService } from '../services/api.service';
 })
 export class SingleVideoComponent implements OnInit {
 selectedVideo:any;
+commentData:any;
+liked = false;
   constructor(private _api:ApiService) { }
 
   ngOnInit(): void {
     this.selectedVideo = JSON.parse(localStorage.getItem('selectedVideo'))
     console.log(this.selectedVideo);
+    this.commentData = JSON.parse(localStorage.getItem('comments'));
+    console.log(this.commentData);
     
-
     this._api.changeSelectedVideoEmitter.subscribe((data:any)=>{
       this.selectedVideo = data;
       console.log(this.selectedVideo);
       
     })
+  }
+
+
+  likeVideo(e:any){
+    this.liked = !this.liked;
   }
 
 }
