@@ -1,4 +1,4 @@
-@import "../../../../../vars";
+@import "../../vars";
 .card-radio {
   height: 300px;
   overflow: auto;
@@ -44,14 +44,14 @@
 }*/
 .payment-success {
   padding: 20px;
-  border-bottom: solid 4px $success;
+  border-bottom: solid 4px green;
    img  {
      height: 60px;
      width: 60px;
    }
    .title-head {
      font-size: 20px;
-     color: $success;
+     color: green;
    }
    .title-sub {
      font-size: 14px;

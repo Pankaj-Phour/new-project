@@ -56,7 +56,7 @@
         <!-- <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
           <img [src]="env.asset+'images/makePayment.svg'" [ngStyle]="{'width': '224px'}"> -->
         <div fxLayout="column" fxLayoutAlign="center center" style="height: calc(100% - 55px);">
-          <img src="assets/addNewCard.png" [ngStyle]="{'width': '200px','margin-left':'24px','margin-bottom':'30px'}">
+          <img src="assets/addCard.png" [ngStyle]="{'width': '200px','margin-left':'24px','margin-bottom':'30px'}">
           <div  fxLayout="column" fxLayoutAlign="center center">
             <span [ngStyle]="{'color': '#79236b', 'font-size': '20px','text-decoration':'line-through'}" *ngIf="data && data['discount']">$ 55</span>
             <span [ngStyle]="{'color': '#79236b', 'font-size': '24px'}" *ngIf="(data && data.amount) || data == 'Plan Payment'">$ {{data.amount ? data.amount : '1799'}}</span>

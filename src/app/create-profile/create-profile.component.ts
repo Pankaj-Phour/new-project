@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { CardDetailsComponent } from '../card-details/card-details.component'
 
 @Component({
   selector: 'app-create-profile',
@@ -11,7 +13,7 @@ export class CreateProfileComponent implements OnInit {
   profileForm:FormGroup;
   user:any;
   newValues:any;
-  constructor(private _fb:FormBuilder,private _api:ApiService) { }
+  constructor(private _fb:FormBuilder,private _api:ApiService, private dialog:MatDialog) { }
   profile:any;
   ngOnInit(): void {
     this.validation();
@@ -23,6 +25,8 @@ export class CreateProfileComponent implements OnInit {
       // console.log(this.newValues);
       
     })
+
+    this.dialog.open(CardDetailsComponent)
     
   }
 
