@@ -19,7 +19,7 @@
             <div class="topFilters">
                 <div class="leftHeading">Filters :</div>
                 <div class="AppliedFilters" *ngFor="let filter of filterNames;let i = index">
-                    <div class="filterHeading">
+                    <div class="filterHeading" (click)="watchVideo(Filters[i],i)">
                         {{filter}}
                     </div>
                     <div class="selectedFilters">

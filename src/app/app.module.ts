@@ -15,7 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { NotifyComponent } from './notify/notify.component';
 import { NotificationComponent } from './notification/notification.component';
-import { CatalogueComponent } from './catalogue/catalogue.component';
+import { CatalogueComponent, singleFIlterComponent } from './catalogue/catalogue.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
@@ -49,7 +49,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     SingleVideoComponent,
     CommentsComponent,
     RelatedVideosComponent,
-    CardDetailsComponent
+    CardDetailsComponent,
+    singleFIlterComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +76,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[singleFIlterComponent]
 })
 export class AppModule { }

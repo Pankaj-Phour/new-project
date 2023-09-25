@@ -337,11 +337,12 @@ input{
     width: 50%;
 }
 .image img{
-    height: 146px;
-    width: 146px;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
     border: 2px solid $whiteColor;
     box-sizing: border-box;
+    object-fit: cover;
 }
 .details{
     max-width: 100%;

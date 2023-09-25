@@ -148,10 +148,14 @@ pexelVideos:any = [];
   }
 
 
-  watchVideo(video:any){
-    console.log(video)
-      this.dialog.open(watchVideoComponent,{
-       data : video.link
+  watchVideo(filter:any,index:any){
+    console.log(filter)
+      this.dialog.open(singleFIlterComponent,{
+       data : {
+        filter:filter,
+        formGroup:(this.sidebarForm.get('filters').get(index.toString()) as FormGroup)
+       },
+       width:'250px'
        
       })
   }
@@ -161,17 +165,31 @@ pexelVideos:any = [];
 
 @Component({
   selector : 'app-catalogue',
-  templateUrl : './watchVideo.html',
+  templateUrl : './singleFilter.html',
   styleUrls : ['./catalogue.component.scss']
 })
 
-export class watchVideoComponent implements OnInit {
+export class singleFIlterComponent implements OnInit {
    
   constructor(@Inject(MAT_DIALOG_DATA) public data){
     
   }  
   ngOnInit(): void {
-      // console.log("Hello from watchVideo",this.data);
+      console.log("Hello from watchVideo",this.data);
+      console.log(this.data);
+      this.data.filter.formGroup as FormGroup;
+      console.log(this.data);
+      console.log(this.data.formGroup.value);
       
+      // for(let i = 0;i<this.data.filter.value.length;i++){
+      //   this.addFormControl(this.data.filter.formGroup,this.data.filter.value[i].name)
+      // }
+      // console.log(this.data.filter);
+      
+      
+  }
+
+  addFormControl(formGroup,formControl){
+    formGroup.addControl(formControl, new FormControl(''));
   }
 }
