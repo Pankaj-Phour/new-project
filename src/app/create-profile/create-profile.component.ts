@@ -13,6 +13,20 @@ export class CreateProfileComponent implements OnInit {
   profileForm:FormGroup;
   user:any;
   newValues:any;
+  services:any = [
+    {name:'Lite'},
+    {name:'Standard'},
+    {name:'Premium'},
+    {name:'Enterprise'},
+    {name:'Business Subscription'}
+  ];
+  expertise:any = [
+    {name:'Expert A'},
+    {name:'Expert B'},
+    {name:'Expert C'},
+    {name:'Expert D'},
+    {name:'Expert E'}
+  ]
   constructor(private _fb:FormBuilder,private _api:ApiService, private dialog:MatDialog) { }
   profile:any;
   ngOnInit(): void {

@@ -15,16 +15,22 @@
                                         *ngIf="profileForm.get('name').hasError('required') && profileForm.get('name').touched">*required</span>
                                 </div>
                                 <div class="formGroup">
-                                    <input type="text" placeholder="Select your expertise" formControlName="expertise"
-                                        [ngClass]="profileForm.get('expertise').hasError('required') && profileForm.get('expertise').touched ? 'borderError' : ''">
-                                    <span class="error"
-                                        *ngIf="profileForm.get('expertise').hasError('required') && profileForm.get('expertise').touched">*required</span>
+                                        <mat-form-field appearance="fill">
+                                            <mat-select placeholder="Select your expertise" formControlName="expertise" >
+                                              <mat-option *ngFor="let expert of expertise" [value]="expert.name">
+                                                {{expert.name}}
+                                              </mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
                                 </div>
                                 <div class="formGroup">
-                                    <input type="text" placeholder="Select services" formControlName="services"
-                                        [ngClass]="profileForm.get('services').hasError('required') && profileForm.get('services').touched ? 'borderError' : ''">
-                                    <span class="error"
-                                        *ngIf="profileForm.get('services').hasError('required') && profileForm.get('services').touched">*required</span>
+                                    <mat-form-field appearance="fill">
+                                        <mat-select placeholder="Select your services" formControlName="services" >
+                                          <mat-option *ngFor="let expert of expertise" [value]="expert.name">
+                                            {{expert.name}}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
                                 </div>
                                 <div class="formGroup">
                                     <input type="file" placeholder="Upload profile pic" formControlName="image" (change)="handleInput($event)" [accept]="'.jpg, .jpeg, .png'"
