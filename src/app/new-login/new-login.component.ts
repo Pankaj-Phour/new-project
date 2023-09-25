@@ -39,7 +39,7 @@ export class NewLoginComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       contact: ['', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(14)])],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      address: ['', Validators.required],
       checkbox: ['', Validators.required]
     })
     if (this.emailLogin) {
@@ -61,20 +61,9 @@ export class NewLoginComponent implements OnInit {
       this._cdr.detectChanges();
   }
   Signin() {
-    console.log("Sign in function clicked",this.signIn);
-    
-    // this._as.obNotify({
-    //   start:true,
-    //   code:200,
-    //   status:'success',
-    //   message:'Logged Out'
-    // })
-    // console.log("SIgn in",this.signupForm);
     this.signIn = !this.signIn;
     this.numberSubmit = false;
     var cards = document.querySelectorAll('.box');
-    // var card = document.getElementsByClassName('box').firstElementChild.classList.toggle('is-flipped');
-
     [...cards as any].forEach((card) => {
       card.classList.toggle('is-flipped');
     });
@@ -82,7 +71,6 @@ export class NewLoginComponent implements OnInit {
   }
 
   Submit() {
-    console.log("Submitted");
     if (this.signIn) {
       let params = {};
       if (this.emailLogin) {
@@ -121,17 +109,6 @@ export class NewLoginComponent implements OnInit {
   }
 
 
-
-  // Function to check the password and confirm password 
-  confirmPasswordInput(e: any) {
-    this.password = e.target.value;
-    if (e.target.value !== this.Cpassword) {
-      this.differentPassword = true
-    }
-    else {
-      this.differentPassword = false
-    }
-  }
   passwordInput(e: any) {
     this.Cpassword = e.target.value;
     if (e.target.value !== this.password) {
