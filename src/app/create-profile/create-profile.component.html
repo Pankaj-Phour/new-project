@@ -1,10 +1,10 @@
 <div class="body">
-    <div class="parent">
+    <div class="parent" id="createProfileParent">
         <div class="box">
                    <div class="form">
                         <form [formGroup]="profileForm">
                             <div class="header">
-                                <div class="heading">Sign up</div>
+                                <div class="heading">Create Your Profile</div>
                                 <div class="text">Let's start your wonderful journey with us</div>
                             </div>
                             <div class="inputs">
@@ -45,7 +45,7 @@
                                 <button
                                     [ngClass]="profileForm.invalid || profileForm.value.checkbox==false ? 'disabled-btn' : 'submit-btn'"
                                     [disabled]="profileForm.invalid || profileForm.value.checkbox==false"
-                                    (click)="Submit()">Sign Up</button>
+                                    (click)="Submit()">Make Payment & Create Profile</button>
                             </div>
                         </form>
                     </div>
@@ -81,8 +81,12 @@
                     <div class="nameRight">{{user.address}}</div>
                 </div>
                 <div class="name">
-                    <div class="nameLeft">Name : </div>
-                    <div class="nameRight">{{user.name}}</div>
+                    <div class="nameLeft">Expertise : </div>
+                    <div class="nameRight">{{newValues?.expertise ? newValues.expertise : ''}}</div>
+                </div>
+                <div class="name">
+                    <div class="nameLeft">Service : </div>
+                    <div class="nameRight">{{newValues?.services ? newValues.services : ''}}</div>
                 </div>
             </div>
 

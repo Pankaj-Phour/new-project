@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   URL:'https://chatapp-backend-j9ko.onrender.com',
+
+  // URL for Pankaj's Local system code 
+  // URL:'http://localhost:3000',
   AshwaniApi:'https://dummy-project.onrender.com/api/v1/catalogue',
   pexels:'https://api.pexels.com/videos/search',
   token:'K8eLAErKjk2uTv6iUk49E3whBwp2EbfRJ9eNy8QnO4OTKKaOHZQcbNRW',

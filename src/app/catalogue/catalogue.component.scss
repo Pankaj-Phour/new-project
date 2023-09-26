@@ -16,7 +16,9 @@
     flex-direction: column;
     justify-content: space-around;
     border-right: 2px solid $aquaColor;
-    background: linear-gradient(to bottom left, $blackShadow , $aquaColor);
+    border-top: 2px solid $whiteColor;
+    // background: linear-gradient(to bottom left, $blackShadow , $aquaColor);
+    background-color: $darkAqua;
     color: $whiteColor;
 
 }
@@ -38,7 +40,7 @@
     justify-content: space-around;
     row-gap: 10px;
     padding: 10px;
-    box-shadow: 2px 4px 8px $blackShadow;
+    box-shadow: 0px 0px 2px 2px $whiteColor;
     // border: 2px solid gray;
     // margin-block: 5px;
     padding-inline: 20px;
@@ -91,6 +93,7 @@ input{
 }
 .filterHeading{
     font-size: 18px;
+    padding-bottom: 5px;
     // text-align: center;
 }
 .rightContent{
@@ -98,7 +101,7 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 170px);
+    height: calc(100vh - 210px);
     overflow: hidden;
 }
 
@@ -137,6 +140,27 @@ input{
 }
 
 
+.newFilterButtons{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    height: 40px;
+}
+.newButton{
+    width: 100px;
+    font-size: 16px;
+    background-color: $darkAqua;
+    color: $whiteColor;
+    text-align: center;
+    padding-block: 8px;
+    border-radius: 10px;
+    border: none;
+}
+.newButton:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 4px 4px $blackShadow;
+}
 
 
 @media only screen and (max-width:768px){

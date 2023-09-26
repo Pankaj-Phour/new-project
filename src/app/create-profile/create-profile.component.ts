@@ -33,7 +33,9 @@ export class CreateProfileComponent implements OnInit {
     this.validation();
     this.user = JSON.parse(localStorage.getItem('user'))
     console.log(this.user);
-
+    if(this.user){
+      this.profileForm.get('name').setValue(this.user.name)
+    }
     this.profileForm.valueChanges.subscribe((value:any)=>{
       this.newValues = value;
       // console.log(this.newValues);
@@ -54,8 +56,14 @@ export class CreateProfileComponent implements OnInit {
 
   Submit(){
     console.log("Hello from submit function",this.profileForm.value);
-    this.dialog.open(CardDetailsComponent,{
+   let dialog = this.dialog.open(CardDetailsComponent,{
       width:'800px'
+    });
+    let parent  = document.getElementById('createProfileParent') as HTMLElement;
+    parent.style.display = 'none'
+    dialog.afterClosed().subscribe((value:any)=>{
+      console.log("Card details dialog box closed",value);
+      parent.style.display = 'flex'
     })
     
   }

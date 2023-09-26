@@ -37,7 +37,7 @@
       </div>
     </div>
     <div fxLayout="row" fxFlex="100" *ngIf="!paymentStatus">
-      <div fxFlex="32" fxLayout="column" [ngClass]="['background-monetGr']">
+      <div fxFlex="32" class="left" fxLayout="column" [ngClass]="['background-monetGr']">
         <div [ngClass]="['triangle']" style="display: none;"></div>
         <h3 fxLayout="row" fxLayoutAlign="center center" class="headingLeft">{{(cards?.length >0 && !cmpPaymentAddCard) ? 'Make Payment' : 'Add Card'}}</h3>
         <div fxLayout="column" fxLayoutAlign="center center" style="height: calc(100% - 55px);">
@@ -54,7 +54,7 @@
         <img [src]="env.asset+'icons/loading.svg'" [ngStyle]="{'background': 'blue', 'width': '20px', 'border-radius': '50%'}"/>
       </div>
 
-      <div fxFlex="68" fxLayout="column" [ngClass]="['background-white']" *ngIf="cards && !cmpPaymentAddCard">
+      <div fxFlex="68" class="right" fxLayout="column" [ngClass]="['background-white']" *ngIf="cards && !cmpPaymentAddCard">
         <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px" [ngClass]="['background-white']" *ngIf="loading" style="position: relative;transform:translate(-50%,-50%);top:50%;left:50%;">
           <img [src]="env.asset+'icons/loading.svg'" [ngStyle]="{'background': '#501a4b', 'width': '20px', 'border-radius': '50%'}"/>
         </div>
@@ -99,7 +99,7 @@
           </div>
         </div>
       </div>
-      <div fxFlex="68" fxLayout="column" [ngClass]="['background-white']" *ngIf="cmpPaymentAddCard && cmpPayment">
+      <div fxFlex="68" class="right" fxLayout="column" [ngClass]="['background-white']" *ngIf="cmpPaymentAddCard && cmpPayment">
         <mat-toolbar>
           <div [ngClass]="['heading']">Card Details</div>
           <div fxFlex></div>
@@ -108,6 +108,7 @@
           <mat-form-field class="example-full-width" appearance="fill">
             <input matInput placeholder="Name on the card" formControlName="name" (input)="userName($event)" style="position: relative;">
             <!-- <p class="error" *ngIf="sameError">Name can not be same as Address</p> -->
+            <p class="error" *ngIf="form.get('name').hasError('required') && form.get('name').touched">Please enter name as on your card</p>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <input type="text" style="position: relative;"
@@ -133,6 +134,7 @@
                   {{month.viewValue}}
                 </mat-option>
               </mat-select>
+              <p class="error" *ngIf="form.get('month').hasError('required') && form.get('month').touched">* required</p>
             </mat-form-field>
 
             <mat-form-field fxFlex="30" appearance="fill">
@@ -141,13 +143,16 @@
                   {{year.value}}
                 </mat-option>
               </mat-select>
+              <p class="error" *ngIf="form.get('year').hasError('required') && form.get('year').touched">* required</p>
             </mat-form-field>
             <mat-form-field fxFlex="30" appearance="fill">
               <input matInput placeholder="CVV" (keydown)="cardNumberValue($event)" formControlName="cvc" maxlength="4">
+              <p class="error" *ngIf="form.get('cvc').hasError('required') && form.get('cvc').touched">* required</p>
             </mat-form-field>
           </div>
           <mat-form-field appearance="fill">
             <input matInput placeholder="Billing address" formControlName="billingAddress" (input)="address($event)" style="position: relative;">
+            <p class="error" *ngIf="form.get('billingAddress').hasError('required') && form.get('billingAddress').touched">Billing Address cannot be exactly same as Name.</p>
             <p class="error" *ngIf="sameError">Billing Address cannot be exactly same as Name.</p>
           </mat-form-field>
           <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end">

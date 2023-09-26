@@ -216,7 +216,7 @@ export class LoginComponent implements OnInit {
       email : user.email,
       contact: user['contact'] || '',
       password: user['password'] || '',
-      confirmPassword: user['confirmPassword'] || '',
+      address: user['address'] || '',
       checkbox: user['checkbox'] || ''
     };
     console.log(user,params);

@@ -32,6 +32,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { CreditCardDirective } from './directives/credit-card.directive';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     CommentsComponent,
     RelatedVideosComponent,
     CardDetailsComponent,
-    singleFIlterComponent
+    singleFIlterComponent,
+    CreditCardDirective
   ],
   imports: [
     BrowserModule,

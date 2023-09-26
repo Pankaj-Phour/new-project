@@ -367,7 +367,7 @@ input{
     flex-direction: column;
     // justify-content: space-between;
     align-items: center;
-    box-shadow: 2px 4px 8px rgba(0,234,255,0.22);
+    // box-shadow: 2px 4px 8px rgba(0,234,255,0.22);
     border-radius: 10px;
 }
 .name{
@@ -376,7 +376,7 @@ input{
     align-items: center;
     font-size: 18px;
     max-width: 100%;
-    width: 100%;
+    width: 95%;
     border-bottom: 2px solid $darkAqua;
     padding: 10px;
     height: 100%;
@@ -386,7 +386,7 @@ input{
 }
 .nameLeft, .nameRight{
     max-width: 100%;
-    width: 40%;
+    width: 100%;
     text-align: left;
 }
 
