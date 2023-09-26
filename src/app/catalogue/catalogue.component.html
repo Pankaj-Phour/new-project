@@ -45,9 +45,9 @@
                 </div>
             </div>
             <div class="newFilterButtons">
-                <div class="newButton">Latest</div>
-                <div class="newButton">Popular</div>
-                <div class="newButton">Trending</div>
+                <div class="newButton" (click)="getVideos('latest')">Latest</div>
+                <div class="newButton" (click)="getVideos('popular')">Popular</div>
+                <div class="newButton" (click)="getVideos('trending')">Trending</div>
             </div>
             
             <div class="rightContent">

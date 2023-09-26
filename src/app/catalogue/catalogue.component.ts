@@ -90,7 +90,7 @@ videosLoaded:boolean = false;
     this.checkScreenSize();
     this.getFilters();
     this.validation();
-    this.getVideos();
+    this.getVideos('allVideos');
     // this.getPexelsVideo();
     
 
@@ -114,18 +114,20 @@ videosLoaded:boolean = false;
     ((this.sidebarForm.get('filters') as FormArray).get(parent.toString()) as FormGroup).get(value.toString()).setValue('');
   }
 
-  getVideos(){
+  getVideos(filter:any){
+    this.videosLoaded = false;
     let params = {
       filter:{
         experts:[],
         countries:[],
         parameters:[],
-        latest:1,
-        trending:0
+        latest:filter=='latest' ? 1 : 0,
+        trending:filter=='trending' ? 1 : 0
       }
     }
     this._api.getvideos('/catalogue/videos',params).subscribe((res:any)=>{
       console.log(res);
+      this.videosLoaded = true;
       this.pexelVideos = res.data;
       console.log(this.pexelVideos);
       localStorage.setItem('videos',JSON.stringify(this.pexelVideos))
