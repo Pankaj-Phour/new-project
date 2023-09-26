@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
@@ -16,6 +16,7 @@ export class CatalogueComponent implements OnInit {
 filterNames:any = ['Parameter','Country','Expert'];
 selectedFilters:any = [];
 pexelVideos:any = [];
+mobile:boolean;
   Filters: any = [
     {
       type: 'Parameter',
@@ -52,6 +53,17 @@ pexelVideos:any = [];
   ]
   constructor(private _fb:FormBuilder,private _api:ApiService, private dialog:MatDialog) { }
 
+
+  @HostListener('window:resize',['$event'])
+    checkScreenSize(){
+      if(window.innerWidth<=768){
+        this.mobile = true;
+      }
+      else{
+        this.mobile = false;
+      }
+    }
+
   //  Function for the validation of the form and registering the formControl and FormArray  
   validation(){
     this.sidebarForm = this._fb.group({
@@ -73,6 +85,7 @@ pexelVideos:any = [];
   }
 
   ngOnInit(): void {
+    this.checkScreenSize();
     this.validation();
     this.getVideos();
     // this.getPexelsVideo();
@@ -148,14 +161,15 @@ pexelVideos:any = [];
   }
 
 
-  watchVideo(filter:any,index:any){
+  selectFilter(filter:any,index:any){
     console.log(filter)
       this.dialog.open(singleFIlterComponent,{
        data : {
         filter:filter,
         formGroup:(this.sidebarForm.get('filters').get(index.toString()) as FormGroup)
        },
-       width:'250px'
+       width:'300px',
+       height:'270px'
        
       })
   }

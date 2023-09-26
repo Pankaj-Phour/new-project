@@ -208,10 +208,23 @@ input{
         width: 100%;
         background-color: black;
         color: white;
+        border-radius: 10px;
         .singleFilter{
             width: 100%;
             padding-inline: 20px;
         }
+        .heading{
+            color: $darkAqua;
+        }
+    }
+
+    .selectedFilters{
+        width: 100%;
+        // overflow-x: auto;
+    }
+    .selectedFilters::ng-deep.mat-chip.mat-standard-chip{
+        margin: 2px !important;
+        font-size: 13px !important;
     }
     
 }
@@ -238,11 +251,11 @@ input{
     background-color: $whiteColor !important;
 }
 .singleFilter::ng-deep.mat-checkbox-checkmark-path{
-    stroke: $aquaColor !important;
+    stroke: $darkAqua !important;
 }
 
 .selectedFilters::ng-deep.mat-chip.mat-standard-chip{
-    background-color: $aquaColor !important;
+    background-color: $darkAqua !important;
 }
 .selectedFilters::ng-deep.mat-chip.mat-standard-chip .mat-chip-remove{
     opacity: 1 !important;
