@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
@@ -16,6 +16,9 @@ export class CatalogueComponent implements OnInit {
 filterNames:any = ['Parameter','Country','Expert'];
 selectedFilters:any = [];
 pexelVideos:any = [];
+mobile:boolean;
+filtersLoaded:boolean = false;
+videosLoaded:boolean = false;
   Filters: any = [
     {
       type: 'Parameter',
@@ -52,6 +55,17 @@ pexelVideos:any = [];
   ]
   constructor(private _fb:FormBuilder,private _api:ApiService, private dialog:MatDialog) { }
 
+
+  @HostListener('window:resize',['$event'])
+    checkScreenSize(){
+      if(window.innerWidth<=768){
+        this.mobile = true;
+      }
+      else{
+        this.mobile = false;
+      }
+    }
+
   //  Function for the validation of the form and registering the formControl and FormArray  
   validation(){
     this.sidebarForm = this._fb.group({
@@ -73,16 +87,11 @@ pexelVideos:any = [];
   }
 
   ngOnInit(): void {
+    this.checkScreenSize();
+    this.getFilters();
     this.validation();
-    this.getVideos();
+    this.getVideos('allVideos');
     // this.getPexelsVideo();
-    for(let i=0;i<this.Filters.length;i++){
-      (this.sidebarForm.get('filters') as FormArray).push(this.addDummyControl());
-      for(let j=0;j<this.Filters[i].value.length;j++){
-        this.addFormControl((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup,this.Filters[i].value[j].name)
-      };
-      ((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup).removeControl('dummy')
-    }
     
 
     this.sidebarForm.valueChanges.subscribe((value:any)=>{
@@ -105,25 +114,49 @@ pexelVideos:any = [];
     ((this.sidebarForm.get('filters') as FormArray).get(parent.toString()) as FormGroup).get(value.toString()).setValue('');
   }
 
-  getVideos(){
+  getVideos(filter:any){
+    this.videosLoaded = false;
     let params = {
       filter:{
         experts:[],
         countries:[],
         parameters:[],
-        latest:1,
-        trending:0
+        latest:filter=='latest' ? 1 : 0,
+        trending:filter=='trending' ? 1 : 0
       }
     }
-    this._api.getvideos('/videos',params).subscribe((res:any)=>{
+    this._api.getvideos('/catalogue/videos',params).subscribe((res:any)=>{
       console.log(res);
+      this.videosLoaded = true;
       this.pexelVideos = res.data;
       console.log(this.pexelVideos);
       localStorage.setItem('videos',JSON.stringify(this.pexelVideos))
-      
+      this.videosLoaded = true;
     })
   }
 
+  getFilters(){
+    this._api.getFilters('/static/data?type=parameter').subscribe((res:any)=>{
+      if(res && res.success){
+        this.Filters[0].value = res.data;
+      } 
+    })
+    this._api.getFilters('/static/data?type=country').subscribe((res:any)=>{
+      if(res && res.success){
+        this.Filters[1].value = res.data;
+        setTimeout(() => {
+          for(let i=0;i<this.Filters.length;i++){
+            (this.sidebarForm.get('filters') as FormArray).push(this.addDummyControl());
+            for(let j=0;j<this.Filters[i].value.length;j++){
+              this.addFormControl((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup,this.Filters[i].value[j].name)
+            };
+            ((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup).removeControl('dummy')
+          }
+          this.filtersLoaded = true;
+        }, 1000);
+      }
+    })
+  }
   getPexelsVideo(){
     // this._api.pexelsVideos('?query=nature').subscribe((response:any)=>{
     this._api.pexelsVideos('/pexelVideos').subscribe((res:any)=>{
@@ -148,10 +181,15 @@ pexelVideos:any = [];
   }
 
 
-  watchVideo(video:any){
-    console.log(video)
-      this.dialog.open(watchVideoComponent,{
-       data : video.link
+  selectFilter(filter:any,index:any){
+    console.log(filter)
+      this.dialog.open(singleFIlterComponent,{
+       data : {
+        filter:filter,
+        formGroup:(this.sidebarForm.get('filters').get(index.toString()) as FormGroup)
+       },
+       width:'300px',
+       height:'270px'
        
       })
   }
@@ -161,17 +199,31 @@ pexelVideos:any = [];
 
 @Component({
   selector : 'app-catalogue',
-  templateUrl : './watchVideo.html',
+  templateUrl : './singleFilter.html',
   styleUrls : ['./catalogue.component.scss']
 })
 
-export class watchVideoComponent implements OnInit {
+export class singleFIlterComponent implements OnInit {
    
   constructor(@Inject(MAT_DIALOG_DATA) public data){
     
   }  
   ngOnInit(): void {
-      // console.log("Hello from watchVideo",this.data);
+      console.log("Hello from watchVideo",this.data);
+      console.log(this.data);
+      this.data.filter.formGroup as FormGroup;
+      console.log(this.data);
+      console.log(this.data.formGroup.value);
       
+      // for(let i = 0;i<this.data.filter.value.length;i++){
+      //   this.addFormControl(this.data.filter.formGroup,this.data.filter.value[i].name)
+      // }
+      // console.log(this.data.filter);
+      
+      
+  }
+
+  addFormControl(formGroup,formControl){
+    formGroup.addControl(formControl, new FormControl(''));
   }
 }

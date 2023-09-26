@@ -15,7 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { NotifyComponent } from './notify/notify.component';
 import { NotificationComponent } from './notification/notification.component';
-import { CatalogueComponent } from './catalogue/catalogue.component';
+import { CatalogueComponent, singleFIlterComponent } from './catalogue/catalogue.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
@@ -26,6 +26,14 @@ import { VideosComponent } from './videos/videos.component';
 import { SingleVideoComponent } from './single-video/single-video.component';
 import { CommentsComponent } from './comments/comments.component';
 import { RelatedVideosComponent } from './related-videos/related-videos.component';
+import { CardDetailsComponent } from './card-details/card-details.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSelectModule} from '@angular/material/select';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { CreditCardDirective } from './directives/credit-card.directive';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +49,10 @@ import { RelatedVideosComponent } from './related-videos/related-videos.componen
     VideosComponent,
     SingleVideoComponent,
     CommentsComponent,
-    RelatedVideosComponent
+    RelatedVideosComponent,
+    CardDetailsComponent,
+    singleFIlterComponent,
+    CreditCardDirective
   ],
   imports: [
     BrowserModule,
@@ -58,10 +69,16 @@ import { RelatedVideosComponent } from './related-videos/related-videos.componen
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatSelectModule,
+    FlexLayoutModule
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[singleFIlterComponent]
 })
 export class AppModule { }

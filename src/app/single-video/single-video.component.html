@@ -2,7 +2,7 @@
     <div class="container">
         <div class="leftSide">
             <div class="mainVideo">
-                <video [src]="selectedVideo.source" controls></video>
+                <video [src]="selectedVideo.source" controls playsInline="true"></video>
                 <div class="videoActions">
                     <div class="channel">
                 <div class="circle" [ngStyle]="{backgroundColor:selectedVideo.background ? selectedVideo.background : 'Green'}">{{selectedVideo.expert.split('')[0]}}</div>
@@ -16,7 +16,7 @@
                         <div class="viewCount">186k Views</div>
                     </div>
                     <div class="like" [matTooltip]="'Comments on this video'">
-                        <div class="commentCount">{{(commentData ? commentData.length : selectedVideo.commentCount) + " Comments"}}</div>
+                        <div class="commentCount" (click)="addComment()">{{(commentData ? commentData.length : selectedVideo.commentCount) + " Comments"}}</div>
                     </div>
                     <div class="like" [matTooltip]="'I like this'" (click)="likeVideo($event)">
                         <img src="assets/like.svg" *ngIf="!liked">
@@ -25,13 +25,16 @@
                     </div>
                 </div>
             </div>
-            <div class="commentSection">
+            <div class="commentSection" *ngIf="!mobile">
                 <app-comments></app-comments>
             </div>
         </div>
         <div class="rightSide">
+            <div class="commentSection" *ngIf="mobile && comments">
+                <app-comments></app-comments>
+            </div>
             <!-- <div class="relatedVideos"> -->
-                <app-related-videos style="height: 100%;"></app-related-videos>
+                <app-related-videos style="height: 100%;" *ngIf="!comments || !mobile"></app-related-videos>
             <!-- </div> -->
         </div>
     </div>

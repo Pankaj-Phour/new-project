@@ -1,10 +1,10 @@
 <div class="body">
-    <div class="parent">
+    <div class="parent" id="createProfileParent">
         <div class="box">
                    <div class="form">
                         <form [formGroup]="profileForm">
                             <div class="header">
-                                <div class="heading">Sign up</div>
+                                <div class="heading">Create Your Profile</div>
                                 <div class="text">Let's start your wonderful journey with us</div>
                             </div>
                             <div class="inputs">
@@ -15,16 +15,22 @@
                                         *ngIf="profileForm.get('name').hasError('required') && profileForm.get('name').touched">*required</span>
                                 </div>
                                 <div class="formGroup">
-                                    <input type="text" placeholder="Select your expertise" formControlName="expertise"
-                                        [ngClass]="profileForm.get('expertise').hasError('required') && profileForm.get('expertise').touched ? 'borderError' : ''">
-                                    <span class="error"
-                                        *ngIf="profileForm.get('expertise').hasError('required') && profileForm.get('expertise').touched">*required</span>
+                                        <mat-form-field appearance="fill">
+                                            <mat-select placeholder="Select your expertise" formControlName="expertise" >
+                                              <mat-option *ngFor="let expert of expertise" [value]="expert.name">
+                                                {{expert.name}}
+                                              </mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
                                 </div>
                                 <div class="formGroup">
-                                    <input type="text" placeholder="Select services" formControlName="services"
-                                        [ngClass]="profileForm.get('services').hasError('required') && profileForm.get('services').touched ? 'borderError' : ''">
-                                    <span class="error"
-                                        *ngIf="profileForm.get('services').hasError('required') && profileForm.get('services').touched">*required</span>
+                                    <mat-form-field appearance="fill">
+                                        <mat-select placeholder="Select your services" formControlName="services" >
+                                          <mat-option *ngFor="let expert of expertise" [value]="expert.name">
+                                            {{expert.name}}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
                                 </div>
                                 <div class="formGroup">
                                     <input type="file" placeholder="Upload profile pic" formControlName="image" (change)="handleInput($event)" [accept]="'.jpg, .jpeg, .png'"
@@ -39,7 +45,7 @@
                                 <button
                                     [ngClass]="profileForm.invalid || profileForm.value.checkbox==false ? 'disabled-btn' : 'submit-btn'"
                                     [disabled]="profileForm.invalid || profileForm.value.checkbox==false"
-                                    (click)="Submit()">Sign Up</button>
+                                    (click)="Submit()">Make Payment & Create Profile</button>
                             </div>
                         </form>
                     </div>
@@ -50,7 +56,7 @@
         <div class="box">
             <div class="top">
                 <div class="image">
-                    <img [src]="profile ? profile : 'data:image/png;base64,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'">
+                    <img [src]="profile ? profile : 'https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png'">
                 </div>
                 <div class="details">
                     <div class="name">{{newValues?.name ? newValues.name : user.name}}</div>
@@ -75,8 +81,12 @@
                     <div class="nameRight">{{user.address}}</div>
                 </div>
                 <div class="name">
-                    <div class="nameLeft">Name : </div>
-                    <div class="nameRight">{{user.name}}</div>
+                    <div class="nameLeft">Expertise : </div>
+                    <div class="nameRight">{{newValues?.expertise ? newValues.expertise : ''}}</div>
+                </div>
+                <div class="name">
+                    <div class="nameLeft">Service : </div>
+                    <div class="nameRight">{{newValues?.services ? newValues.services : ''}}</div>
                 </div>
             </div>
 

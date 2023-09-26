@@ -8,7 +8,7 @@
     align-items: center;
     // background-color: rgb(72 71 71);
     // background-color: $lightAqua;
-    background-color: $whiteColor;
+    background-color: $lightAqua;
     position: relative;
     overflow: hidden;
     font-family: 'Roboto';
@@ -36,7 +36,8 @@
     border-radius: 10px;
     box-shadow: rgba(0,0,0, 0.25) 0px 50px 100px -20px, rgba(0,0,0, 0.3) 0px 30px 60px -30px, rgba(0,0,0, 0.35) 0px -2px 6px 0px inset;
     // background-color: $whiteColor;
-    background-color: $lightAqua;
+    background-color: $blackColor;
+    color: $whiteColor;
 
 }
 .sign-in{
@@ -72,7 +73,7 @@
     max-width: 100%;
     width: 50%;
     height: 100%;
-    background-color: black;
+    background-color: $blackColor;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     justify-content: center;
@@ -106,7 +107,7 @@ form{
 .heading{
     font-size: 32px;
     // color: $whiteColor;
-    color: rgb(0, 234, 255);
+    color: $darkAqua;
     margin-bottom: 7px;
 }
 .text{
@@ -124,13 +125,13 @@ input{
     border-radius: 10px;
     border: none;
     outline: none;
-    font-size: 14px;
+    font-size: 16px;
     max-width: 100%;
     width: 100%;
     // background-color: #424242;
     background-color: transparent;
-    border: 2px solid rgb(0, 234, 255);
-    color: gray;
+    border: 2px solid $darkAqua;
+    color: $whiteColor;
 }
 .formGroup{
     position: relative;
@@ -143,15 +144,15 @@ input{
     }
 }
 .formGroup::ng-deep.mat-checkbox-checkmark{
-    border: 2px solid rgb(0, 234, 255);
+    border: 2px solid $darkAqua;
 }
 .formGroup::ng-deep{
     // .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background{
         .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background{
         // background-color: #d4888d !important;
-        background-color: rgb(0, 234, 255) !important;
+        background-color: $darkAqua !important;
         // border-color: #d4888d !important;
-        border-color: rgb(0, 234, 255) !important;
+        border-color: $darkAqua !important;
     }
 }
 .formGroup::ng-deep{
@@ -174,10 +175,10 @@ input{
     color: $whiteColor;
     padding: 8px;
     // background-color: #d4888d;
-    background-color: rgb(0, 234, 255);
+    background-color: $darkAqua;
    max-width: 100%;
    width: 100%;
-   border: 2px solid white;
+   border: 2px solid $whiteColor;
 }
 .disabled-btn{
     border-radius: 10px;
@@ -187,8 +188,8 @@ input{
     padding: 8px;
     // background-color: #424242;
     background-color: transparent;
-    color: rgb(0, 234, 255);
-    border: 2px solid rgb(0, 234, 255);
+    color: $darkAqua;
+    border: 2px solid $darkAqua;
    max-width: 100%;
    width: 100%;
 }
@@ -217,10 +218,11 @@ input{
     left: 90%;
     top: 50%;
     color: rgb(184, 61, 61);
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 500;
 }
 .borderError{
-    border: 1px solid red;
+    border: 2px solid red;
 }
 
 
@@ -256,14 +258,14 @@ input{
     transform: rotateX(180deg);
   }
   .prefix{
-    color: white;
+    color: $whiteColor;
     font-size: 13px;
   }
 
 //   CSS for the spinner on submit button 
 .bottomButton{
     ::ng-deep .mat-progress-spinner[mode=indeterminate] circle{
-        stroke:#fff;
+        stroke:$whiteColor;
     }
 }
 .spinner{
@@ -324,21 +326,37 @@ input{
     align-items: center;
 }
 .image{
+    // height: 150px;
+    // width: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 2px solid $whiteColor;
+    max-width: 100%;
+    width: 50%;
+}
+.image img{
     height: 150px;
     width: 150px;
     border-radius: 50%;
     border: 2px solid $whiteColor;
-}
-.image img{
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
+    box-sizing: border-box;
+    object-fit: cover;
 }
 .details{
+    max-width: 100%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+.details .name{
+    width: fit-content;
+}
+.details .address{
+    padding: 10px;
 }
 .bottomDetails{
     max-width: 100%;
@@ -349,7 +367,7 @@ input{
     flex-direction: column;
     // justify-content: space-between;
     align-items: center;
-    box-shadow: 2px 4px 8px rgba(0,234,255,0.22);
+    // box-shadow: 2px 4px 8px rgba(0,234,255,0.22);
     border-radius: 10px;
 }
 .name{
@@ -358,8 +376,8 @@ input{
     align-items: center;
     font-size: 18px;
     max-width: 100%;
-    width: 100%;
-    border-bottom: 2px solid rgb(0, 234, 255);
+    width: 95%;
+    border-bottom: 2px solid $darkAqua;
     padding: 10px;
     height: 100%;
 }
@@ -368,7 +386,7 @@ input{
 }
 .nameLeft, .nameRight{
     max-width: 100%;
-    width: 40%;
+    width: 100%;
     text-align: left;
 }
 
@@ -399,4 +417,37 @@ input{
     .nameRight, .nameLeft{
         width: 100%;
     }
+}
+
+.formGroup::ng-deep.mat-form-field{
+    width: 100% !important;
+    font-size: 16px;
+}
+::ng-deep.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+    color: $whiteColor !important;
+}
+.formGroup::ng-deep.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color: $darkAqua;
+}
+.formGroup::ng-deep.mat-form-field-underline{
+    display: none;
+}
+.formGroup::ng-deep.mat-form-field-appearance-fill .mat-form-field-underline::before{
+    height: 2px !important;
+    background-color: $darkAqua;
+}
+.formGroup::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex{
+    border: 2px solid $darkAqua;
+    padding: 0px !important;
+    border-radius: 10px;
+}
+.formGroup::ng-deep.mat-form-field-wrapper{
+    padding-bottom: 0px;
+}
+.formGroup::ng-deep.mat-form-field-infix{
+    padding: 8px !important;
+    border-top: 0px !important;
+}
+.formGroup::ng-deep.mat-form-field-appearance-fill .mat-select-arrow-wrapper{
+    transform: none;
 }

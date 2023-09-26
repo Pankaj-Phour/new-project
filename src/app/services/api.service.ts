@@ -65,6 +65,10 @@ headers = new HttpHeaders();
     return this.http.post(environment.AshwaniApi + endpoint,params)
   }
 
+  getFilters(endpoint:any){
+    return this.http.get(environment.AshwaniApi + endpoint)
+  }
+
   pexelsVideos(endpoint:any){
     return this.http.get(environment.URL + endpoint,{headers:this.headers})
   }

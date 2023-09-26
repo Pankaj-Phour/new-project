@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { CardDetailsComponent } from '../card-details/card-details.component'
 
 @Component({
   selector: 'app-create-profile',
@@ -11,13 +13,29 @@ export class CreateProfileComponent implements OnInit {
   profileForm:FormGroup;
   user:any;
   newValues:any;
-  constructor(private _fb:FormBuilder,private _api:ApiService) { }
+  services:any = [
+    {name:'Lite'},
+    {name:'Standard'},
+    {name:'Premium'},
+    {name:'Enterprise'},
+    {name:'Business Subscription'}
+  ];
+  expertise:any = [
+    {name:'Expert A'},
+    {name:'Expert B'},
+    {name:'Expert C'},
+    {name:'Expert D'},
+    {name:'Expert E'}
+  ]
+  constructor(private _fb:FormBuilder,private _api:ApiService, private dialog:MatDialog) { }
   profile:any;
   ngOnInit(): void {
     this.validation();
     this.user = JSON.parse(localStorage.getItem('user'))
     console.log(this.user);
-
+    if(this.user){
+      this.profileForm.get('name').setValue(this.user.name)
+    }
     this.profileForm.valueChanges.subscribe((value:any)=>{
       this.newValues = value;
       // console.log(this.newValues);
@@ -38,6 +56,15 @@ export class CreateProfileComponent implements OnInit {
 
   Submit(){
     console.log("Hello from submit function",this.profileForm.value);
+   let dialog = this.dialog.open(CardDetailsComponent,{
+      width:'800px'
+    });
+    let parent  = document.getElementById('createProfileParent') as HTMLElement;
+    parent.style.display = 'none'
+    dialog.afterClosed().subscribe((value:any)=>{
+      console.log("Card details dialog box closed",value);
+      parent.style.display = 'flex'
+    })
     
   }
   handleInput(e:any){

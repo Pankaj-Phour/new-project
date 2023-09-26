@@ -9,9 +9,16 @@ import { ApiService } from '../services/api.service';
 })
 export class NavbarComponent implements OnInit {
   mobileNav:boolean = false;
+  loggedIn:boolean;
   constructor(private router:Router,private _api:ApiService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('logged_in')){
+      let logged_in = JSON.parse(localStorage.getItem('logged_in'));
+      if(logged_in){
+        this.loggedIn = true;
+      }
+    }
   }
 
   closeNav(link:any){

@@ -51,14 +51,11 @@
                                         *ngIf="signupForm.get('password').hasError('required') && signupForm.get('password').touched">*required</span>
                                 </div>
                                 <div class="formGroup">
-                                    <input type="password" placeholder="Re-Enter your Password"
-                                        formControlName="confirmPassword" (input)="confirmPasswordInput($event)"
-                                        [ngClass]="signupForm.get('confirmPassword').hasError('required') && signupForm.get('confirmPassword').touched ? 'borderError' : ''">
+                                    <input type="text" placeholder="Enter your address" formControlName="address"
+                                        [ngClass]="signupForm.get('address').hasError('required') && signupForm.get('address').touched ? 'borderError' : ''">
                                     <span class="error"
-                                        *ngIf="signupForm.get('confirmPassword').hasError('required') && signupForm.get('confirmPassword').touched">*required</span>
-                                    <span class="error"
-                                        *ngIf="!signupForm.get('confirmPassword').hasError('required') && signupForm.get('confirmPassword').touched && differentPassword"
-                                        style="left: 46%;text-align: right;">*Wrong Password</span>
+                                        *ngIf="signupForm.get('address').hasError('required') && signupForm.get('address').touched">*required</span>
+                                    <!-- <span class="error" *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">*Invalid</span> -->
                                 </div>
                                 <div class="formGroup">
                                     <mat-checkbox class="text" [(ngModel)]="signupForm.get('checkbox').value"
@@ -69,8 +66,8 @@
                             </div>
                             <div class="bottomButton">
                                 <button
-                                    [ngClass]="signupForm.invalid || signupForm.value.checkbox==false || differentPassword ? 'disabled-btn' : 'submit-btn'"
-                                    [disabled]="signupForm.invalid || signupForm.value.checkbox==false || differentPassword"
+                                    [ngClass]="signupForm.invalid || signupForm.value.checkbox==false ? 'disabled-btn' : 'submit-btn'"
+                                    [disabled]="signupForm.invalid || signupForm.value.checkbox==false"
                                     (click)="Submit()">Sign Up</button>
                             </div>
                         </form>

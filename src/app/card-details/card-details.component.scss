@@ -1,0 +1,194 @@
+@import "../../vars";
+[fullHeight]{
+  background-color: $blackColor;
+  padding: 24px;
+}
+.card-radio {
+  height: 300px;
+  overflow: auto;
+  padding: 10px;
+}
+.background-monetGr {
+  background: radial-gradient(circle at 79% 12%, rgba(3, 3, 3,0.04) 0%, rgba(3, 3, 3,0.04) 50%,rgba(116, 116, 116,0.04) 50%, rgba(116, 116, 116,0.04) 100%),radial-gradient(circle at 98% 39%, rgba(136, 136, 136,0.04) 0%, rgba(136, 136, 136,0.04) 50%,rgba(212, 212, 212,0.04) 50%, rgba(212, 212, 212,0.04) 100%),radial-gradient(circle at 83% 49%, rgba(21, 21, 21,0.04) 0%, rgba(21, 21, 21,0.04) 50%,rgba(199, 199, 199,0.04) 50%, rgba(199, 199, 199,0.04) 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));
+  position: relative;
+}
+.mat-form-field{
+    .mat-form-field-flex{
+      height: 62px !important;
+    }
+  }
+.mapped-cards{
+  //box-shadow: 0 0 20px -10px #464646;
+  padding: 10px 16px;
+  border-radius: 8px;
+  // border: solid 1px #c1c1c1;
+  margin-bottom: 16px;
+  transition: 0.3s;
+}
+.dot-dot-title{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mapped-cards:hover{
+  box-shadow: 0 0 20px -10px #464646;
+  border: none;
+}
+.triangle {
+  height: 30px;
+  width: 30px;
+  transform: rotate(45deg);
+  background-color: #FFFFFF;
+  position: absolute;
+  right: -15px;
+  top: 30%;
+}
+/*::ng-deep .mat-dialog-container {
+  padding: 0 !important;
+}*/
+.payment-success {
+  padding: 20px;
+  border-bottom: solid 4px green;
+   img  {
+     height: 60px;
+     width: 60px;
+   }
+   .title-head {
+     font-size: 20px;
+     color: green;
+   }
+   .title-sub {
+     font-size: 14px;
+     color: #777777;
+   }
+ }
+.payment-failure {
+  padding: 20px;
+  border-bottom: solid 4px #dc3545;
+  img  {
+    height: 60px;
+    width: 60px;
+  }
+  .title-head {
+    font-size: 20px;
+    color: #dc3545;
+  }
+  .title-sub {
+    font-size: 14px;
+    color: #777777;
+  }
+}
+
+
+.cardImage{
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+}
+.error{
+  color: red;
+  position: absolute;
+  left: -2%;
+  bottom: -65%;
+  margin: 0px;
+}
+
+::ng-deep .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] circle{
+  stroke: white !important;
+}
+.headingLeft{
+  margin-block-start: 1em;
+}
+.headingLeft{
+  color: $darkAqua;
+  font-size: 20px;
+  font-weight: 500;
+}
+.heading{
+  color: $darkAqua
+}
+
+
+.button{
+  padding: 10px;
+  font-size: 15px;
+  background-color: $darkAqua;
+  border-radius: 30px;
+  width: 100px;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: none;
+  color: $whiteColor;
+}
+.button:disabled{
+  background-color: $grayColor;
+  color: black;
+  cursor: not-allowed;
+}
+
+
+
+[fullHeight]::ng-deep.mat-form-field-appearance-fill .mat-form-field-underline::before{
+  background-color: $darkAqua;
+}
+[fullHeight]::ng-deep.mat-form-field-ripple{
+  background-color: $darkAqua;
+}
+[fullHeight]::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: transparent;
+}
+[fullHeight]::ng-deep.mat-toolbar{
+  background: transparent;
+}
+
+
+
+// CSS for smaller screens 
+@media only screen and (max-width:768px){
+  .left{
+    display: none !important;
+  }
+  .right{
+    max-width: 100% !important;
+    width: 100%;
+  }
+  [fullHeight]{
+    padding: 0px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    width: 95%;
+    box-shadow: 0px 0px 6px 6px rgba(23, 155, 155 ,0.4);
+    border-radius: 10px;
+  }
+  .button{
+    font-size: 13px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    column-gap: 10px;
+  }
+}
+
+
+
+// CSS for the scrollbar 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $whiteColor; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $darkAqua; 
+}
