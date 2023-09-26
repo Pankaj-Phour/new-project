@@ -17,6 +17,8 @@ filterNames:any = ['Parameter','Country','Expert'];
 selectedFilters:any = [];
 pexelVideos:any = [];
 mobile:boolean;
+filtersLoaded:boolean = false;
+videosLoaded:boolean = false;
   Filters: any = [
     {
       type: 'Parameter',
@@ -86,16 +88,10 @@ mobile:boolean;
 
   ngOnInit(): void {
     this.checkScreenSize();
+    this.getFilters();
     this.validation();
     this.getVideos();
     // this.getPexelsVideo();
-    for(let i=0;i<this.Filters.length;i++){
-      (this.sidebarForm.get('filters') as FormArray).push(this.addDummyControl());
-      for(let j=0;j<this.Filters[i].value.length;j++){
-        this.addFormControl((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup,this.Filters[i].value[j].name)
-      };
-      ((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup).removeControl('dummy')
-    }
     
 
     this.sidebarForm.valueChanges.subscribe((value:any)=>{
@@ -128,15 +124,37 @@ mobile:boolean;
         trending:0
       }
     }
-    this._api.getvideos('/videos',params).subscribe((res:any)=>{
+    this._api.getvideos('/catalogue/videos',params).subscribe((res:any)=>{
       console.log(res);
       this.pexelVideos = res.data;
       console.log(this.pexelVideos);
       localStorage.setItem('videos',JSON.stringify(this.pexelVideos))
-      
+      this.videosLoaded = true;
     })
   }
 
+  getFilters(){
+    this._api.getFilters('/static/data?type=parameter').subscribe((res:any)=>{
+      if(res && res.success){
+        this.Filters[0].value = res.data;
+      } 
+    })
+    this._api.getFilters('/static/data?type=country').subscribe((res:any)=>{
+      if(res && res.success){
+        this.Filters[1].value = res.data;
+        setTimeout(() => {
+          for(let i=0;i<this.Filters.length;i++){
+            (this.sidebarForm.get('filters') as FormArray).push(this.addDummyControl());
+            for(let j=0;j<this.Filters[i].value.length;j++){
+              this.addFormControl((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup,this.Filters[i].value[j].name)
+            };
+            ((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup).removeControl('dummy')
+          }
+          this.filtersLoaded = true;
+        }, 1000);
+      }
+    })
+  }
   getPexelsVideo(){
     // this._api.pexelsVideos('?query=nature').subscribe((response:any)=>{
     this._api.pexelsVideos('/pexelVideos').subscribe((res:any)=>{
