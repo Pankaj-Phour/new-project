@@ -81,7 +81,7 @@
     background-color: $darkAqua;
 }
 .upper::ng-deep.mat-form-field-appearance-legacy .mat-form-field-label{
-    color: black !important;
+    color: $blackColor !important;
 }
 .upper::ng-deep.mat-form-field.mat-focused .mat-form-field-label{
     color: $darkAqua !important;
@@ -113,7 +113,7 @@
 }
 .button:disabled{
     background-color: $grayColor;
-    color: black;
+    color: $blackColor;
     cursor: not-allowed;
 }
 
