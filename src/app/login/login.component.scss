@@ -28,7 +28,7 @@
     justify-content: space-around;
     align-items: center;
     border-radius: 10px;
-    box-shadow: rgba(212,136,141, 0.25) 0px 50px 100px -20px, rgba(212,136,141, 0.3) 0px 30px 60px -30px, rgba(212,136,141, 0.35) 0px -2px 6px 0px inset;
+    box-shadow: $blackShadow 0px 50px 100px -20px, $blackShadow 0px 30px 60px -30px, $blackShadow 0px -2px 6px 0px inset;
 }
 .sign-in{
     display: flex;

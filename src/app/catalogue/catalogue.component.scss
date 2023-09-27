@@ -246,6 +246,7 @@ input{
     .singleFilterBody{
         max-width: 300px;
         width: 100%;
+        height: 100%;
         background-color: $blackColor;
         color: $whiteColor;
         border-radius: 10px;
@@ -256,6 +257,15 @@ input{
         }
         .heading{
             color: $darkAqua;
+        }
+        .filtersform{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            // align-items: center;
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
         }
     }
 

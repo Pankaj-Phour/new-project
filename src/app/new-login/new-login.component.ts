@@ -139,7 +139,7 @@ export class NewLoginComponent implements OnInit {
             })
             localStorage.setItem('user',JSON.stringify(next.response));
             localStorage.setItem('logged_in','true');
-            // this.router.navigate(['/dashboard']);
+            this.router.navigate(['/create-profile']);
             this.dialog.closeAll();
 
           }, 2000);

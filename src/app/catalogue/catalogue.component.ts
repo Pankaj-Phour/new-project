@@ -189,7 +189,7 @@ videosLoaded:boolean = false;
         formGroup:(this.sidebarForm.get('filters').get(index.toString()) as FormGroup)
        },
        width:'300px',
-       height:'270px'
+       height:'300px'
        
       })
   }
