@@ -3,10 +3,19 @@
         <!-- <img src="/assets/goRealtors.logo.jpg" alt="NGO" height="50" width="50" > -->
         <div class="link" routerLink="/">Welcome</div>
     </div>
-    <div class="navItems">
+    <div class="navItems" [ngStyle]="{'justify-content':user ? 'space-betwen' : 'space-around',width:user ? '55%' : '60%'}">
         <div class="link" (click)="login()" *ngIf="!loggedIn">Login</div>
         <div class="link" routerLink="/create-profile">Create Profile</div>
         <div class="link" routerLink="/catalogue">Review Catalogue</div>
+        <div class="profile" *ngIf="user && loggedIn">
+            <div class="userLogo">
+                <div class="circle" [ngStyle]="{backgroundColor:'gray'}">{{user.name.split('')[0]}}</div>
+            </div>
+            <div class="userData">
+                <div class="userName">{{user.name}}</div>
+                <div class="userAddress">{{user.contact}}</div>
+            </div>
+        </div>
         <!-- <div class="link">Contact us</div> -->
     </div>
     <div class="hamburger">

@@ -32,6 +32,7 @@
     justify-content: space-around;
     height: 90%;
     overflow: hidden;
+    position: relative;
 
 }
 .singleFilter{
@@ -171,7 +172,7 @@ input{
     left: 50%;
     z-index: 1;
 }
-.singleFilter::ng-deep .mat-progress-spinner[mode=indeterminate] circle{
+.filters::ng-deep .mat-progress-spinner[mode=indeterminate] circle{
     stroke: $whiteColor;
 }
 .rightContent::ng-deep.mat-progress-spinner[mode=indeterminate] circle{
@@ -213,11 +214,6 @@ input{
         padding-block: 6px;
     }
     .filters{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
         display: none;
     }
     .topFilters{

@@ -33,6 +33,11 @@ headers = new HttpHeaders();
     this.changeSelectedVideoEmitter.emit(data)
   }
 
+  @Output() loggedInEmitter = new EventEmitter();
+  loggedIn(data){
+    this.loggedInEmitter.emit(data)
+  }
+
   @Output() addCommentEmitter = new EventEmitter();
   addComment(data){
     this.addCommentEmitter.emit(data)

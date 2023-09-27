@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit {
         }
       }
       this.signInwithEmail(params)
+      this.numberSubmit = true;
     }
     else {
       this.numberSubmit = true;
@@ -122,6 +123,7 @@ export class LoginComponent implements OnInit {
   }
   onOtpChange(e: any) {
     if (e.length > 3) {
+      this.otpSubmit = true;
       const params = {
         otp: +e,
         email : localStorage.getItem('user-email')
@@ -140,6 +142,7 @@ export class LoginComponent implements OnInit {
               message: next.message
             })
             localStorage.setItem('user',JSON.stringify(next.response));
+            this._as.loggedIn(true)
             localStorage.setItem('logged_in','true');
             
             // this.router.navigate(['/dashboard']);
@@ -148,7 +151,6 @@ export class LoginComponent implements OnInit {
           }, 2000);
         }
         else{
-          this.otpSubmit = true;
           this.invalidOtp = true;
           setTimeout(() => {
             this.otpSubmit = false;

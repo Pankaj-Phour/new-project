@@ -143,3 +143,31 @@
 .burger:before {
 	transform: translateY(-16px) translateX(4px) skew(-10deg);
 }
+
+
+
+.profile{
+    display: flex;
+    column-gap: 10px;
+}
+.profile:hover{
+    cursor: pointer;
+}
+.userData{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.circle{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $whiteColor;
+    font-size: 18px;
+    font-family: 'Roboto';
+    font-weight: 500;
+}

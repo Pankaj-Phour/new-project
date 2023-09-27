@@ -84,14 +84,15 @@ export class NewLoginComponent implements OnInit {
         }
       }
       this.signInwithEmail(params)
+      this.numberSubmit = true;
     }
     else {
       this.numberSubmit = true;
       const params = this.signupForm.value;
       this.signupWithEmail(params)
     }
-    this.signinForm.reset();
-    this.signinForm.reset();
+    // this.signinForm.reset();
+    // this.signinForm.reset();
   }
 
   contactInput(e: any) {
@@ -120,6 +121,7 @@ export class NewLoginComponent implements OnInit {
   }
   onOtpChange(e: any) {
     if (e.length > 3) {
+      this.otpSubmit = true;
       const params = {
         otp: +e,
         email : localStorage.getItem('user-email')
@@ -139,13 +141,13 @@ export class NewLoginComponent implements OnInit {
             })
             localStorage.setItem('user',JSON.stringify(next.response));
             localStorage.setItem('logged_in','true');
+            this._as.loggedIn(true)
             this.router.navigate(['/create-profile']);
             this.dialog.closeAll();
 
           }, 2000);
         }
         else{
-          this.otpSubmit = true;
           this.invalidOtp = true;
           setTimeout(() => {
             this.otpSubmit = false;
