@@ -10,6 +10,7 @@ import { ApiService } from '../services/api.service';
 export class NavbarComponent implements OnInit {
   mobileNav:boolean = false;
   loggedIn:boolean;
+  user:any;
   constructor(private router:Router,private _api:ApiService) { }
 
   ngOnInit(): void {
@@ -17,8 +18,14 @@ export class NavbarComponent implements OnInit {
       let logged_in = JSON.parse(localStorage.getItem('logged_in'));
       if(logged_in){
         this.loggedIn = true;
+        this.user = JSON.parse(localStorage.getItem('user'));
       }
     }
+
+    this._api.loggedInEmitter.subscribe((data:any)=>{
+      this.loggedIn = data;
+      this.user = JSON.parse(localStorage.getItem('user'));
+    })
   }
 
   closeNav(link:any){
