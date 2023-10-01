@@ -89,10 +89,10 @@ export class NewLoginComponent implements OnInit {
         }
       }
       this.signInwithEmail(params)
-      this.numberSubmit = true;
+      // this.numberSubmit = true;
     }
     else {
-      this.numberSubmit = true;
+      // this.numberSubmit = true;
       const params = this.signupForm.value;
       this.signupWithEmail(params)
     }
@@ -198,9 +198,10 @@ export class NewLoginComponent implements OnInit {
         localStorage.setItem('user',JSON.stringify(next.response.user));
             this._as.loggedIn(true)
             localStorage.setItem('logged_in','true');
-            localStorage.setItem('token',JSON.stringify(next.response.token));
+            localStorage.setItem('token',(next.response.token));
+            this.router.navigate(['/'])
             // this.router.navigate(['/dashboard']);
-            this.dialog.closeAll();
+            // this.dialog.closeAll();
         // this.numberSubmit = true;
         localStorage.setItem('user-email',params['email'])
         this._as.obNotify({
@@ -240,10 +241,11 @@ export class NewLoginComponent implements OnInit {
         localStorage.setItem('user',JSON.stringify(next.response.user));
             this._as.loggedIn(true)
             localStorage.setItem('logged_in','true');
-            localStorage.setItem('token',JSON.stringify(next.response.token));
+            localStorage.setItem('token',(next.response.token));
+            this.router.navigate(['/'])
             
             // this.router.navigate(['/dashboard']);
-            this.dialog.closeAll();
+            // this.dialog.closeAll();
         localStorage.setItem('user-email',params['email'])
         // this.numberSubmit = true;
         this._as.obNotify({

@@ -139,10 +139,14 @@
     background: $aquaColor; 
   }
 
+  .crossIcon{
+    display: none;
+  }
 
 
   @media only screen and (max-width:768px){
     .crossIcon{
+        display: flex;
         position: absolute;
         transform: translate(-50%,-50%);
         left: 95%;

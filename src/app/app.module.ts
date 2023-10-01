@@ -33,6 +33,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { CreditCardDirective } from './directives/credit-card.directive';
 
@@ -76,7 +77,8 @@ import { CreditCardDirective } from './directives/credit-card.directive';
     MatDividerModule,
     MatToolbarModule,
     MatSelectModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatMenuModule
 
   ],
   providers: [ HttpInterceptorService,

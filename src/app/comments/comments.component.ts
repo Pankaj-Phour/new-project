@@ -133,16 +133,16 @@ export class CommentsComponent implements OnInit {
         user_name: this.user ? this.user.name : this.commentsData[2].user_name,
         background: 'orange'
       }
-      this.commentsData.unshift(comment)
-      this.input.nativeElement.blur();
-      this.commentForm.reset();
-      this.inputFocused = false;
-      this._api.addComment(this.commentsData)
       let params = {
         videoId:this.selectedVideo._id,
         text:this.commentForm.value.comment
       }
       this._api.updateComment('/comment/addComment',params).subscribe((res:any)=>{
+        this.commentsData.unshift(comment)
+        this.input.nativeElement.blur();
+        this.commentForm.reset();
+        this.inputFocused = false;
+        this._api.addComment(this.commentsData)
         console.log(res);
         
       })
