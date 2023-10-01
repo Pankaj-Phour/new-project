@@ -26,6 +26,9 @@ export class NewLoginComponent implements OnInit {
   user: any;
   loggedIn: any;
   emailLogin: boolean = true;
+  signupLoader:boolean = false;
+  signinLoader:boolean = false;
+
   constructor(private fb: FormBuilder, 
     private router: Router,
       private _cdr:ChangeDetectorRef,
@@ -37,14 +40,15 @@ export class NewLoginComponent implements OnInit {
     this.signupForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      contact: ['', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(14)])],
+      country: ['', Validators.required],
       password: ['', Validators.required],
       address: ['', Validators.required],
       checkbox: ['', Validators.required]
     })
     if (this.emailLogin) {
       this.signinForm = this.fb.group({
-        email: ['', Validators.compose([Validators.required, Validators.email])]
+        email: ['', Validators.compose([Validators.required, Validators.email])],
+        password: ['',Validators.required]
       })
     }
     else {
@@ -75,7 +79,8 @@ export class NewLoginComponent implements OnInit {
       let params = {};
       if (this.emailLogin) {
         params = {
-          email: this.signinForm.value.email
+          email: this.signinForm.value.email,
+          password: this.signinForm.value.password
         }
       }
       else {
@@ -84,10 +89,10 @@ export class NewLoginComponent implements OnInit {
         }
       }
       this.signInwithEmail(params)
-      this.numberSubmit = true;
+      // this.numberSubmit = true;
     }
     else {
-      this.numberSubmit = true;
+      // this.numberSubmit = true;
       const params = this.signupForm.value;
       this.signupWithEmail(params)
     }
@@ -182,12 +187,22 @@ export class NewLoginComponent implements OnInit {
 
 
   signInwithEmail(data:any){
+    this.signinLoader = true;
     let params = {
-      email : data.email
+      email : data.email,
+      password: data.password
     };
-        this._as.signIn('/signIn', params).subscribe((next: any) => {
+        this._as.signin('/auth/login', params).subscribe((next: any) => {
+          this.signinLoader = false;
       if (next && !next.error) {
-        this.numberSubmit = true;
+        localStorage.setItem('user',JSON.stringify(next.response.user));
+            this._as.loggedIn(true)
+            localStorage.setItem('logged_in','true');
+            localStorage.setItem('token',(next.response.token));
+            this.router.navigate(['/'])
+            // this.router.navigate(['/dashboard']);
+            // this.dialog.closeAll();
+        // this.numberSubmit = true;
         localStorage.setItem('user-email',params['email'])
         this._as.obNotify({
           start: true,
@@ -197,7 +212,7 @@ export class NewLoginComponent implements OnInit {
         })
       }
       else {
-        this.numberSubmit = false;
+        // this.numberSubmit = false;
         this._as.obNotify({
           start: true,
           code: 200,
@@ -210,20 +225,29 @@ export class NewLoginComponent implements OnInit {
 
 
   signupWithEmail(user:any){
+    this.signupLoader = true;
     let params = {
       name : user.name,
       email : user.email,
-      contact: user['contact'] || '',
+      country: user['country'] || '',
       password: user['password'] || '',
-      address: user.address || '',
-      checkbox: user['checkbox'] || ''
+      address: user.address || ''
     };
     console.log(user,params);
     
-      this._as.signUp('/signup', params).subscribe((next: any) => {
+      this._as.signup('/auth/register', params).subscribe((next: any) => {
+        this.signupLoader = false;
       if (next && !next.error) {
+        localStorage.setItem('user',JSON.stringify(next.response.user));
+            this._as.loggedIn(true)
+            localStorage.setItem('logged_in','true');
+            localStorage.setItem('token',(next.response.token));
+            this.router.navigate(['/'])
+            
+            // this.router.navigate(['/dashboard']);
+            // this.dialog.closeAll();
         localStorage.setItem('user-email',params['email'])
-        this.numberSubmit = true;
+        // this.numberSubmit = true;
         this._as.obNotify({
           start: true,
           code: 200,
@@ -232,7 +256,7 @@ export class NewLoginComponent implements OnInit {
         })
       }
       else {
-        this.numberSubmit = false;
+        // this.numberSubmit = false;
         this._as.obNotify({
           start: true,
           code: 200,

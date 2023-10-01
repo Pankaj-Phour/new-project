@@ -23,24 +23,34 @@ headers = new HttpHeaders();
   // ***************************************** Event Emitters to pass data from one component to another instantly ***************************************** 
 
   @Output() loginClickeEmitter = new EventEmitter();
-  loginClicked(data){
+  loginClicked(data:any){
     this.loginClickeEmitter.emit(data)
   }
 
 
   @Output() changeSelectedVideoEmitter = new EventEmitter();
-  changeSelectedVideo(data){
+  changeSelectedVideo(data:any){
     this.changeSelectedVideoEmitter.emit(data)
   }
 
   @Output() loggedInEmitter = new EventEmitter();
-  loggedIn(data){
+  loggedIn(data:any){
     this.loggedInEmitter.emit(data)
   }
 
   @Output() addCommentEmitter = new EventEmitter();
-  addComment(data){
+  addComment(data:any){
     this.addCommentEmitter.emit(data)
+  }
+
+  @Output() toggleCommentSectionEmitter = new EventEmitter();
+  toggleCommentSection(data:any){
+    this.toggleCommentSectionEmitter.emit(data)
+  }
+
+  @Output() filterLoadEmitter = new EventEmitter();
+  filterLoad(data:any){
+    this.filterLoadEmitter.emit(data)
   }
 
 
@@ -72,6 +82,23 @@ headers = new HttpHeaders();
 
   getFilters(endpoint:any){
     return this.http.get(environment.AshwaniApi + endpoint)
+  }
+
+  getComments(endpoint:any){
+    return this.http.get(environment.AshwaniApi + endpoint)
+  }
+
+  updateComment(endpoint:any,params:any){
+    return this.http.post(environment.AshwaniApi + endpoint,params)
+  }
+
+
+  signin(endpoint:any,params:any){
+    return this.http.post(environment.AshwaniApi + endpoint,params)
+  }
+
+  signup(endpoint:any,params:any){
+    return this.http.post(environment.AshwaniApi + endpoint,params)
   }
 
   pexelsVideos(endpoint:any){

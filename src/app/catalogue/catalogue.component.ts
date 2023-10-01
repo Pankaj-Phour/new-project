@@ -19,6 +19,8 @@ pexelVideos:any = [];
 mobile:boolean;
 filtersLoaded:boolean = false;
 videosLoaded:boolean = false;
+selectedButton:number = 1;
+selectFilterData:any;
   Filters: any = [
     {
       type: 'Parameter',
@@ -116,6 +118,7 @@ videosLoaded:boolean = false;
 
   getVideos(filter:any){
     this.videosLoaded = false;
+    this.selectedButton = filter == 'latest' ? 1 : filter == 'trending' ? 3 : 2;
     let params = {
       filter:{
         experts:[],
@@ -128,7 +131,7 @@ videosLoaded:boolean = false;
     this._api.getvideos('/catalogue/videos',params).subscribe((res:any)=>{
       console.log(res);
       this.videosLoaded = true;
-      this.pexelVideos = res.data;
+      this.pexelVideos = res.response;
       console.log(this.pexelVideos);
       localStorage.setItem('videos',JSON.stringify(this.pexelVideos))
       this.videosLoaded = true;
@@ -137,13 +140,13 @@ videosLoaded:boolean = false;
 
   getFilters(){
     this._api.getFilters('/static/data?type=parameter').subscribe((res:any)=>{
-      if(res && res.success){
-        this.Filters[0].value = res.data;
+      if(res && !res.error){
+        this.Filters[0].value = res.response;
       } 
     })
     this._api.getFilters('/static/data?type=country').subscribe((res:any)=>{
-      if(res && res.success){
-        this.Filters[1].value = res.data;
+      if(res && !res.error){
+        this.Filters[1].value = res.response;
         setTimeout(() => {
           for(let i=0;i<this.Filters.length;i++){
             (this.sidebarForm.get('filters') as FormArray).push(this.addDummyControl());
@@ -153,6 +156,13 @@ videosLoaded:boolean = false;
             ((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup).removeControl('dummy')
           }
           this.filtersLoaded = true;
+          let data = {
+            filter:this.selectFilterData.filter,
+            formGroup:(this.sidebarForm.get('filters').get(this.selectFilterData.index.toString()) as FormGroup)
+          }
+          console.log("Emitting data to the dialog box",data);
+          
+          this._api.filterLoad(data)
         }, 1000);
       }
     })
@@ -182,6 +192,7 @@ videosLoaded:boolean = false;
 
 
   selectFilter(filter:any,index:any){
+    this.selectFilterData = {filter:filter,index:index}
     console.log(filter)
       this.dialog.open(singleFIlterComponent,{
        data : {
@@ -205,15 +216,25 @@ videosLoaded:boolean = false;
 
 export class singleFIlterComponent implements OnInit {
    
-  constructor(@Inject(MAT_DIALOG_DATA) public data){
+  constructor(@Inject(MAT_DIALOG_DATA) public data, private _api:ApiService){
     
   }  
   ngOnInit(): void {
       console.log("Hello from watchVideo",this.data);
       console.log(this.data);
-      this.data.filter.formGroup as FormGroup;
-      console.log(this.data);
-      console.log(this.data.formGroup.value);
+      if(this.data && this.data.formGroup){
+
+        this.data.filter.formGroup as FormGroup;
+        console.log(this.data);
+        // console.log(this.data.formGroup.value);
+
+
+      }
+        this._api.filterLoadEmitter.subscribe((data:any)=>{
+          console.log("Data from the emitter",data);
+          this.data = data;
+          
+        })
       
       // for(let i = 0;i<this.data.filter.value.length;i++){
       //   this.addFormControl(this.data.filter.formGroup,this.data.filter.value[i].name)

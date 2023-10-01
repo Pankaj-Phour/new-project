@@ -3,26 +3,34 @@
         <!-- <img src="/assets/goRealtors.logo.jpg" alt="NGO" height="50" width="50" > -->
         <div class="link" routerLink="/">Welcome</div>
     </div>
-    <div class="navItems" [ngStyle]="{'justify-content':user ? 'space-betwen' : 'space-around',width:user ? '55%' : '60%'}">
+    <div class="navItems"
+        [ngStyle]="{'justify-content':user ? 'space-betwen' : 'space-around',width:user ? '55%' : '60%'}">
         <div class="link" (click)="login()" *ngIf="!loggedIn">Login</div>
         <div class="link" routerLink="/create-profile">Create Profile</div>
         <div class="link" routerLink="/catalogue">Review Catalogue</div>
-        <div class="profile" *ngIf="user && loggedIn">
+        <div class="profile" *ngIf="user && loggedIn" [matMenuTriggerFor]="menu">
             <div class="userLogo">
-                <div class="circle" [ngStyle]="{backgroundColor:'gray'}">{{user.name.split('')[0]}}</div>
+                <div class="circle" [ngStyle]="{backgroundColor:'gray'}">{{user.name.split('')[0].toUpperCase()}}</div>
             </div>
             <div class="userData">
                 <div class="userName">{{user.name}}</div>
-                <div class="userAddress">{{user.contact}}</div>
+                <div class="userAddress">{{user.country}}</div>
             </div>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/create-profile">My Profile</button>
+                <button mat-menu-item>Settings</button>
+                <button mat-menu-item (click)="logout()">Log out</button>
+            </mat-menu>
         </div>
         <!-- <div class="link">Contact us</div> -->
     </div>
     <div class="hamburger">
-        <button id="burger" class="open-main-nav" (click)="toggleNav()" [ngStyle]="{'padding-top': mobileNav ? '0px' : ''}">
-			<span class="burger" *ngIf="!mobileNav"></span>
-            <div class="crossIcon" *ngIf="mobileNav" style="padding-top: 0px;"><img src="assets/whiteCross.png" height="30" width="30" ></div>
-		</button>
+        <button id="burger" class="open-main-nav" (click)="toggleNav()"
+            [ngStyle]="{'padding-top': mobileNav ? '0px' : ''}">
+            <span class="burger" *ngIf="!mobileNav"></span>
+            <div class="crossIcon" *ngIf="mobileNav" style="padding-top: 0px;"><img src="assets/whiteCross.png"
+                    height="30" width="30"></div>
+        </button>
     </div>
     <div class="mobileNav" *ngIf="mobileNav">
         <div class="link" routerLink="/" (click)="closeNav('/')">Home</div>

@@ -2,17 +2,20 @@
     <div class="container">
         <div class="sidebar" [formGroup]="sidebarForm">
             <div class="searchTop">
-                    <label>Search</label>
-                    <input  placeholder="Search by country,parameter or expert" formControlName="searchValue" >
+                    <!-- <label>Search</label> -->
+                    <input  placeholder="Search Video" formControlName="searchValue" >
+                    <button type="button">Search</button>
             </div>
             <div class="filters" [formArrayName]="'filters'">
                 <ng-container *ngIf="filtersLoaded">
                     <div class="singleFilter" *ngFor="let filter of Filters;let i = index" [formGroupName]="i.toString()">
                         <ng-container *ngIf="filtersLoaded">
                             <div class="heading">Select {{filterNames[i]}}</div>
-                            <div class="formGroup" *ngFor="let singleFilter of filter.value">
-                                <label class="example-margin">{{singleFilter.name}}</label>
-                                <mat-checkbox class="example-margin"  [formControlName]="singleFilter.name"></mat-checkbox>
+                            <div class="filtersGroup">
+                                <div class="formGroup" *ngFor="let singleFilter of filter.value">
+                                    <label class="example-margin">{{singleFilter.name}}</label>
+                                    <mat-checkbox class="example-margin"  [formControlName]="singleFilter.name"></mat-checkbox>
+                                </div>
                             </div>
                         </ng-container>
                         <mat-spinner [diameter]="35" class="spinner" *ngIf="!filtersLoaded"></mat-spinner>
@@ -47,9 +50,9 @@
                 </div>
             </div>
             <div class="newFilterButtons">
-                <div class="newButton" (click)="getVideos('latest')">Latest</div>
-                <div class="newButton" (click)="getVideos('popular')">Popular</div>
-                <div class="newButton" (click)="getVideos('trending')">Trending</div>
+                <div [ngClass]="selectedButton === 1 ? 'selectedNewButton' : 'newButton'" (click)="getVideos('latest')">Latest</div>
+                <div [ngClass]="selectedButton === 2 ? 'selectedNewButton' : 'newButton'" (click)="getVideos('popular')">Popular</div>
+                <div [ngClass]="selectedButton === 3 ? 'selectedNewButton' : 'newButton'" (click)="getVideos('trending')">Trending</div>
             </div>
             
             <div class="rightContent">

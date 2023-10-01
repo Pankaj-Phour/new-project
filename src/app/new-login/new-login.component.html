@@ -35,13 +35,10 @@
                                 <div class="formGroup"
                                     style="display: flex;align-items: center;background-color: #424242;padding-inline-start: 10px;border-radius: 10px;">
                                     <span class="prefix">+91</span>
-                                    <input type="text" placeholder="Enter your contact" formControlName="contact"
-                                        (input)="contactLengthChecker($event)" (keydown)="contactInput($event)"
-                                        [ngClass]="signupForm.get('contact').hasError('required') && signupForm.get('contact').touched ? 'borderError' : ''">
+                                    <input type="text" placeholder="Enter your country" formControlName="country"
+                                        [ngClass]="signupForm.get('country').hasError('required') && signupForm.get('country').touched ? 'borderError' : ''">
                                     <span class="error"
-                                        *ngIf="signupForm.get('contact').hasError('required') && signupForm.get('contact').touched">*required</span>
-                                    <span class="error"
-                                        *ngIf="!signupForm.get('contact').hasError('required') && signupForm.get('contact').touched && contactError">*Invalid</span>
+                                        *ngIf="signupForm.get('country').hasError('required') && signupForm.get('country').touched">*required</span>
                                 </div>
                                 <div class="formGroup">
                                     <input type="password" placeholder="Create your Password" formControlName="password"
@@ -65,6 +62,7 @@
                                 </div>
                             </div>
                             <div class="bottomButton">
+                                <mat-spinner [diameter]="25" class="spinner" *ngIf="signupLoader"></mat-spinner>
                                 <button
                                     [ngClass]="signupForm.invalid || signupForm.value.checkbox==false ? 'disabled-btn' : 'submit-btn'"
                                     [disabled]="signupForm.invalid || signupForm.value.checkbox==false"
@@ -132,8 +130,16 @@
                                     <span class="error"
                                         *ngIf="!signinForm.get('email').hasError('required') && signinForm.get('email').hasError('email') && signinForm.get('email').touched">*Invalid</span>
                                 </div>
+                                <div class="formGroup">
+                                    <input type="password" placeholder="Create your Password" formControlName="password"
+                                        (input)="passwordInput($event)"
+                                        [ngClass]="signinForm.get('password').hasError('required') && signinForm.get('password').touched ? 'borderError' : ''">
+                                    <span class="error"
+                                        *ngIf="signinForm.get('password').hasError('required') && signinForm.get('password').touched">*required</span>
+                                </div>
                             </div>
                             <div class="bottomButton">
+                                <mat-spinner [diameter]="25" class="spinner" *ngIf="signinLoader"></mat-spinner>
                                 <button [ngClass]="signinForm.invalid ? 'disabled-btn' : 'submit-btn'"
                                     (click)="Submit()" [disabled]="signinForm.invalid">Sign In</button>
                             </div>

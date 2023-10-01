@@ -44,4 +44,10 @@ export class NavbarComponent implements OnInit {
     this._api.loginClicked(true)
   }
 
+  logout(){
+    localStorage.clear();
+    this._api.loggedIn(false);
+    this.router.navigate(['/'])
+  }
+
 }
