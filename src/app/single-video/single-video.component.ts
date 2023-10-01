@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit,ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit,ChangeDetectorRef, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
 
@@ -13,6 +13,8 @@ commentData:any;
 liked = false;
 mobile:boolean;
 comments = false;
+
+@ViewChild('video') video:ElementRef;
   constructor(private _api:ApiService, private _cdr:ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -22,8 +24,17 @@ comments = false;
     this._api.changeSelectedVideoEmitter.subscribe((data:any)=>{
       this.selectedVideo = data;
       console.log(this.selectedVideo);
+      setTimeout(() => {
+        
+        // this.video.nativeElement.play();
+        this.playVideo();
+      }, 1500);
     });
 
+
+    this._api.toggleCommentSectionEmitter.subscribe((data:any)=>{
+      this.addComment();
+    })
 
     
 
@@ -48,7 +59,7 @@ comments = false;
   ngAfterViewInit(){
     this._cdr.detectChanges();
     console.log(this.commentData);
-    
+    this.video.nativeElement.play();
   }
 
   likeVideo(e:any){
@@ -57,6 +68,10 @@ comments = false;
 
   addComment(){
     this.comments = !this.comments;
+  }
+
+  playVideo(){
+    this.video.nativeElement.play();
   }
 
 }

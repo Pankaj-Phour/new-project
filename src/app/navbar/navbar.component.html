@@ -9,11 +9,11 @@
         <div class="link" routerLink="/catalogue">Review Catalogue</div>
         <div class="profile" *ngIf="user && loggedIn">
             <div class="userLogo">
-                <div class="circle" [ngStyle]="{backgroundColor:'gray'}">{{user.name.split('')[0]}}</div>
+                <div class="circle" [ngStyle]="{backgroundColor:'gray'}">{{user.name.split('')[0].toUpperCase()}}</div>
             </div>
             <div class="userData">
                 <div class="userName">{{user.name}}</div>
-                <div class="userAddress">{{user.contact}}</div>
+                <div class="userAddress">{{user.country}}</div>
             </div>
         </div>
         <!-- <div class="link">Contact us</div> -->

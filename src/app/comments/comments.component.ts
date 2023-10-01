@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ApiService } from '../services/api.service';
 
@@ -12,6 +12,8 @@ export class CommentsComponent implements OnInit {
   commentForm: FormGroup;
   inputFocused = false;
   user: any;
+  @Input() selectedVideo:any;
+
   constructor(private _fb: FormBuilder, private _api: ApiService) { }
   @ViewChild('input') input: ElementRef;
 
@@ -96,6 +98,7 @@ export class CommentsComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.getCommentData();
     this.user = localStorage.getItem('user');
     console.log(this.user);
     if (this.user) {
@@ -144,5 +147,18 @@ export class CommentsComponent implements OnInit {
         message: 'Please login to comment on any video.'
       })
     }
+  }
+
+  getCommentData(){
+    this._api.getComments(`/comment/getComments?videoId=${this.selectedVideo._id}`).subscribe((res:any)=>{
+      console.log("Response from comments api",res);
+      
+    })
+  }
+
+
+  closeComments(){
+    console.log("Closing comments ");
+    this._api.toggleCommentSection(true)
   }
 }

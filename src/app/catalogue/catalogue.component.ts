@@ -19,6 +19,7 @@ pexelVideos:any = [];
 mobile:boolean;
 filtersLoaded:boolean = false;
 videosLoaded:boolean = false;
+selectedButton:number = 1;
   Filters: any = [
     {
       type: 'Parameter',
@@ -116,6 +117,7 @@ videosLoaded:boolean = false;
 
   getVideos(filter:any){
     this.videosLoaded = false;
+    this.selectedButton = filter == 'latest' ? 1 : filter == 'trending' ? 3 : 2;
     let params = {
       filter:{
         experts:[],
@@ -128,7 +130,7 @@ videosLoaded:boolean = false;
     this._api.getvideos('/catalogue/videos',params).subscribe((res:any)=>{
       console.log(res);
       this.videosLoaded = true;
-      this.pexelVideos = res.data;
+      this.pexelVideos = res.response;
       console.log(this.pexelVideos);
       localStorage.setItem('videos',JSON.stringify(this.pexelVideos))
       this.videosLoaded = true;
@@ -137,13 +139,13 @@ videosLoaded:boolean = false;
 
   getFilters(){
     this._api.getFilters('/static/data?type=parameter').subscribe((res:any)=>{
-      if(res && res.success){
-        this.Filters[0].value = res.data;
+      if(res && !res.error){
+        this.Filters[0].value = res.response;
       } 
     })
     this._api.getFilters('/static/data?type=country').subscribe((res:any)=>{
-      if(res && res.success){
-        this.Filters[1].value = res.data;
+      if(res && !res.error){
+        this.Filters[1].value = res.response;
         setTimeout(() => {
           for(let i=0;i<this.Filters.length;i++){
             (this.sidebarForm.get('filters') as FormArray).push(this.addDummyControl());

@@ -398,7 +398,7 @@ input{
     }
     .parent{
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         overflow-y: scroll;
         justify-content: space-between;
         row-gap: 15px;

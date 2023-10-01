@@ -43,6 +43,11 @@ headers = new HttpHeaders();
     this.addCommentEmitter.emit(data)
   }
 
+  @Output() toggleCommentSectionEmitter = new EventEmitter();
+  toggleCommentSection(data){
+    this.toggleCommentSectionEmitter.emit(data)
+  }
+
 
   // ***************************************** Common functions to be used by different components  ***************************************** 
   
@@ -72,6 +77,21 @@ headers = new HttpHeaders();
 
   getFilters(endpoint:any){
     return this.http.get(environment.AshwaniApi + endpoint)
+  }
+
+  getComments(endpoint:any){
+    return this.http.get(environment.AshwaniApi + endpoint)
+  }
+
+
+
+
+  signin(endpoint:any,params:any){
+    return this.http.post(environment.AshwaniApi + endpoint,params)
+  }
+
+  signup(endpoint:any,params:any){
+    return this.http.post(environment.AshwaniApi + endpoint,params)
   }
 
   pexelsVideos(endpoint:any){

@@ -1,8 +1,11 @@
 <div class="body">
     <div class="commentsContainer">
         <div class="userComment">
+            <div class="crossIcon" (click)="closeComments()">
+                <img src="assets/cross.png" height="30px" width="30px">
+            </div>
             <div class="userImage">
-                <div class="circle" [ngStyle]="{backgroundColor:user ? 'brown' : commentsData[8].background}">{{user ? user.name.split('')[0] : 'U'}}</div>
+                <div class="circle" [ngStyle]="{backgroundColor:user ? 'brown' : commentsData[8].background}">{{user ? user.name.split('')[0].toUpperCase() : 'U'}}</div>
             </div>
             <div class="commentDetails">
                 <div class="upper">
@@ -21,7 +24,7 @@
         </div>
         <div class="singleComment" *ngFor="let comment of commentsData">
             <div class="userImage">
-                <div class="circle" [ngStyle]="{backgroundColor:comment.background}">{{comment.user_name.split('')[0]}}</div>
+                <div class="circle" [ngStyle]="{backgroundColor:comment.background}">{{comment.user_name.split('')[0].toUpperCase()}}</div>
             </div>
             <div class="commentDetails">
                 <div class="upper">
