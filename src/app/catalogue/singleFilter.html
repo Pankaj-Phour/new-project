@@ -1,5 +1,5 @@
 <div class="singleFilterBody">
-    <div class="singleFilter" [formGroup]="data.formGroup">
+    <div class="singleFilter" [formGroup]="data.formGroup" *ngIf="data && data.formGroup">
         <div class="heading">Select {{data.filter.type}}</div>
         <div class="filtersform">
 
@@ -9,4 +9,5 @@
             </div>
         </div>
     </div>
+    <mat-spinner *ngIf="!(data && data.formGroup)" [diameter]="35" class="spinner"></mat-spinner>
 </div>

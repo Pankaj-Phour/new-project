@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpInterceptorService } from './services/http.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -11,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgOtpInputModule } from 'ng-otp-input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { NotifyComponent } from './notify/notify.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -77,7 +79,12 @@ import { CreditCardDirective } from './directives/credit-card.directive';
     FlexLayoutModule
 
   ],
-  providers: [],
+  providers: [ HttpInterceptorService,
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },
+    // CookieService 
+  ],
   bootstrap: [AppComponent],
   entryComponents:[singleFIlterComponent]
 })

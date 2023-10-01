@@ -138,6 +138,14 @@ export class CommentsComponent implements OnInit {
       this.commentForm.reset();
       this.inputFocused = false;
       this._api.addComment(this.commentsData)
+      let params = {
+        videoId:this.selectedVideo._id,
+        text:this.commentForm.value.comment
+      }
+      this._api.updateComment('/comment/addComment',params).subscribe((res:any)=>{
+        console.log(res);
+        
+      })
     }
     else {
       this._api.obNotify({

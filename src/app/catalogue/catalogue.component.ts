@@ -20,6 +20,7 @@ mobile:boolean;
 filtersLoaded:boolean = false;
 videosLoaded:boolean = false;
 selectedButton:number = 1;
+selectFilterData:any;
   Filters: any = [
     {
       type: 'Parameter',
@@ -155,6 +156,13 @@ selectedButton:number = 1;
             ((this.sidebarForm.get('filters') as FormArray).get(i.toString()) as FormGroup).removeControl('dummy')
           }
           this.filtersLoaded = true;
+          let data = {
+            filter:this.selectFilterData.filter,
+            formGroup:(this.sidebarForm.get('filters').get(this.selectFilterData.index.toString()) as FormGroup)
+          }
+          console.log("Emitting data to the dialog box",data);
+          
+          this._api.filterLoad(data)
         }, 1000);
       }
     })
@@ -184,6 +192,7 @@ selectedButton:number = 1;
 
 
   selectFilter(filter:any,index:any){
+    this.selectFilterData = {filter:filter,index:index}
     console.log(filter)
       this.dialog.open(singleFIlterComponent,{
        data : {
@@ -207,15 +216,25 @@ selectedButton:number = 1;
 
 export class singleFIlterComponent implements OnInit {
    
-  constructor(@Inject(MAT_DIALOG_DATA) public data){
+  constructor(@Inject(MAT_DIALOG_DATA) public data, private _api:ApiService){
     
   }  
   ngOnInit(): void {
       console.log("Hello from watchVideo",this.data);
       console.log(this.data);
-      this.data.filter.formGroup as FormGroup;
-      console.log(this.data);
-      console.log(this.data.formGroup.value);
+      if(this.data && this.data.formGroup){
+
+        this.data.filter.formGroup as FormGroup;
+        console.log(this.data);
+        // console.log(this.data.formGroup.value);
+
+
+      }
+        this._api.filterLoadEmitter.subscribe((data:any)=>{
+          console.log("Data from the emitter",data);
+          this.data = data;
+          
+        })
       
       // for(let i = 0;i<this.data.filter.value.length;i++){
       //   this.addFormControl(this.data.filter.formGroup,this.data.filter.value[i].name)

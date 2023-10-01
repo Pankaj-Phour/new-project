@@ -3,12 +3,13 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpHeaders
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable()
-export class HttpInterceptor implements HttpInterceptor {
+export class HttpInterceptorService implements HttpInterceptor {
 
   constructor() {}
 
