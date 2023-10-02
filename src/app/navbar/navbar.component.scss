@@ -186,3 +186,19 @@
     font-family: 'Roboto';
     font-weight: 500;
 }
+
+
+
+
+// CSS for the user profile in smaller devices 
+.userProfile{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 90%;
+    left: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}

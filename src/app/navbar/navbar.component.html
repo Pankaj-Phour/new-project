@@ -4,7 +4,7 @@
         <div class="link" routerLink="/">Welcome</div>
     </div>
     <div class="navItems"
-        [ngStyle]="{'justify-content':user ? 'space-betwen' : 'space-around',width:user ? '55%' : '60%'}">
+        [ngStyle]="{'justify-content':user ? 'space-betwen' : 'space-around'}">
         <div class="link" (click)="login()" *ngIf="!loggedIn">Login</div>
         <div class="link" *ngIf="loggedIn" routerLink="/upload">Upload</div>
         <div class="link" routerLink="/create-profile">Create Profile</div>
@@ -39,8 +39,26 @@
     <div class="mobileNav" *ngIf="mobileNav">
         <div class="link" routerLink="/" (click)="closeNav('/')">Home</div>
         <div class="link" (click)="login();closeNav('')" *ngIf="!loggedIn">Login</div>
+        <div class="link" (click)="closeNav('/upload')" *ngIf="loggedIn">Upload</div>
         <div class="link" (click)="closeNav('/create-profile')">Create Profile</div>
+        <div class="link" (click)="closeNav('/catalogue')">FunnyBone</div>
+        <div class="link disabled">Shop</div>
+        <div class="link disabled">Cart</div>
         <div class="link" (click)="closeNav('/catalogue')">Review Catalogue</div>
         <!-- <div class="link" (click)="closeNav('Contact')">Contact us</div> -->
+
+
+        <div class="userProfile" *ngIf="loggedIn">
+            <div class="text">Signed in as </div>
+            <div class="userDetails">
+                <div class="userLogo">
+                    <div class="circle" [ngStyle]="{backgroundColor:'gray'}">{{user.name.split('')[0].toUpperCase()}}</div>
+                </div>
+                <div class="userData">
+                    <div class="userName">{{user.name}}</div>
+                    <div class="userAddress">{{user.country}}</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
