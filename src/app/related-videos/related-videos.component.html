@@ -8,6 +8,12 @@
                 <div class="right">
                     <div class="title">{{video.title}}</div>
                     <div class="description">{{video.description}}</div>
+                    <div class="uploadedBy">
+                        <div class="circle" [ngStyle]="{backgroundColor:video.background ? video.background : 'Green'}">{{video.expert.split('')[0]}}</div>
+                        <div class="name">
+                            {{video.expert}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </ng-container>
