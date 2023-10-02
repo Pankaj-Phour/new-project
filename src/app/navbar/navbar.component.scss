@@ -32,7 +32,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 60%;
+    width: 70%;
 }
 .link{
     color: $whiteColor;
@@ -49,6 +49,14 @@
     transform: translateY(-3px);
     cursor: pointer;
     transition: 0.5s ease-in-out;
+}
+.disabled{
+    color: $lightWhite;
+}
+.disabled:hover{
+    transform: none !important;
+    border-bottom: 2px solid transparent;
+    
 }
 .mobileNav,.hamburger{
     display: none;

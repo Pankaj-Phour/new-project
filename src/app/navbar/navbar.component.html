@@ -6,7 +6,11 @@
     <div class="navItems"
         [ngStyle]="{'justify-content':user ? 'space-betwen' : 'space-around',width:user ? '55%' : '60%'}">
         <div class="link" (click)="login()" *ngIf="!loggedIn">Login</div>
+        <div class="link" *ngIf="loggedIn" routerLink="/upload">Upload</div>
         <div class="link" routerLink="/create-profile">Create Profile</div>
+        <div class="link" routerLink="/catalogue">FunnyBone</div>
+        <div class="link disabled" [matTooltip]="'Coming soon'">Shop</div>
+        <div class="link disabled" [matTooltip]="'Coming soon'">Cart</div>
         <div class="link" routerLink="/catalogue">Review Catalogue</div>
         <div class="profile" *ngIf="user && loggedIn" [matMenuTriggerFor]="menu">
             <div class="userLogo">

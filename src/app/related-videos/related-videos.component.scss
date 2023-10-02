@@ -46,8 +46,21 @@
 }
 .uploadedBy{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    column-gap: 10px;
     align-items: center;
+}
+.circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $whiteColor;
+    font-size: 12px;
+    font-family: 'Roboto';
+    font-weight: 500;
 }
 
 
