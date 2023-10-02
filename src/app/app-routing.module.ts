@@ -6,6 +6,7 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
 import { AuthGuard } from './services/auth.guard';
 import { NewLoginComponent } from './new-login/new-login.component';
 import { SingleVideoComponent } from './single-video/single-video.component';
+import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path:'singleVideo',
     component:SingleVideoComponent
+  },
+  {
+    path:'upload',
+    component:UploadComponent
   }
 ];
 
