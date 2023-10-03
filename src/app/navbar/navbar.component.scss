@@ -85,7 +85,7 @@
         z-index: 10;
         row-gap: 20px;
         padding-inline-start: 20px;
-        padding-block: 60px;
+        padding-block: 70px;
         opacity: 0.9;
         align-items: flex-end;
     }
@@ -100,6 +100,18 @@
     .mobileNav img{
         float: right;
         cursor: pointer;
+    }
+    .circle{
+        height: 60px !important;
+        width: 60px !important;
+        font-size: 35px !important;
+    }
+    .userDetails{
+        display: flex !important;
+        // justify-content: center !important;
+        align-items: center !important;
+        column-gap: 10px;
+        // flex-direction: column !important;
     }
 }
 
@@ -194,11 +206,19 @@
 .userProfile{
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 90%;
+    top: 95%;
     left: 50%;
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     color: white;
+    padding: 20px;
+}
+
+
+.userLogin{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }

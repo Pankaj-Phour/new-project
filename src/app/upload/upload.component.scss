@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     background-color: black;
+    border:6px solid transparent;
 }
 .container{
     width: 100%;
@@ -72,4 +73,11 @@
 }
 .center{
     font-size: 26px;
+}
+
+
+.dropdiv{
+    // margin: 30px;
+    border: 6px dotted $whiteColor;
+    box-shadow: 0px 0px 6px 6px $whiteColor;
 }

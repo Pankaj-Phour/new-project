@@ -1,5 +1,5 @@
-<div class="body">
-    <div class="container">
+<div class="body" (drop)="onDrop($event)" [ngClass]="dragZoneActive ? 'dropdiv' : ''" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+    <div class="container" [ngStyle]="{opacity:dragZoneActive ? '0.5' : '1'}">
         <div class="outerCircle">
             <div class="uploadCircle" (click)="input.click()">
                 <div class="uploadText" *ngIf="!uploading">
