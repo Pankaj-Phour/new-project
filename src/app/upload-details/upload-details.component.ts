@@ -15,7 +15,7 @@ export class UploadDetailsComponent implements OnInit, AfterViewInit {
   newThumbs:any = [];
   thumbnailsGenerated:boolean = false;
   selectedthumbnail:number = 0;
-  newSelectedThumbnail:number = 0;
+  newSelectedThumbnail:number;
   @Input() video:any;
   @ViewChild('videoElement') videoElement:ElementRef;
   constructor(private _fb:FormBuilder, private renderer:Renderer2, private sanitizer:DomSanitizer, private _api:ApiService) { }
@@ -108,11 +108,24 @@ ngAfterViewInit(){
 
   removeThumbnail(thumbnailArray:any,index:number){
     console.log("removing thumbnail number ", index);
-    if(thumbnailArray.length > 1){
-      thumbnailArray.splice(index, 1);
+    if(thumbnailArray === 'default'){
+      if(this.thumbnails.length>1){
+        this.selectedthumbnail === index ? this.selectedthumbnail = 0 : '';
+        this.thumbnails.splice(index, 1);
+      }
+      else{
+        this.warn('warn','You must have at least one default thumbnail')
+      }
     }
     else{
-      this.warn('warn','You must have at least one thumbnail')
+      if(this.newSelectedThumbnail===index){
+        this.newSelectedThumbnail = 0;
+        if(this.newThumbs.length===1){
+          this.newSelectedThumbnail === index && this.selectedthumbnail === 5 ? this.selectedthumbnail = 0 : '';
+        }
+      }
+        this.newThumbs.splice(index,1)
+      
     }
     
   }
