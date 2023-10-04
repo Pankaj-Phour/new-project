@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-upload',
@@ -10,7 +10,8 @@ progress:number = 0;
 uploading:boolean = false;
 dragZoneActive:boolean = false;
 file:any;
-  constructor() { }
+video:any;
+  constructor(private renderer:Renderer2) { }
 
   onDrop(event: any): void {
     console.log("Hello from drop function",event)
@@ -34,40 +35,16 @@ file:any;
     this.dragZoneActive = false;
   }
 
-  preventDragNDrop() {
-    this.dragZoneActive = false;
-    window.addEventListener(
-      "dragover",
-      function (e) {
-        console.log(e);
-        
-        // e.preventDefault();
-        // e.dataTransfer.effectAllowed = "none";
-        // e.dataTransfer.dropEffect = "none";
-      },
-      false
-    );
-    window.addEventListener(
-      "drop",
-      function (e) {
-        console.log(e);
-        
-        // e.preventDefault();
-        // e.dataTransfer.effectAllowed = "none";
-        // e.dataTransfer.dropEffect = "none";
-      },
-      false
-    );
-  }
 
   ngOnInit(): void {
-    this.preventDragNDrop();
   }
 
   handleInput(e:any){
     console.log(e);
     this.file = e ? e.dataTransfer ? e.dataTransfer.files[0] : e.target ? e.target.files[0] : e : '';
     console.log("Checking file",this.file);
+    this.video = this.file;
+    
     
   }
 
