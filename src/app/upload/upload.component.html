@@ -1,0 +1,21 @@
+<div class="body" (drop)="onDrop($event)" [ngClass]="dragZoneActive ? 'dropdiv' : ''" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+    <div class="container" [ngStyle]="{opacity:dragZoneActive ? '0.5' : '1'}" *ngIf="!video">
+        <div class="outerCircle">
+            <div class="uploadCircle" (click)="input.click()">
+                <div class="uploadText" *ngIf="!uploading">
+                    <div class="upper">Click to upload your video</div>
+                    <div class="center">OR</div>
+                    <div class="lower">Drag & Drop your video files here to upload</div>
+                </div>
+                <div class="uploadText" *ngIf="uploading">
+                    <div class="center">{{progress + ' %'}}</div>
+                </div>
+                <input type="file" class="input" #input (change)="handleInput($event)" accept="video/mp4,video/mov">
+            </div>
+        </div>
+    </div>
+    <div class="videoDetails" *ngIf="video">
+        <app-upload-details [video]="video"></app-upload-details>
+    </div>
+</div>
+

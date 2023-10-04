@@ -1,0 +1,54 @@
+<div class="body">
+    <div class="container">
+        <div class="left">
+            <div class="videoContainer">
+                <video controls #videoElement (canplaythrough)="canplaythrough($event)"></video>
+            </div>
+        </div>
+        <div class="right">
+            <div class="videoData">
+                <form [formGroup]="videoData">
+                    <div class="formGroup">
+                        <label for="video name">Enter Title of video</label>
+                        <input type="text" placeholder="Enter video title here" formControlName="title">
+                        <div class="error" *ngIf="videoData.get('title').hasError('required') && videoData.get('title').touched">*required</div>
+                    </div>
+                    <div class="formGroup">
+                        <label for="video description">Enter Description of video</label>
+                        <input type="text" placeholder="Enter video description here" formControlName="description">
+                        <div class="error" *ngIf="videoData.get('description').hasError('required') && videoData.get('description').touched">*required</div>
+                    </div>
+                    <div class="formGroup">
+                        <div class="thumbnailHeading">Choose Thumbnail for your video</div>
+                        <div class="thumbnailImages">
+                            <label for="video thumbnail">Available thumbnails</label>
+                            <div class="images">
+
+                                <div class="thumbnails" *ngFor="let thumb of thumbnails;let i = index;">
+                                    <img [src]="thumb.path"  (click)="selectThumbnail('default',i)">
+                                    <mat-icon class="tickIcon" *ngIf="selectedthumbnail===i">check_circle</mat-icon>
+                                    <mat-icon class="removeIcon" (click)="removeThumbnail(thumbnails,i)">close</mat-icon>
+                                </div>
+                            </div>
+                       </div>
+
+
+                        <div class="thumbnailImages">
+                            <label for="video thumbnail">Create your own thumbnail</label>
+                            <div class="images">
+                                <div class="thumbnails" [matTooltip]="'Play and move the video to the specific point which you want to use as thumbnail and click on this icon to generate thumbnail'" (click)="newThumb()">
+                                    <img src="https://corporate.monetanalytics.com/assets/cameraIcon.png" height="70px" width="110px" >
+                                </div>
+                                <div class="thumbnails" *ngFor="let thumb of newThumbs;let i = index;">
+                                    <img [src]="thumb.path" height="70px" width="110px" (click)="selectThumbnail('custom',i)">
+                                    <mat-icon class="removeIcon" (click)="removeThumbnail(newThumbs,i)">close</mat-icon>
+                                    <mat-icon class="tickIcon" *ngIf="newSelectedThumbnail===i">check_circle</mat-icon>
+                                </div>
+                            </div>
+                       </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

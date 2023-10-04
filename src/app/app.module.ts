@@ -36,6 +36,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { CreditCardDirective } from './directives/credit-card.directive';
+import { UploadComponent } from './upload/upload.component';
+import { UploadDetailsComponent } from './upload-details/upload-details.component';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { CreditCardDirective } from './directives/credit-card.directive';
     RelatedVideosComponent,
     CardDetailsComponent,
     singleFIlterComponent,
-    CreditCardDirective
+    CreditCardDirective,
+    UploadComponent,
+    UploadDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -198,7 +198,7 @@ export class NewLoginComponent implements OnInit {
         localStorage.setItem('user',JSON.stringify(next.response.user));
             this._as.loggedIn(true)
             localStorage.setItem('logged_in','true');
-            localStorage.setItem('token',(next.response.token));
+            localStorage.setItem('token',JSON.stringify(next.response.token));
             this.router.navigate(['/'])
             // this.router.navigate(['/dashboard']);
             // this.dialog.closeAll();
@@ -241,7 +241,7 @@ export class NewLoginComponent implements OnInit {
         localStorage.setItem('user',JSON.stringify(next.response.user));
             this._as.loggedIn(true)
             localStorage.setItem('logged_in','true');
-            localStorage.setItem('token',(next.response.token));
+            localStorage.setItem('token',JSON.stringify(next.response.token));
             this.router.navigate(['/'])
             
             // this.router.navigate(['/dashboard']);

@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit {
   logout(){
     localStorage.clear();
     this._api.loggedIn(false);
-    this.router.navigate(['/'])
+    this.closeNav('/create-profile')
   }
 
 }
