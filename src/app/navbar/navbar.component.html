@@ -6,7 +6,7 @@
     <div class="navItems"
         [ngStyle]="{'justify-content':user ? 'space-betwen' : 'space-around'}">
         <div class="link" (click)="login()" *ngIf="!loggedIn">Login</div>
-        <div class="link" *ngIf="loggedIn" routerLink="/upload">Upload</div>
+        <div class="link" *ngIf="loggedIn" routerLink="/upload" [matTooltip]="'You have ' + videoCredit + ' videos left in your account to upload.'">Upload <span class="videoCredit">{{videoCredit}}</span></div>
         <div class="link" routerLink="/create-profile">Create Profile</div>
         <div class="link" routerLink="/catalogue">FunnyBone</div>
         <div class="link disabled" [matTooltip]="'Coming soon'">Shop</div>

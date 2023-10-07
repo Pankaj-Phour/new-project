@@ -78,6 +78,7 @@ ngAfterViewInit(){
       
     }
     this.thumbnailsGenerated = true;
+    this.videoData.get('thumbnail').setValue(this.thumbnails[0].path);
     
   }
 
@@ -98,10 +99,12 @@ ngAfterViewInit(){
     if(thumbnailArray == 'default'){
       this.newSelectedThumbnail = 5;
       this.selectedthumbnail = index;
+      this.videoData.get('thumbnail').setValue(this.thumbnails[index].path);
     }
     else{
       this.selectedthumbnail = 5;
       this.newSelectedThumbnail = index;
+      this.videoData.get('thumbnail').setValue(this.newThumbs[index].path);
     }
     
   }
@@ -148,5 +151,10 @@ ngAfterViewInit(){
       status:status,
       message:message
     })
+  }
+
+  submitDetails(){
+    console.log(this.videoData);
+    
   }
 }

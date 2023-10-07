@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
   mobileNav:boolean = false;
   loggedIn:boolean;
   user:any;
+  videoCredit:number = 5;
   constructor(private router:Router,private _api:ApiService) { }
 
   ngOnInit(): void {

@@ -294,3 +294,8 @@ input{
         max-width: 100% !important;
     }
 }
+
+
+::ng-deep.cdk-overlay-container, .cdk-global-overlay-wrapper{
+    height: calc(100vh + 70px);
+}
