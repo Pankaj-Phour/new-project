@@ -38,6 +38,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { CreditCardDirective } from './directives/credit-card.directive';
 import { UploadComponent } from './upload/upload.component';
 import { UploadDetailsComponent } from './upload-details/upload-details.component';
+import { FunnyBoneComponent } from './funny-bone/funny-bone.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { UploadDetailsComponent } from './upload-details/upload-details.componen
     singleFIlterComponent,
     CreditCardDirective,
     UploadComponent,
-    UploadDetailsComponent
+    UploadDetailsComponent,
+    FunnyBoneComponent
   ],
   imports: [
     BrowserModule,

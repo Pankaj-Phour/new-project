@@ -8,7 +8,7 @@
         <div class="link" (click)="login()" *ngIf="!loggedIn">Login</div>
         <div class="link" *ngIf="loggedIn" routerLink="/upload" [matTooltip]="'You have ' + videoCredit + ' videos left in your account to upload.'">Upload <span class="videoCredit">{{videoCredit}}</span></div>
         <div class="link" routerLink="/create-profile">Create Profile</div>
-        <div class="link" routerLink="/catalogue">FunnyBone</div>
+        <div class="link" routerLink="/funny-bone">FunnyBone</div>
         <div class="link disabled" [matTooltip]="'Coming soon'">Shop</div>
         <div class="link disabled" [matTooltip]="'Coming soon'">Cart</div>
         <div class="link" routerLink="/catalogue">Review Catalogue</div>
@@ -52,7 +52,7 @@
         <div class="link" (click)="login();closeNav('')" *ngIf="!loggedIn">Login</div>
         <div class="link" (click)="closeNav('/upload')" *ngIf="loggedIn">Upload</div>
         <div class="link" (click)="closeNav('/create-profile')">Create Profile</div>
-        <div class="link" (click)="closeNav('/catalogue')">FunnyBone</div>
+        <div class="link" (click)="closeNav('/funny-bone')">FunnyBone</div>
         <div class="link disabled">Shop</div>
         <div class="link disabled">Cart</div>
         <div class="link" (click)="closeNav('/catalogue')">Review Catalogue</div>
