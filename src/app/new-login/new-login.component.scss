@@ -23,7 +23,7 @@
 }
 .parent{
     max-width: 1000px;
-    max-height: 600px;
+    max-height: 550px;
     width: 100%;
     height: 100%;
 }
@@ -31,7 +31,7 @@
     position: absolute;
     display: flex;
     max-width: 1000px;
-    max-height: 600px;
+    max-height: 550px;
     width: 100%;
     height: 100%;
     justify-content: space-around;
@@ -44,7 +44,7 @@
     justify-content: center;
     align-items: center;
     max-width: 1000px;
-    max-height: 600px;
+    max-height: 550px;
     width: 100%;
     height: 100%;
 }
@@ -53,7 +53,7 @@
     justify-content: center;
     align-items: center;
     max-width: 1000px;
-    max-height: 600px;
+    max-height: 550px;
     width: 100%;
     height: 100%;
 }
@@ -255,7 +255,7 @@ input{
   }
   
   
-  .sign-in {
+  .sign-up {
     transform: rotateX(180deg);
   }
   .prefix{
