@@ -39,6 +39,7 @@ import { CreditCardDirective } from './directives/credit-card.directive';
 import { UploadComponent } from './upload/upload.component';
 import { UploadDetailsComponent } from './upload-details/upload-details.component';
 import { FunnyBoneComponent } from './funny-bone/funny-bone.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { FunnyBoneComponent } from './funny-bone/funny-bone.component';
     CreditCardDirective,
     UploadComponent,
     UploadDetailsComponent,
-    FunnyBoneComponent
+    FunnyBoneComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
