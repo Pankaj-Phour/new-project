@@ -16,8 +16,8 @@
                                 </div>
                                 <div class="formGroup">
                                         <mat-form-field appearance="fill">
-                                            <mat-select placeholder="Select your expertise" formControlName="expertise" >
-                                              <mat-option *ngFor="let expert of expertise" [value]="expert.name">
+                                            <mat-select placeholder="Select your parameters" formControlName="expertise" >
+                                              <mat-option *ngFor="let expert of parameters" [value]="expert.name">
                                                 {{expert.name}}
                                               </mat-option>
                                             </mat-select>
@@ -26,7 +26,7 @@
                                 <div class="formGroup">
                                     <mat-form-field appearance="fill">
                                         <mat-select placeholder="Select your services" formControlName="services" >
-                                          <mat-option *ngFor="let expert of expertise" [value]="expert.name">
+                                          <mat-option *ngFor="let expert of services" [value]="expert.name">
                                             {{expert.name}}
                                           </mat-option>
                                         </mat-select>
@@ -81,7 +81,7 @@
                     <div class="nameRight">{{user.address}}</div>
                 </div>
                 <div class="name">
-                    <div class="nameLeft">Expertise : </div>
+                    <div class="nameLeft">Parameter: </div>
                     <div class="nameRight">{{newValues?.expertise ? newValues.expertise : ''}}</div>
                 </div>
                 <div class="name">

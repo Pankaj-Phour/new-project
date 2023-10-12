@@ -27,27 +27,30 @@
                                 <div class="thumbnails" *ngFor="let thumb of thumbnails;let i = index;">
                                     <img [src]="thumb.path"  (click)="selectThumbnail('default',i)">
                                     <mat-icon class="tickIcon" *ngIf="selectedthumbnail===i">check_circle</mat-icon>
-                                    <mat-icon class="removeIcon" (click)="removeThumbnail(thumbnails,i)">close</mat-icon>
+                                    <mat-icon class="removeIcon" (click)="removeThumbnail('default',i)">close</mat-icon>
                                 </div>
                             </div>
                        </div>
 
 
                         <div class="thumbnailImages">
-                            <label for="video thumbnail">Create your own thumbnail</label>
-                            <div class="images">
-                                <div class="thumbnails" [matTooltip]="'Play and move the video to the specific point which you want to use as thumbnail and click on this icon to generate thumbnail'" (click)="newThumb()">
-                                    <img src="https://corporate.monetanalytics.com/assets/cameraIcon.png" height="70px" width="110px" >
-                                </div>
+                            <div class="thumbnailTop">
+                                <label for="video thumbnail">Create your own thumbnail</label>
+                                <img src="https://corporate.monetanalytics.com/assets/cameraIcon.png" height="20px" width="25px" [matTooltip]="'Play and move the video to the specific point which you want to use as thumbnail and click on this icon to generate thumbnail'" (click)="newThumb()">
+                            </div>
+                                <div class="images">
                                 <div class="thumbnails" *ngFor="let thumb of newThumbs;let i = index;">
                                     <img [src]="thumb.path" height="70px" width="110px" (click)="selectThumbnail('custom',i)">
-                                    <mat-icon class="removeIcon" (click)="removeThumbnail(newThumbs,i)">close</mat-icon>
+                                    <mat-icon class="removeIcon" (click)="removeThumbnail('custom',i)">close</mat-icon>
                                     <mat-icon class="tickIcon" *ngIf="newSelectedThumbnail===i">check_circle</mat-icon>
                                 </div>
                             </div>
                        </div>
                     </div>
                 </form>
+            </div>
+            <div class="buttonGroup">
+                <button class="submitButton" type="button" (click)="submitDetails()" [disabled]="videoData.invalid">Upload</button>
             </div>
         </div>
     </div>

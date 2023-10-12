@@ -82,20 +82,21 @@ input{
     display: flex;
     // justify-content: space-around;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     row-gap: 15px;
 }
 .thumbnailImages label{
     font-size: 19px;
     font-family: 'Roboto';
-    width: 100%;
 }
 .images{
     display: flex;
     align-items: center;
     width: 100%;
     column-gap: 15px;
+    height: 70px;
+
 }
 .thumbnailImages .thumbnails{
     cursor: pointer;
@@ -137,6 +138,18 @@ input{
     font-size: 14px;
 }
 
+.thumbnailTop{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 15px;
+    padding-block: 10px;
+}
+.thumbnailTop img{
+    cursor: pointer;
+}
+
 
 .thumbnailImages::ng-deep.mat-icon{
     height: 20px;
@@ -144,4 +157,50 @@ input{
 }
 .thumbnailImages::ng-deep.material-icons{
     font-size: 20px;
+}
+
+
+
+
+// CSS for smaller screens 
+@media only screen and (max-width : 768px){
+    .body{
+        overflow-y: auto;
+    }
+    .container{
+        flex-direction: column;
+        justify-content: flex-start;
+        row-gap: 15px;
+        height: 100%;
+    }
+    .left, .right{
+        width: 90%;
+    }
+}
+
+
+.buttonGroup{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 94%;
+    left: 93%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+.submitButton{
+    padding: 10px;
+    padding-inline: 20px;
+    border-radius: 10px;
+    border: 2px solid $darkAqua;
+    color: $darkAqua;
+    font-size: 21px;
+    background-color: $blackColor;
+    cursor: not-allowed;
+}
+.submitButton:enabled{
+    background-color: $darkAqua;
+    color: $whiteColor;
+    border: 2px solid $blackColor;
+    cursor: pointer;
 }

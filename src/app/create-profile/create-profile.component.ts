@@ -26,7 +26,8 @@ export class CreateProfileComponent implements OnInit {
     {name:'Expert C'},
     {name:'Expert D'},
     {name:'Expert E'}
-  ]
+  ];
+  parameters:any = [];
   constructor(private _fb:FormBuilder,private _api:ApiService, private dialog:MatDialog) { }
   profile:any;
   ngOnInit(): void {
@@ -40,6 +41,12 @@ export class CreateProfileComponent implements OnInit {
       this.newValues = value;
       // console.log(this.newValues);
       
+    })
+
+    this._api.getFilters('/static/data?type=parameter').subscribe((res:any)=>{
+      if(res && !res.error){
+        this.parameters = res.response;
+      }
     })
     
   }
