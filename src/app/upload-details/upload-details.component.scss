@@ -180,3 +180,30 @@ input{
         width: 90%;
     }
 }
+
+
+.buttonGroup{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 94%;
+    left: 93%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+.submitButton{
+    padding: 10px;
+    padding-inline: 20px;
+    border-radius: 10px;
+    border: 2px solid $darkAqua;
+    color: $darkAqua;
+    font-size: 21px;
+    background-color: $blackColor;
+    cursor: not-allowed;
+}
+.submitButton:enabled{
+    background-color: $darkAqua;
+    color: $whiteColor;
+    border: 2px solid $blackColor;
+    cursor: pointer;
+}
